@@ -11,11 +11,13 @@
 </head>
 
 <body>
+    <h1>Learning D3</h1>
+    <h3>(click on the dots)</h3>
     <div id="svgcontainer">
     </div>
     <script language="javascript">
-        var width = 300;
-        var height = 300;
+        var width = 800;
+        var height = 500;
         var svg = d3.select("#svgcontainer")
             .append("svg")
             .attr("width", width)
@@ -53,15 +55,27 @@
 
         ];
         function drawOnMap(x, y, color,) {
-            let newPoint = svg.append('circle').attr('r', 8);
+            let newPoint = svg.append('circle').attr('r', 25);
             newPoint.attr('cx', x).attr('cy', y).attr('fill', color);
+            newPoint.on('click', ()=>{newPoint.remove()})
         };
-        
+
         for (var place of arrayOfPlaces) {
             drawOnMap(place.x, place.y, place.color)
         }
 
+        let balloon = svg.append("circle").attr('fill', 'purple').attr('r', 35).attr('cx', Math.floor(Math.random() * 400) + 35).attr('cy', 100)
+        balloon.on('click', () => {
+            balloon.interrupt().attr('cy', 100).attr('fill', 'purple')
+            balloon.transition().ease(d3.easeElasticIn).duration(2000).attr('cy', 400).attr('fill', 'rgb(0,255,0)').remove()
 
+        })
+
+
+        let ball = svg.append('circle').attr("fill", 'steelblue').attr('r', 100).attr('cx', 500).attr('cy', 100)
+        ball.on('click', () => {
+            ball.transition().duration(2000).attr('r', 0).attr("fill", 'black')
+        })
     </script>
 </body>
 
