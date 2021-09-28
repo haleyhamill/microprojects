@@ -25,32 +25,21 @@
 <div id="root"></div>
 <script type="text/babel">
 
-function Sunny(props) {
-    return <p>Enjoy the weather</p>
+function A(props) {
+    return <p>A</p>
 }
 
-function Rainy(props) {
-    return <p>You should bring an umbrella</p>
+function B(props) {
+    return <p>B</p>
 }
 
-class Message extends React.Component {
-    render() {
-        const isRaining = this.props.isRaining;
-
-        const message = isRaining ?
-            <Rainy /> : <Sunny />;
-
-        return (
-            <div>
-                {message}
-                <p> Anyways, enjoy your day </p>;
-            </div>
-        );
-    }
+function C(props) {
+    const show = props.show;
+    return show ? <A /> : <B />;
 }
 
 ReactDOM.render(
-    <Message isRaining={true} />,
+    <C show={false} />,
     document.getElementById('root')
 );
 
