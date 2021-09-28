@@ -17,31 +17,32 @@
 </style>
 
 <body>
-    <div id="container"></div>
+    <div id="root"></div>
     <script type="text/babel">
 
-    const Wiggle = ({children}) => {
-        return(
-            <div style={{padding:200}}>
-                {children}
-            </div>
-        )
+class Enki extends React.Component {
+    render() {
+        return <p>{this.props.myValue}</p>;
     }
+}
 
+Enki.defaultProps = {
+    name: "Enki",
+}
 
-    const divStyle = {
-        backgroundColor: "blue",
-        width: "100px",
-        height: "100px",
-        borderRadius: "50%",
-    }
-        ReactDOM.render( 
-            <Wiggle>
-                <div style={divStyle}>
-                </div>
-            </Wiggle>
-            , document.getElementById("container"));
+const element = <Enki />
+
+ReactDOM.render(
+    element,
+    document.getElementById('root')
+);
+
     </script>
 
 </body>
 </html>
+
+
+
+
+
