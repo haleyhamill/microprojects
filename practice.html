@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/react@15.3.2/dist/react.js"></script>
+    <script src="https://unpkg.com/react-dom@15.3.2/dist/react-dom.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+    <title>Practicing React</title>
+</head>
+<style>
+    * { margin:0; padding: 0; }
+
+    div { text-align: center; }
+
+    p { text-align:center; font-size: 50px; margin: 50px; }
+
+    img { width: 600px; height: 400px; }
+</style>
+
+<body>
+<div id="root"></div>
+<script type="text/babel">
+
+class Spawn extends React.Component {
+    componentDidMount() {
+        console.log("I have spawned");
+    }
+    render() {
+        return <p>I'm basic</p>
+    }
+
+    componentWillUnmount() {
+        console.log("I will unspawn");
+    }
+}
+
+const element = <Spawn />
+
+ReactDOM.render(
+    element,
+    document.getElementById('root')
+);
+
+    </script>
+
+</body>
+</html>
