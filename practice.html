@@ -25,31 +25,32 @@
 <div id="root"></div>
 <script type="text/babel">
 
-class MyList extends React.Component {
-constructor(props) {
-    super(props);
-    this.state = {in: ''}
+function Sunny(props) {
+    return <p>Enjoy the weather</p>
 }
 
-render() {
-    return (
-        <div>
-        <h1>make a wish</h1>
-        <input type="text" value={this.state.in}
-        onChange={(e) => this.handle(e)} />
-        <p><img src="https://data.whicdn.com/images/277276917/original.jpg"></img></p>
-        </div>
-    );
+function Rainy(props) {
+    return <p>You should bring an umbrella</p>
 }
 
-handle(e) {
-    this.setState({
-        in: e.target.value,
-    });
-}}
+class Message extends React.Component {
+    render() {
+        const isRaining = this.props.isRaining;
+
+        const message = isRaining ?
+            <Rainy /> : <Sunny />;
+
+        return (
+            <div>
+                {message}
+                <p> Anyways, enjoy your day </p>;
+            </div>
+        );
+    }
+}
 
 ReactDOM.render(
-    <MyList />,
+    <Message isRaining={true} />,
     document.getElementById('root')
 );
 
