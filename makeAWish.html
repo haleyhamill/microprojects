@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/react@15.3.2/dist/react.js"></script>
+    <script src="https://unpkg.com/react-dom@15.3.2/dist/react-dom.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+    <title>Practicing React</title>
+</head>
+<style>
+    * { margin:0; padding: 0; }
+
+    div { text-align: center; margin: 95px; }
+
+    #display { color: white; text-align: center; font-size: 50px; margin: 15px; }
+
+    img { width: 600px; height: 400px; }
+
+    input { margin: 20px; }
+</style>
+
+<body>
+<div id="root"></div>
+<script type="text/babel">
+
+class MyList extends React.Component {
+    constructor(props) {
+        super(props);
+
+        // States
+        this.state = {in: '', wishes: ""}
+
+        // Functions
+        this.handle = (e) => {
+            e.preventDefault();
+            this.setState({
+                in: e.target.value,
+            });
+        }
+
+        this.addWish = (e) => {
+            e.preventDefault();
+            const newWish = this.state.in;
+            
+            const x = Math.floor(Math.random()*(500)+400);
+            const y = Math.floor(Math.random()*(350)+200);
+            const wishStyle = {
+                top:y,
+                left: x,
+                position: "absolute",
+                fontSize: "2rem",
+                color: "white"
+            }
+            const newWishes = (
+                <span>
+                {this.state.wishes}
+                <span style ={wishStyle}>{newWish}</span>
+                </span>
+                
+            );
+            this.setState({
+                in:"",
+                wishes: newWishes
+            })
+      
+        }
+    }
+
+    render() {
+        return (
+            <div>
+                <h1>make a wish</h1>
+                <input type="text" value={this.state.in}
+                onChange={(e) => this.handle(e)} />
+                <button onClick={(e)=>this.addWish(e)}>toss</button>
+                <div id='display'><img src="https://data.whicdn.com/images/277276917/original.jpg"></img>{this.state.wishes}</div>
+            </div>
+        );
+    }
+}
+
+ReactDOM.render(
+    <MyList />,
+    document.getElementById('root')
+);
+
+    </script>
+
+</body>
+</html>
