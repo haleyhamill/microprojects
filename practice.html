@@ -17,20 +17,19 @@
 </style>
 
 <body>
-    <div id="root"></div>
-    <script type="text/babel">
-
-class Enki extends React.Component {
+<div id="root"></div>
+<script type="text/babel">
+class Hello extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {text: "Hello" };
+    }
     render() {
-        return <p>{this.props.myValue}</p>;
+        return <p>{this.state.text}</p>;
     }
 }
 
-Enki.defaultProps = {
-    name: "Enki",
-}
-
-const element = <Enki />
+const element = <Hello />;
 
 ReactDOM.render(
     element,
