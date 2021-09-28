@@ -10,10 +10,13 @@
     <title>Practicing React</title>
 </head>
 <style>
-    * {
-        margin:0;
-        padding: 0;
-    }
+    * { margin:0; padding: 0; }
+
+    div { text-align: center; }
+
+    p { text-align:center; font-size: 50px; margin: 50px; }
+
+    img { width: 600px; height: 400px; }
 </style>
 
 <body>
@@ -22,10 +25,32 @@
 class Hello extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {text: "Hello" };
-    }
+        this.state = { text: "What", picture: 'https://i.guim.co.uk/img/media/786d8cf9adb10dcc36786da7c4dcab5d7ba39b87/0_0_4176_2504/master/4176.jpg?width=1020&quality=85&auto=format&fit=max&s=0d5940f55e49e10a7f62c99eca92cd0c' };
+
+    setTimeout(() => {
+        this.setState({ text: "A", picture: 'https://i.guim.co.uk/img/media/00e835ea7d812165bb61c1efbab49473b1e880e5/0_114_2113_1268/master/2113.jpg?width=620&quality=85&auto=format&fit=max&s=30e514e8dec457747dbc31636f76903f' });
+    }, 1000);
+
+    setTimeout(() => {
+        this.setState({ text: "Brave", picture: 'https://images.ctfassets.net/wqkd101r9z5s/1nbX5piqlAMod5d9QiYf2F/1708a02bc4867d1d0688bea63cec9f57/Paris.jpg?w=1365&q=95'  });
+    }, 2000);
+
+    setTimeout(() => {
+        this.setState({ text: "New", picture: 'https://hiasia.xyz/Uploads/Post/NhuTran-194130104140-Admire-the-stunning-beauty-of-Asian-cities-at-night-1.jpg'  });
+    }, 3000);
+
+    setTimeout(() => {
+        this.setState({ text: "World", picture: '' });
+    }, 4000);
+}
+
     render() {
-        return <p>{this.state.text}</p>;
+        return (
+            <div>
+            <p>{this.state.text}</p>
+            <img src={this.state.picture}></img>
+            </div>
+        );
     }
 }
 
