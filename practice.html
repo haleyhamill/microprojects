@@ -12,34 +12,44 @@
 <style>
     * { margin:0; padding: 0; }
 
-    div { text-align: center; }
+    div { text-align: center; margin: 95px; }
 
-    p { text-align:center; font-size: 50px; margin: 50px; }
+    p { text-align: center; font-size: 50px; margin: 15px; }
 
     img { width: 600px; height: 400px; }
+
+    input { margin: 20px; }
 </style>
 
 <body>
 <div id="root"></div>
 <script type="text/babel">
 
-class Spawn extends React.Component {
-    componentDidMount() {
-        console.log("I have spawned");
-    }
-    render() {
-        return <p>I'm basic</p>
-    }
-
-    componentWillUnmount() {
-        console.log("I will unspawn");
-    }
+class MyList extends React.Component {
+constructor(props) {
+    super(props);
+    this.state = {in: ''}
 }
 
-const element = <Spawn />
+render() {
+    return (
+        <div>
+        <h1>make a wish</h1>
+        <input type="text" value={this.state.in}
+        onChange={(e) => this.handle(e)} />
+        <p><img src="https://data.whicdn.com/images/277276917/original.jpg"></img></p>
+        </div>
+    );
+}
+
+handle(e) {
+    this.setState({
+        in: e.target.value,
+    });
+}}
 
 ReactDOM.render(
-    element,
+    <MyList />,
     document.getElementById('root')
 );
 
