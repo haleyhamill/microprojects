@@ -27,21 +27,42 @@
     const {useState, useEffect} = React;
     const { PropTypes } = React;
 
-class CountryName extends React.Component {
+class Enki extends React.Component {
     render() {
-        const countryName = getName(props.countryCode);
+        const newProp = "Enki";
+        return (
+            <div>
+                {React.Children.map(
+                    this.props.children,
+                    child => {
+                        return React.cloneElement(
+                            child,
+                            { newProp },
+                            null
+                        );
+                    }
+                )}
+            </div>
+        );
     }
+}
 
-    return (
-        <div>
-            {countryName}
-        </div>
-    );
+class EnkiChild extends React.Component {
+    render() {
+        return (
+            <h1>
+                Hello {this.props.name}, and welcome to {this.props.newProp}!
+            </h1>
+        );
+    }
 }
 
 ReactDOM.render(
-    <CountryName countryCode="US" />,
-    document.getElementById('root')
+    <Enki>
+        <EnkiChild name="Andrei" />
+        <EnkiChild name="Stefan" />
+    </Enki>,
+    document.getElementById("root")
 );
 
 </script>
