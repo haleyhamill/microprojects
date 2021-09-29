@@ -27,16 +27,16 @@
     const {useState, useEffect} = React;
     const { PropTypes } = React;
 
-function MyComponent(props) {
-    return <p>{props.text}</p>
+function Comp(props) {
+    return <h2>{props.value}</h2>
 }
 
-MyComponent.defaultProps = {
-    text: "Bonjour le monde"
+Comp.defaultProps = {
+    value: "Sam",
 };
 
 ReactDOM.render(
-    <MyComponent />,
+    <Comp />,
     document.getElementById('root')
 );
 
