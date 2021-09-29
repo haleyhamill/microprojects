@@ -27,23 +27,16 @@
     const {useState, useEffect} = React;
     const { PropTypes } = React;
 
-function Test(props) {
-
-    return (
-        <p>{props.myObject.name}</p>
-    ) 
-};
-Test.propTypes = {
-    myFunction: PropTypes.func,
-    myObject: PropTypes.object,
-};
-
-const sam = {
-    name: "Sam1",
+function MyComponent(props) {
+    return <p>{props.text}</p>
 }
 
+MyComponent.defaultProps = {
+    text: "Bonjour le monde"
+};
+
 ReactDOM.render(
-    <Test myObject={sam} />,
+    <MyComponent />,
     document.getElementById('root')
 );
 
