@@ -25,21 +25,14 @@
 <div id="root"></div>
 <script type="text/babel">
 
-function A(props) {
-    return <p>A</p>
-}
+function Enki() {
+    const [name, setName] = useState("Enki");
 
-function B(props) {
-    return <p>B</p>
-}
-
-function C(props) {
-    const show = props.show;
-    return show ? <A /> : <B />;
+    return <p>Hello, my name is {name}</p>;
 }
 
 ReactDOM.render(
-    <C show={false} />,
+    <Enki />,
     document.getElementById('root')
 );
 
