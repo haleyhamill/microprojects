@@ -27,16 +27,20 @@
     const {useState, useEffect} = React;
     const { PropTypes } = React;
 
-function Comp(props) {
-    return <h2>{props.value}</h2>
+class CountryName extends React.Component {
+    render() {
+        const countryName = getName(props.countryCode);
+    }
+
+    return (
+        <div>
+            {countryName}
+        </div>
+    );
 }
 
-Comp.defaultProps = {
-    value: "Sam",
-};
-
 ReactDOM.render(
-    <Comp />,
+    <CountryName countryCode="US" />,
     document.getElementById('root')
 );
 
