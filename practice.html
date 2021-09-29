@@ -25,24 +25,29 @@
 <div id="root"></div>
 <script type="text/babel">
     const {useState, useEffect} = React;
+    const { PropTypes } = React;
 
-function Enki() {
-    const [name, setName] = useState("Enki");
+function Test(props) {
 
-    useEffect(() => {
-        document.title = `Welcome ${name}.`;
-    });
+    return (
+        <p>{props.myObject.name}</p>
+    ) 
+};
+Test.propTypes = {
+    myFunction: PropTypes.func,
+    myObject: PropTypes.object,
+};
 
-    return <p>Hello, my name is {name}</p>
+const sam = {
+    name: "Sam1",
 }
 
-
 ReactDOM.render(
-    <Enki />,
+    <Test myObject={sam} />,
     document.getElementById('root')
 );
 
-    </script>
+</script>
 
 </body>
 </html>
