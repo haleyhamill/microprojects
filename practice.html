@@ -12,6 +12,9 @@
 <style>
     * { margin:0; padding: 0; }
 
+    a { color:white; background-color: pink; font-size: 50px; padding: 0px 10px 0px 10px;
+        text-decoration: none; border-radius: 20px; }
+
     div { text-align: center; margin: 95px; }
 
     p { text-align: center; font-size: 50px; margin: 15px; }
@@ -27,15 +30,11 @@
     const {useState, useEffect} = React;
     const { PropTypes } = React;
 
-class EnkiLink extends React.Component{
-    render() {
-        return(
-            <a {...this.props}>
-                {this.props.children}
-            </a>
-        );
-    }
-}
+let comp = ({enki}) => <h1>{enki}</h1>;
+
+comp.propTypes = {
+    enki: PropTypes.string
+};
 
 ReactDOM.render(
     <EnkiLink href="www.enki.com">
