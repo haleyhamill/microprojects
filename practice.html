@@ -17,9 +17,10 @@ html {
     background-position-x: center;
 }
 
-body { color: pink; font: 50px "Century Gothic", Futura, sans-serif; margin: 105px; }
+body { color: rgb(251, 96, 122); font-size: 50px;
+font: "Century Gothic", Futura, sans-serif; margin: 8%; }
 
-div { text-align: center; }
+div { text-align: ; }
 
 ol, ul {
     padding-left: 30px;
@@ -111,7 +112,7 @@ class Board extends React.Component {
     };
 
   render() {
-    const status = 'next player: ' + (this.state.xIsNext ? 'x' : 'o');
+    const status = 'player: ' + (this.state.xIsNext ? 'x' : 'o');
 
     return (
       <div>
