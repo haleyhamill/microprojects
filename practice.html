@@ -30,16 +30,28 @@
     const {useState, useEffect} = React;
     const { PropTypes } = React;
 
-let comp = ({enki}) => <h1>{enki}</h1>;
+class ShoppingList extends React.Component {
+  render() {
+    return (
+      <div className="shopping-list">
+        <h1>Shopping List for {this.props.name}</h1>
+        <ul>
+          <li>Instagram</li>
+          <li>WhatsApp</li>
+          <li>Oculus</li>
+        </ul>
+      </div>
+    );
+  }
+}
 
-comp.propTypes = {
-    enki: PropTypes.string
-};
+const name = [
+    'Sam',
+    'Haley',
+]
 
 ReactDOM.render(
-    <EnkiLink href="www.enki.com">
-        Click here!
-    </EnkiLink>,
+    <ShoppingList name={name[1]} />,
     document.getElementById("root")
 );
 
