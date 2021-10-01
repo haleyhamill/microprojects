@@ -21,7 +21,17 @@ text-align: center; width: 300px; margin-left: auto; margin-right: auto; }
 <div id="root"></div>
 <script type="text/babel">
 
-const title = <h1>You have {2 + 3} notifications</h1>;
+const user = {
+    id: 1,
+    name: "Sam"
+};
+
+const element = <p className="user-info">Welcome {user.name}!</p>
+
+ReactDOM.render(
+    element,
+    document.getElementById("root")
+)
 
 // ========================================
 
