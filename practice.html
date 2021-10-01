@@ -21,13 +21,7 @@ text-align: center; width: 300px; margin-left: auto; margin-right: auto; }
 <div id="root"></div>
 <script type="text/babel">
 
-function getTitle(is_open) {
-    if (is_open) {
-        return <h1 className="title">Supermarket</h1>
-    } else {
-        return <h1 className="title">Supermarket (closed)</h1>
-    }
-}
+const title = <h1>You have {2 + 3} notifications</h1>;
 
 // ========================================
 
