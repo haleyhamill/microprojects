@@ -21,17 +21,22 @@ text-align: center; width: 300px; margin-left: auto; margin-right: auto; }
 <div id="root"></div>
 <script type="text/babel">
 
-function getNavbar(user) {
+function getNotifications(notifications) {
+    const numberNotifications = notifications.length;
     return(
-        <div>Logged in as {user.name}. Log out</div>
+        <p>You have {numberNotifications} new notifications</p>
     )
 };
 
 // sample usage (do not modify)
-const element = getNavbar({
-    name: "Sam",
-    age: 34
-});
+const notifications = [{
+    id: 1,
+    text: "Your order has been delivered"
+}, {
+    id: 2,
+    text: "Your coupon code has expired"
+}];
+const element = getNotifications(notifications);
 
 ReactDOM.render(
     element,
