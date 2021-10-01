@@ -21,10 +21,14 @@ text-align: center; width: 300px; margin-left: auto; margin-right: auto; }
 <div id="root"></div>
 <script type="text/babel">
 
-const element = React.createElement("p", {}, "Hello World");
+function Header(props) {
+    return(
+        <h1>Online Super</h1>
+    )
+};
 
 ReactDOM.render(
-    element,
+    <Header />,
     document.getElementById('root')
 );
 
