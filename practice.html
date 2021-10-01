@@ -21,16 +21,8 @@ text-align: center; width: 300px; margin-left: auto; margin-right: auto; }
 <div id="root"></div>
 <script type="text/babel">
 
-function Header(props) {
-    return(
-        <h1>Online Super</h1>
-    )
-};
-
-ReactDOM.render(
-    <Header />,
-    document.getElementById('root')
-);
+const root = document.querySelector("#root");
+ReactDOM.render(<h1>Hello World</h1>, root);
 
 // ========================================
 
