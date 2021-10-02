@@ -21,33 +21,23 @@ text-align: center; width: 300px; margin-left: auto; margin-right: auto; }
 <div id="root"></div>
 <script type="text/babel">
 
-function getNotifications(notifications) {
-    const numberNotifications = notifications.length;
+function GetFooter() {
     return(
-        <p>You have {numberNotifications} new notifications</p>
+    <div>
+        <h3>Your online supermarket</h3>
+        <ul>
+            <li>Contact</li>
+            <li>Press</li>
+            <li>About</li>
+        </ul>
+        <p>All rights reserved &copy;</p>
+    </div>
     )
 };
 
-// sample usage (do not modify)
-const notifications = [{
-    id: 1,
-    text: "Your order has been delivered"
-}, {
-    id: 2,
-    text: "Your coupon code has expired"
-}];
-const element = getNotifications(notifications);
-
 ReactDOM.render(
-    element,
+    <GetFooter />,
     document.getElementById('root')
-)
-
-// ========================================
-
-ReactDOM.render(
-  <Game />,
-  document.getElementById('root')
 );
 
 </script>
