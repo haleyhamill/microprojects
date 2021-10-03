@@ -21,12 +21,19 @@ text-align: center; width: 300px; margin-left: auto; margin-right: auto; }
 <div id="root"></div>
 <script type="text/babel">
 
-function ShoppingCart(props){
-    return <div>{props.count} items in your cart</div>;
+function Button(props){
+    let className = ""
+    if (props.size==="small") {
+        className = "btn-small";
+    } else if (props.size==="large") {
+        className = "btn-large";
+    } else 
+    className = "btn-medium"
+    return <button className={className}>Text here</button>;
 }
 
 const root = document.querySelector("#root");
-ReactDOM.render(<ShoppingCart count="5" />, root);
+ReactDOM.render(<Button size="small" />, root);
 
 </script>
 
