@@ -21,19 +21,14 @@ text-align: center; width: 300px; margin-left: auto; margin-right: auto; }
 <div id="root"></div>
 <script type="text/babel">
 
-function Button(props){
-    let className = ""
-    if (props.size==="small") {
-        className = "btn-small";
-    } else if (props.size==="large") {
-        className = "btn-large";
-    } else 
-    className = "btn-medium"
-    return <button className={className}>Text here</button>;
-}
+function Navbar(props) {
+    return <div className="navbar">{props.children}</div>
+};
 
-const root = document.querySelector("#root");
-ReactDOM.render(<Button size="small" />, root);
+ReactDOM.render(
+    <Navbar/>,
+    document.getElementById('root')
+)
 
 </script>
 
