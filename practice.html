@@ -21,16 +21,43 @@ text-align: center; width: 300px; margin-left: auto; margin-right: auto; }
 <div id="root"></div>
 <script type="text/babel">
 
-function Button(props){
-    const {className, children} = props;
-    return <button className={className}>{children}</button>;
+state = {
+    todos: [
+        {
+            id: 1,
+            title: "Setup development environment",
+            completed: true
+        },
+        {
+            id: 2,
+            title: "Develop website and add content",
+            completed: false
+        },
+        {
+            id: 3,
+            title: "Deploy to live server",
+            completed: false,
+        }
+    ]
+};
+
+class TodoContainer extends React.Component {
+    render() {
+        return(
+            <ul>
+                {this.state.todos.map(todo => (
+                    <li>{todo.title}</li>
+                ))}
+            </ul>
+        );
+    }
 }
 
-const root = document.querySelector("#react-root");
-
 ReactDOM.render(
-    <Button className="primary">Login</Button>,
-    document.getElementById('root')
+    <React.StrictMode>
+        <TodoContainer />
+    </React.StrictMode>,
+    document.getElementById("root")
 )
 
 </script>
