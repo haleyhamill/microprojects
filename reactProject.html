@@ -10,6 +10,10 @@
     <title>Practicing React</title>
 </head>
 <style>
+button {
+    text-align: center;
+}
+
 :root{
     --primary: #4CAF50;
     --secondary: #FFC107;
@@ -18,7 +22,7 @@
 
 .ui-link {
     text-decoration: none;
-    color: var(--primary);
+    color: white;
 }
 
 .ui-container {
@@ -34,6 +38,7 @@
 }
 
 .ui-button {
+text-align: center;
   background-color: var(--primary);
   color: white;
   border: 0;
@@ -76,13 +81,13 @@ function Input(props) {
         text="text"
     }
     return(
-        <index 
+        <input 
             className="ui-textfield" 
             type={text}    
             placeholder={props.placeholder}
             name={props.name}
         >
-        </index>
+        </input>
     );
 }
 
@@ -103,9 +108,10 @@ function App(props) {
     return (
         <div>
             <Container>
-                <Link href="https://react-tutorial.app"/>
-                <Button type="" disabled="true">Click here</Button>
-                <Input type="email" placeholder="Your Name here" name="Sam Eure"></Input>
+                <Input type="email" placeholder="Email Address" name="Sam Eure"></Input>
+                <Button type="">
+                    <Link href="https://react-tutorial.app">Submit</Link>
+                </Button>
             </Container>
         </div>
     );
