@@ -21,13 +21,17 @@ text-align: center; width: 300px; margin-left: auto; margin-right: auto; }
 <div id="root"></div>
 <script type="text/babel">
 
-function Button(props){
-    return <button>{props.children}</button>;
-};
+function WelcomeUser(props) {
+    const username = props.username;
+    const notifications = props.notifications;
 
-const root = document.querySelector("#root");
+    return <div>Welcome {username}! You've got {notifications} unread notifications.</div>;
+}
 
-ReactDOM.render(<Button>Login</Button>, root);
+ReactDOM.render(
+    <WelcomeUser />,
+    document.getElementById('root')
+)
 
 </script>
 
