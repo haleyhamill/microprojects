@@ -22,10 +22,9 @@ text-align: center; width: 300px; margin-left: auto; margin-right: auto; }
 <script type="text/babel">
 
 function WelcomeUser(props) {
-    const username = props.username;
-    const notifications = props.notifications;
+    const {username, notifications} = props;
 
-    return <div>Welcome {username}! You've got {notifications} unread notifications.</div>;
+    return <div>Welcome {username}! You've got {notifications} unread notifications.</div>
 }
 
 ReactDOM.render(
