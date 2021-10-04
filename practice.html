@@ -312,12 +312,13 @@ font: "Century Gothic", Futura, sans-serif; }
 <div id="root"></div>
 <script type="text/babel">
 
+
 function Todo(props) {
     return (
         <li className="todo stack-small">
           <div className="c-cb">
-            <input id="todo-0" type="checkbox" defaultChecked={true} />
-            <label className="todo-label" htmlFor="todo-0">
+            <input id="todo-0" type="checkbox" defaultChecked={props.completed} />
+            <label className="todo-label" htmlFor={props.id}>
               {props.name}
             </label>
           </div>
@@ -332,6 +333,20 @@ function Todo(props) {
         </li>
     );
 }
+
+const DATA = [
+    { id: "todo-0", name: "Eat", completed: true },
+    { id: "todo-1", name: "Sleep", completed: false },
+    { id: "todo-2", name: "Repeat", completed: false }
+];
+
+const taskList = props.tasks.map(task => (
+    <Todo
+        id={task.id}
+        name={task.name}
+        completed={task.completed}
+        key={task.id} 
+    />));
 
 function App(props) {
   return (
@@ -379,16 +394,14 @@ function App(props) {
         className="todo-list stack-large stack-exception"
         aria-labelledby="list-heading"
       >
-        <Todo name="Eat" />
-        <Todo name="Sleep" />
-        <Todo name="Repeat" />
+        {taskList}
       </ul>
     </div>
   );
 }
 
 ReactDOM.render(
-    <App/>,
+    <App tasks={DATA} />,
     document.getElementById("root")
 );
 
