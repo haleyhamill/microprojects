@@ -312,6 +312,11 @@ font: "Century Gothic", Futura, sans-serif; }
 <div id="root"></div>
 <script type="text/babel">
 
+const DATA = [
+    { id: "todo-0", name: "Eat", completed: true },
+    { id: "todo-1", name: "Sleep", completed: false },
+    { id: "todo-2", name: "Repeat", completed: false }
+];
 
 function Todo(props) {
     return (
@@ -334,41 +339,45 @@ function Todo(props) {
     );
 }
 
-const DATA = [
-    { id: "todo-0", name: "Eat", completed: true },
-    { id: "todo-1", name: "Sleep", completed: false },
-    { id: "todo-2", name: "Repeat", completed: false }
-];
+function Form(props) {
+    return(
+        <form>
+            <h2 className="label-wrapper">
+            <label htmlFor="new-todo-input" className="label__lg">
+                What needs to be done?
+            </label>
+            </h2>
+            <input
+            type="text"
+            id="new-todo-input"
+            className="input input__lg"
+            name="text"
+            autoComplete="off"
+            />
+            <button type="submit" className="btn btn__primary btn__lg">
+            Add
+            </button>
+        </form>
+    )
+}
 
-const taskList = props.tasks.map(task => (
-    <Todo
-        id={task.id}
-        name={task.name}
-        completed={task.completed}
-        key={task.id} 
-    />));
+function FilterButton(props) {
+    return(
+        <button type="button" className="btn toggle-btn" aria-pressed="true">
+        <span className="visually-hidden">Show </span>
+        <span>all </span>
+        <span className="visually-hidden"> tasks</span>
+        </button>
+    )
+}
 
 function App(props) {
+    const taskList = props.tasks.map(task => (
+  <Todo id={task.id} name={task.name} completed={task.completed} key={task.id} />
+))
   return (
     <div className="todoapp stack-large">
       <h1>TodoMatic</h1>
-      <form>
-        <h2 className="label-wrapper">
-          <label htmlFor="new-todo-input" className="label__lg">
-            What needs to be done?
-          </label>
-        </h2>
-        <input
-          type="text"
-          id="new-todo-input"
-          className="input input__lg"
-          name="text"
-          autoComplete="off"
-        />
-        <button type="submit" className="btn btn__primary btn__lg">
-          Add
-        </button>
-      </form>
       <div className="filters btn-group stack-exception">
         <button type="button" className="btn toggle-btn" aria-pressed="true">
           <span className="visually-hidden">Show </span>
@@ -394,7 +403,7 @@ function App(props) {
         className="todo-list stack-large stack-exception"
         aria-labelledby="list-heading"
       >
-        {taskList}
+      {taskList}
       </ul>
     </div>
   );
