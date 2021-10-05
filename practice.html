@@ -311,6 +311,7 @@ font: "Century Gothic", Futura, sans-serif; }
 <body>
 <div id="root"></div>
 <script type="text/babel">
+{useState} = react
 
 const DATA = [
     { id: "todo-0", name: "Eat", completed: true },
@@ -340,9 +341,10 @@ function Todo(props) {
 }
 
 function Form(props) {
+    const [name, setName] = useState('');
     function handleSubmit(e) {
         e.preventDefault();
-        alert('Hello world!');
+        props.addTask('Hello world!');
     }
     return(
         <form onSubmit={handleSubmit}>
@@ -357,6 +359,7 @@ function Form(props) {
             className="input input__lg"
             name="text"
             autoComplete="off"
+            value={name}
             />
             <button type="submit" className="btn btn__primary btn__lg">
             Add
@@ -376,13 +379,16 @@ function FilterButton(props) {
 }
 
 function App(props) {
+    function addTask(name) {
+        alert(name);
+    }
     const taskList = props.tasks.map(task =>
   <Todo id={task.id} name={task.name} completed={task.completed} key={task.id} />
 )
   return (
     <div className="todoapp stack-large">
       <h1>TodoMatic</h1>
-      <Form />
+      <Form addTask={addTask} />
       <div className="filters btn-group stack-exception">
         <FilterButton />
         <FilterButton />
