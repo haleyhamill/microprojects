@@ -343,35 +343,36 @@ function Todo(props) {
 }
 
 function Form(props) {
-    const [name, setName] = useState('');
+    const [name, setName] = useState("");
 
     function handleChange(e) {
-        console.log("Typing!");
+        setName(e.target.value);
     }
 
     function handleSubmit(e) {
         e.preventDefault();
-        props.addTask('Hello world!');
+        props.addTask(name);
+        setName("");
     }
 
     return(
         <form onSubmit={handleSubmit}>
             <h2 className="label-wrapper">
-            <label htmlFor="new-todo-input" className="label__lg">
+                <label htmlFor="new-todo-input" className="label__lg">
                 What needs to be done?
-            </label>
+                </label>
             </h2>
             <input
-            type="text"
-            id="new-todo-input"
-            className="input input__lg"
-            name="text"
-            autoComplete="off"
-            value={name}
-            onChange={handleChange}
+                type="text"
+                id="new-todo-input"
+                className="input input__lg"
+                name="text"
+                autoComplete="off"
+                value={name}
+                onChange={handleChange}
             />
             <button type="submit" className="btn btn__primary btn__lg">
-            Add
+                Add
             </button>
         </form>
     )
@@ -388,11 +389,12 @@ function FilterButton(props) {
 }
 
 function App(props) {
+    const [tasks, setTasks] = useState(props.tasks);
+
     function addTask(name) {
         alert(name);
     }
-    const taskList = props.tasks.map(task =>
-  <Todo id={task.id} name={task.name} completed={task.completed} key={task.id} />
+    const taskList = tasks.map(task => <Todo id={task.id} name={task.name} completed={task.completed} key={task.id} />
 )
   return (
     <div className="todoapp stack-large">
