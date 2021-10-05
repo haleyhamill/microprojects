@@ -11,17 +11,18 @@
     <title>Practicing React</title>
 </head>
 <style>
+*{ margin:0; padding: 0; }
 
-body { color: pink; text-shadow: 2px 2px 1px black;
-font: "Century Gothic", Futura, sans-serif; }
+div { color: rgb(155, 0, 0); text-shadow: 2px 2px 1px black; font-size: 30px;
+font: "Century Gothic", Futura, sans-serif;
+text-align: center; margin-left: auto; margin-right: auto; height: 100vh;}
 
-body { background-color: #ececec; }
+.body { color: pink; text-shadow: 2px 2px 1px black; font: "Century Gothic", Futura, sans-serif; }
 
-.dark { background-color: #222; color: pink;
-}
+.dark { font-size:10px; background:url('https://media.giphy.com/media/zWLLqSvHwGlgJQMtVM/source.mov');
+background-repeat: no-repeat; background-position-x: 50%; background-size: cover; }
 
-.light { background-color: white; color: pink;
-}
+.light { background-color: white; }
 
 </style>
 
@@ -43,9 +44,9 @@ function Navbar() {
     }
 
     return (
-        <div>
-            <h1 className={className}>Online Supermarket</h1>
-            <button onClick={handleClick}>Change Mode</button>
+        <div className={className}>
+            <h1>welcome to <br/> LONDON</h1>
+            <button onClick={handleClick}>enter</button>
         </div>
     )
 }
