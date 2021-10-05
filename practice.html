@@ -15,18 +15,12 @@
 body { color: pink; text-shadow: 2px 2px 1px black;
 font: "Century Gothic", Futura, sans-serif; }
 
-body {
-    background-color: #ececec;
+body { background-color: #ececec; }
+
+.dark { background-color: #222; color: pink;
 }
 
-.dark {
-    background-color: #222;
-    color: white;
-}
-
-.light {
-    background-color: white;
-    color: #222;
+.light { background-color: white; color: pink;
 }
 
 </style>
@@ -34,17 +28,30 @@ body {
 <body>
 <div id="root"></div>
 <script type="text/babel">
+const {useState} = React;
 
-function Navbar(props) {
-    let className = "light";
-    if (props.theme === "dark"){
-        className = "dark"
+function Navbar() {
+    const [className, newClassName] = useState("light");
+    const handleClick = (e) => {
+        e.preventDefault();
+        if (className === "light") {
+            newClassName("dark")
+        }
+        else if (className === "dark") {
+            newClassName("light")
+        }
     }
-    return <h1 className={className}>Online Supermarket</h1>
+
+    return (
+        <div>
+            <h1 className={className}>Online Supermarket</h1>
+            <button onClick={handleClick}>Change Mode</button>
+        </div>
+    )
 }
 
 ReactDOM.render(
-    <Navbar theme="dark"/>,
+    <Navbar />,
     document.getElementById('root')
 )
 
