@@ -325,7 +325,9 @@ function Todo(props) {
     return (
         <li className="todo stack-small">
           <div className="c-cb">
-            <input id="todo-0" type="checkbox" defaultChecked={props.completed} />
+            <input 
+                id="todo-0" type="checkbox" defaultChecked={props.completed} onChange={() => props.toggleTaskCompleted(props.id)}
+            />
             <label className="todo-label" htmlFor={props.id}>
               {props.name}
             </label>
@@ -392,10 +394,15 @@ function App(props) {
     const [tasks, setTasks] = useState(props.tasks);
 
     function addTask(name) {
-        alert(name);
+        const newTask = { id: "id", name: name, completed: false };
+        setTasks([...tasks, newTask]);
     }
-    const taskList = tasks.map(task => <Todo id={task.id} name={task.name} completed={task.completed} key={task.id} />
+    const taskList = tasks.map(task => (
+        <Todo id={task.id} name={task.name} completed={task.completed} key={task.id} toggleTaskCompleted={toggleTaskCompleted}
+        />
 )
+
+    const headingText = `${taskList.length} tasks remaining`;
   return (
     <div className="todoapp stack-large">
       <h1>TodoMatic</h1>
@@ -406,7 +413,7 @@ function App(props) {
         <FilterButton />
       </div>
       <h2 id="list-heading">
-        3 tasks remaining
+        {headingText}
       </h2>
       <ul
         role="list"
