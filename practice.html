@@ -21,20 +21,25 @@ font: "Century Gothic", Futura, sans-serif; }
 <div id="root"></div>
 <script type="text/babel">
 
-function Navbar(props) {
-    if (!props.loggedIn) {
-        return <p>Register</p>
+function WelcomeUser(props) {
+    if (!props.user) {
+        return null
     }
-    return <p>Welcome back!</p>
+    return <h1>Welcome {props.user.name}</h1>
 }
 
-const element1 = <Navbar loggedIn={true} />
-const element2 = <Navbar loggedIn={false} />
+const user = {
+    id: 1,
+    name: "Sam Blue"
+};
 
 ReactDOM.render(
-    element2,
+    <div>
+        <WelcomeUser user={user} />
+        <WelcomeUser user={user} />
+    </div>,
     document.getElementById('root')
-)
+);
 
 </script>
 
