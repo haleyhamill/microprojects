@@ -21,11 +21,17 @@ text-align: center; margin-left: auto; margin-right: auto; height: 100vh; }
 
 .light { background-color: white; }
 
-button { background-color: rgb(224, 237, 241); margin-top: 70px; text-align: center; border: 0; padding: 15px 20px; min-width: 150px; font-size: 16px; border-radius: 3px; cursor: pointer;
-transition: opacity 200ms ease-out; color: black; text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #fff,;
+.lightButton { background-color: rgb(224, 237, 241); margin-top: 70px; text-align: center; border: 0; padding: 15px 20px; min-width: 150px;
+    font-size: 16px; border-radius: 3px; cursor: pointer; transition: opacity 200ms ease-out; color: black; 
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #fff,;
 }
 
 button:hover { opacity: 0.8; }
+
+.darkButton { background-color: black; margin-top: 70px; text-align: center; border: 0; padding: 15px 20px; min-width: 150px;
+    font-size: 16px; border-radius: 3px; cursor: pointer; transition: opacity 200ms ease-out; color: black;
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #fff,;
+}
 
 .dark { animation: dark 1s linear infinite; -moz-animation: dark 1s linear infinite;
   -webkit-animation: dark 1s linear infinite; -o-animation: dark 1s linear infinite;
@@ -47,31 +53,23 @@ const {useState} = React;
 
 function Navbar() {
     const [className, newClassName] = useState("light");
+    const [buttonStyle, newButtonStyle] = useState('lightButton');
     const handleClick = (e) => {
         e.preventDefault();
         if (className === "light") {
-            newClassName("dark")
+            newClassName("dark");
+            newButtonStyle('darkButton');
         }
         else if (className === "dark") {
             newClassName("light")
-        }
-    }
-
-    const [buttonStyle, newButtonStyle] = useState('');
-    const handleClick = (e) => {
-        e.preventDefault();
-        if (buttonStyle === '') {
-            newButtonStyle('darkButton')
-        }
-        else if (buttonStyle === 'darkButton') {
-            newButtonStyle('')
+            newButtonStyle('lightButton')
         }
     }
 
     return (
         <div className={className}>
-            <h1>WHAT ARE YOU <span>WAITING</span> FOR?</h1>
-            <button onClick={handleClick}>CHANGE MODE</button>
+            <h1>WHAT ARE YOU WAITING FOR?</h1>
+            <button className={buttonStyle} onClick={handleClick}>CHANGE MODE</button>
         </div>
     )
 }
