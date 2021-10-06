@@ -17,22 +17,24 @@
 
 <script type="text/babel">
 
+import React from "react";
+import {render} from "react-dom";
+import Link from "./Link.js";
+import Container from "./Container.js";
+import Button from "./Button.js";
+import Input from "./Input.js";
+
 function App() {
-    return (
-        <div>
-            <Button tabIndex="2" disabled={false}>Login</Button>
-            <Button className="ui-button" disabled={false}>Register</Button>
-        </div>);
+    return (<>
+        <Container className="app">
+            <Link href="https://react-tutorial.app">React Tutorial</Link>
+            <Button disabled={true}>Login</Button>
+            <Input placeholder="Full Name" name="full_name" />
+        </Container>
+    </>);
 }
 
-function Button(props){
-    const {children, ...rest} = props;
-    return <button {...rest}>{children}</button>
-}
-
-ReactDOM.render(
-    <App />, 
-    document.getElementById("root"));
+render(<App />, document.querySelector("#react-root"));
 
 </script>
 
