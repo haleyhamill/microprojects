@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/react@15.3.2/dist/react.js"></script>
+    <script src="https://unpkg.com/react-dom@15.3.2/dist/react-dom.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+    <title>Practicing React</title>
+</head>
+
+<html>
+    <div id="root"></div>
+</html>
+
+<script>
+import clsx from "clsx";
+import React from "react";
+
+function Navbar(props) {
+    const className = clsx({
+        "navbar": true,
+        "dark": props.theme === "dark",
+        "light": props.theme === "light"
+    });
+    return <h1 className={className}>Online supermarket</h1>
+}
+
+const root = document.querySelector("#root");
+
+ReactDOM.render(
+    <div>
+        <Navbar theme="light" />
+        <Navbar theme="dark" />
+    </div>, root);
+
+
+</script>
+
