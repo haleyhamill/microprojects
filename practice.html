@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/clsx"></script>
     <script src="https://unpkg.com/react@15.3.2/dist/react.js"></script>
     <script src="https://unpkg.com/react-dom@15.3.2/dist/react-dom.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
@@ -14,27 +15,24 @@
     <div id="root"></div>
 </html>
 
-<script>
-import clsx from "clsx";
-import React from "react";
+<script type="text/babel">
 
-function Navbar(props) {
-    const className = clsx({
-        "navbar": true,
-        "dark": props.theme === "dark",
-        "light": props.theme === "light"
-    });
-    return <h1 className={className}>Online supermarket</h1>
+function App() {
+    return (
+        <div>
+            <Button tabIndex="2" disabled={false}>Login</Button>
+            <Button className="ui-button" disabled={false}>Register</Button>
+        </div>);
 }
 
-const root = document.querySelector("#root");
+function Button(props){
+    const {children, ...rest} = props;
+    return <button {...rest}>{children}</button>
+}
 
 ReactDOM.render(
-    <div>
-        <Navbar theme="light" />
-        <Navbar theme="dark" />
-    </div>, root);
-
+    <App />, 
+    document.getElementById("root"));
 
 </script>
 
