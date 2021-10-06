@@ -13,27 +13,16 @@
 <style>
 *{ margin:0; padding: 0; }
 
-div { color: black; font-size: 30px;
-font-family: Arial, Helvetica, sans-serif, sans-serif;
-text-align: center; margin-left: auto; margin-right: auto; height: 100vh; }
+div { color: rgb(155, 0, 0); text-shadow: 2px 2px 1px black; font-size: 30px;
+font: "Century Gothic", Futura, sans-serif;
+text-align: center; margin-left: auto; margin-right: auto; height: 100vh;}
 
-.dark { color: #fff; text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #fff, 0 0 40px #0ff,
-0 0 80px #0ff, 0 0 90px #0ff, 0 0 100px #0ff, 0 0 150px #0ff; background: black; 
+.body { color: pink; text-shadow: 2px 2px 1px black; font: "Century Gothic", Futura, sans-serif; }
+
+.dark { font-size:0px; background:url('https://media.giphy.com/media/vmpglMQkKw5E3lIdtS/source.gif');
 background-repeat: no-repeat; background-position-x: 50%; background-size: cover; }
 
 .light { background-color: white; }
-
-h1 { padding-top: 17.5%; }
-
-button { margin: 20px;  text-align: center; border: 0;
-padding: 15px 20px; min-width: 150px; font-size: 16px; border-radius: 3px; cursor: pointer;
-transition: opacity 200ms ease-out; box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2); color: black; text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #fff, 0 0 40px #0ff,
-0 0 80px #0ff, 0 0 90px #0ff, 0 0 100px #0ff, 0 0 150px #0ff;
-}
-
-button:hover {
-    opacity: 0.8;
-}
 
 </style>
 
@@ -56,8 +45,8 @@ function Navbar() {
 
     return (
         <div className={className}>
-            <h1>WHAT ARE YOU WAITING FOR?</h1>
-            <button onClick={handleClick}>CHANGE MODE</button>
+            <h1></h1>
+            <button onClick={handleClick}>enter</button>
         </div>
     )
 }
