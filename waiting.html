@@ -57,6 +57,17 @@ function Navbar() {
         }
     }
 
+    const [buttonStyle, newButtonStyle] = useState('');
+    const handleClick = (e) => {
+        e.preventDefault();
+        if (buttonStyle === '') {
+            newButtonStyle('darkButton')
+        }
+        else if (buttonStyle === 'darkButton') {
+            newButtonStyle('')
+        }
+    }
+
     return (
         <div className={className}>
             <h1>WHAT ARE YOU <span>WAITING</span> FOR?</h1>
