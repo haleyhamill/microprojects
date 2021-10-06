@@ -13,41 +13,30 @@
 <style>
 *{ margin:0; padding: 0; }
 
+h1 { padding-top: 17.5%; }
+
 div { color: black; font-size: 30px; display: block;
 font-family: Arial, Helvetica, sans-serif, sans-serif;
 text-align: center; margin-left: auto; margin-right: auto; height: 100vh; }
 
-.dark {
-  animation: dark 3s linear infinite;
-  -moz-animation: dark 3s linear infinite;
-  -webkit-animation: dark 3s linear infinite;
-  -o-animation: dark 3s linear infinite;
-}
-
-@keyframes dark {
-  0%,
-  100% {
-    color: #fff; text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #fff, 0 0 40px #0ff,
-    0 0 80px #0ff, 0 0 90px #0ff, 0 0 90px #0ff, 0 0 150px #0ff; background: black; 
-    background-repeat: no-repeat; background-position-x: 50%; background-size: cover;
-  }
-  50% {
-    color: #fff; text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #fff, 0 0 40px rgb(0, 167, 167),
-    0 0 80px rgb(0, 138, 138), 0 0 90px rgb(1, 77, 77), 0 0 90px rgb(0, 134, 134), 0 0 150px rgb(0, 160, 160);
-}
-
 .light { background-color: white; }
 
-h1 { padding-top: 17.5%; }
-
-button { background-color: white; margin-top: 70px; text-align: center; border: 0; padding: 15px 20px; min-width: 150px; font-size: 16px; border-radius: 3px; cursor: pointer;
-transition: opacity 200ms ease-out; box-shadow: 1px 1px 1px rgba(110, 97, 97, 0.2); color: black; text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #fff,;
+button { background-color: rgb(224, 237, 241); margin-top: 70px; text-align: center; border: 0; padding: 15px 20px; min-width: 150px; font-size: 16px; border-radius: 3px; cursor: pointer;
+transition: opacity 200ms ease-out; color: black; text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #fff,;
 }
 
-button:hover {
-    opacity: 0.8;
+button:hover { opacity: 0.8; }
+
+.dark { animation: dark 1s linear infinite; -moz-animation: dark 1s linear infinite;
+  -webkit-animation: dark 1s linear infinite; -o-animation: dark 1s linear infinite;
 }
 
+@keyframes dark { 0%, 100% { color: #fff; text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #fff, 0 0 40px #0ff,
+    0 0 80px #0ff, 0 0 90px #0ff, 0 0 90px #0ff, 0 0 150px #0ff; background: black; 
+    background-repeat: no-repeat; background-position-x: 50%; background-size: cover; }
+  50% { color: #fff; text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #fff, 0 0 40px rgb(0, 167, 167),
+    0 0 80px rgb(0, 138, 138), 0 0 90px rgb(1, 77, 77), 0 0 90px rgb(0, 134, 134), 0 0 150px rgb(0, 160, 160); }
+  }
 
 </style>
 
@@ -71,7 +60,7 @@ function Navbar() {
     return (
         <div className={className}>
             <h1>WHAT ARE YOU <span>WAITING</span> FOR?</h1>
-            <button className={className} onClick={handleClick}>CHANGE MODE</button>
+            <button onClick={handleClick}>CHANGE MODE</button>
         </div>
     )
 }
