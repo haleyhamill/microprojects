@@ -68,5 +68,20 @@ const getUser = () => {
     }
 }
 
+function getUser(first_name, last_name) {
+
+    function getFullName() {
+        return `${first_name} ${last_name}`;
+    }
+
+    return {
+        first_name: first_name,
+        last_name: last_name,
+        full_name: getFullName()
+    }
+}
+
+console.log(getUser("Sam", "Doe"));
+
 </script>
 
