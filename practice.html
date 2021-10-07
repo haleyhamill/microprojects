@@ -36,22 +36,24 @@ p { text-align: center; }
 <script type="text/babel">
 const { useState, useEffect } = React;
 
-function Counter() {
-    const [count, setCount] = useState(0);
+function getUser() {
+    const name = "Sam";
 
-    return(
-        <div>
-            <div>{count} times clicked!</div>
-            <button onClick={() => setCount(count + 1)}>Add 1</button>
-        </div>
-    );
+    function getWelcomeMessage() {
+        return `Hello ${name}`
+    }
+
+    return {
+        name: name,
+        message: getWelcomeMessage()
+    }
 }
 
-ReactDOM.render(
-    <Counter />,
-    document.getElementById("root")
-);
+const name = "Sam";
 
+function getUser() {
+    return name;
+}
 
 </script>
 
