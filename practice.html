@@ -17,13 +17,13 @@
 <script type="text/babel">
 const { useState, useEffect } = React;
 
-function Counter() {
-    const [seconds, setSeconds] = useState(0);
-    return <h2>{seconds} seconds elapsed</h2>;
+function Countdown() {
+    const [count, setCount] = useState(10);
+    <h2>{count} time remaining</h2>
 }
 
 ReactDOM.render(
-    <Counter />,
+    <Countdown />,
     document.getElementById("root")
 );
 
