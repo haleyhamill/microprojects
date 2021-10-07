@@ -36,61 +36,25 @@ p { text-align: center; }
 <script type="text/babel">
 const { useState, useEffect } = React;
 
-function getUser() {
-    const name = "Sam";
+function Counter() {
+    const [count, setCount] = useState(0);
 
-    function getWelcomeMessage() {
-        return `Hello ${name}`
+    function handleIncrementClick() {
+        setCount(count + 1);
     }
 
-    return {
-        name: name,
-        message: getWelcomeMessage()
-    }
+    return(
+        <div>
+            <div>{count} times clicked</div>
+            <button onClick={handleIncrementClick}>Add 1</button>
+        </div>
+    );
 }
 
-const name = "Sam";
-
-function getUser() {
-    return name;
-}
-
-const getUser = () => {
-    const name = "Sam";
-
-    const getWelcomeMessage = () => {
-        return `Hello ${name}`;
-    }
-
-    return {
-        name: name,
-        message: getWelcomeMessage()
-    }
-}
-
-function getUser(first_name, last_name) {
-
-    function getFullName() {
-        return `${first_name} ${last_name}`;
-    }
-
-    return {
-        first_name: first_name,
-        last_name: last_name,
-        full_name: getFullName()
-    }
-}
-
-console.log(getUser("Sam", "Doe"));
-
-function getUser(age) {
-    function getCanVote() {
-        return age > 18;
-    }
-    return {
-        can_vote: getCanVote()
-    }
-}
+ReactDOM.render(
+    <Counter />,
+    document.getElementById("root")
+);
 
 </script>
 
