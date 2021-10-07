@@ -17,17 +17,9 @@
 
 <script type="text/babel">
 
-function sayHello() {
-    return "Welcome!";
+function destructureTest() {
+    const [age, describeAge] = greatAge();
 }
-
-function getUser() {
-    return [15, sayHello];
-}
-
-const [id, sayHelloFunction] = getUser();
-alert(id);
-alert(sayHelloFunction());
 
 </script>
 
