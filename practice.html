@@ -36,19 +36,15 @@ p { text-align: center; }
 <script type="text/babel">
 const { useState, useEffect } = React;
 
-function Stopwatch() {
-    const [seconds, setSeconds] = useState(0);
-    console.log("value of seconds is: ", seconds);
-
-    return(
-        <div>
-            <h2>{seconds}</h2>
-            <button onClick={() => setSeconds(seconds + 1)}>
-                Click to add 1
-            </button>
-        </div>
-    );
+function App() {
+    return <button onClick={() => console.log("Hello World!")}>Click me!</button>;
 }
+
+ReactDOM.render(
+    <App />,
+    document.getElementById("root")
+);
+
 
 </script>
 
