@@ -17,24 +17,17 @@
 
 <script type="text/babel">
 
-import React from "react";
-import {render} from "react-dom";
-import Link from "./Link.js";
-import Container from "./Container.js";
-import Button from "./Button.js";
-import Input from "./Input.js";
-
-function App() {
-    return (<>
-        <Container className="app">
-            <Link href="https://react-tutorial.app">React Tutorial</Link>
-            <Button disabled={true}>Login</Button>
-            <Input placeholder="Full Name" name="full_name" />
-        </Container>
-    </>);
+function sayHello() {
+    return "Welcome!";
 }
 
-render(<App />, document.querySelector("#react-root"));
+function getUser() {
+    return [15, sayHello];
+}
+
+const [id, sayHelloFunction] = getUser();
+alert(id);
+alert(sayHelloFunction());
 
 </script>
 
