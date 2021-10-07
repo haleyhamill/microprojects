@@ -17,15 +17,9 @@
 <script type="text/babel">
 const { useState, useEffect } = React;
 
-function Countdown() {
-    const [count, setCount] = useState(10);
-    <h2>{count} time remaining</h2>
+function Welcome() {
+    return <button onClick={() => console.log("button was clicked")}>Click me</button>
 }
-
-ReactDOM.render(
-    <Countdown />,
-    document.getElementById("root")
-);
 
 </script>
 
