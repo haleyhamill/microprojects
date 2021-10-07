@@ -7,8 +7,27 @@
     <script src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
     <script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
-    <title>Practicing React</title>
+    <title>One Fish</title>
 </head>
+
+<style>
+    html {
+    background: ;
+    background-repeat: no-repeat;
+    background-position-x: center;
+}
+
+body { color: pink; text-shadow: 2px 2px 1px black; font-size: 50px;
+font: "Century Gothic", Futura, sans-serif; margin: 8%;
+text-align: center; width: 300px; margin-left: auto; margin-right: auto; }
+
+ol, ul {
+    padding-left: 30px;
+}
+
+p { text-align: center; }
+
+</style>
 
 <html>
     <div id="root"></div>
@@ -25,7 +44,7 @@ function Stopwatch() {
         <div>
             <h2>{seconds}</h2>
             {/* increment seconds state by 1, when you click on the button*/}
-            <button onClick={() => setSeconds(seconds + 1)}>Click to add 1</button>
+            <button onClick={() => setSeconds(seconds + 1)}>Click To Catch</button>
         </div>
     );
 }
