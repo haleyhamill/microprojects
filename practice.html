@@ -83,5 +83,14 @@ function getUser(first_name, last_name) {
 
 console.log(getUser("Sam", "Doe"));
 
+function getUser(age) {
+    function getCanVote() {
+        return age > 18;
+    }
+    return {
+        can_vote: getCanVote()
+    }
+}
+
 </script>
 
