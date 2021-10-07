@@ -17,11 +17,11 @@
 <script type="text/babel">
 const { useState, useEffect } = React;
 
-const result = useState(0)
-const seconds = result[0];
-const setSeconds = result[1];
-
-const [seconds, setSeconds] = useState(0);
+function Stopwatch() {
+    const [seconds, setSeconds] = useState(0);
+    
+    return <div>{seconds}</div>
+}
 
 </script>
 
