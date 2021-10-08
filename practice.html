@@ -36,7 +36,15 @@ p { text-align: center; }
 <script type="text/babel">
 const { useState, useEffect } = React;
 
-<input type="text" placeholder="Enter your name" onChange={() => console.log('change!')} />
+function Navbar() {
+    return (
+        <select className="countries" onChange={() => console.log('Country changed')}>
+            <option>Netherlands</option>
+            <option>Belgium</option>
+            <option>France</option>
+        </select>
+    );
+}
 
 </script>
 
