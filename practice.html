@@ -36,25 +36,7 @@ p { text-align: center; }
 <script type="text/babel">
 const { useState, useEffect } = React;
 
-function Counter() {
-    const [count, setCount] = useState(0);
-
-    function handleIncrementClick() {
-        setCount(count + 1);
-    }
-
-    return(
-        <div>
-            <div>{count} times clicked</div>
-            <button onClick={handleIncrementClick}>Add 1</button>
-        </div>
-    );
-}
-
-ReactDOM.render(
-    <Counter />,
-    document.getElementById("root")
-);
+<input type="text" placeholder="Enter your name" onChange={() => console.log('change!')} />
 
 </script>
 
