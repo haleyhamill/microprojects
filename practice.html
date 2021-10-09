@@ -39,10 +39,14 @@ const { useState, useEffect } = React;
 function Stopwatch() {
     const [seconds, setSeconds] = useState(0);
 
+    function handleIncrementClick() {
+        setSeconds(seconds + 1);
+    }
+
     return(
         <div>
             <h2>{seconds}</h2>
-            <button onClick={() => setSeconds(seconds + 1)}>Click to add 1</button>
+            <button onClick={handleIncrementClick}>Click to add 1</button>
         </div>
     );
 }
