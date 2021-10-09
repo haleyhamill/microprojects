@@ -36,18 +36,19 @@ p { text-align: center; }
 <script type="text/babel">
 const { useState, useEffect } = React;
 
-function Navbar() {
-    return (
-        <select className="countries" onChange={() => console.log('Country changed')}>
-            <option>Netherlands</option>
-            <option>Belgium</option>
-            <option>France</option>
-        </select>
+function Stopwatch() {
+    const [seconds, setSeconds] = useState(0);
+
+    return(
+        <div>
+            <h2>{seconds}</h2>
+            <button onClick={() => setSeconds(seconds + 1)}>Click to add 1</button>
+        </div>
     );
 }
 
 ReactDOM.render(
-    <Navbar />,
+    <Stopwatch />,
     document.getElementById("root")
 );
 
