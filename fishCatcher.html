@@ -43,6 +43,29 @@ ol, ul {
 
 p { text-align: center; }
 
+.emoji {
+  display: inline-block;
+  margin: 0 auto;
+}
+.emoji {
+  animation: wobble 1s;
+}
+
+@keyframes wobble {
+  25% {
+    transform: rotate(15deg);
+  }
+  50% {
+    transform: rotate(-30deg);
+  }
+  75% {
+    transform: rotate(5deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
 </style>
 
 <html>
@@ -57,7 +80,6 @@ function Counter(props) {
     const Emoji = props => (
         <span
             className="emoji"
-            role="img"
             aria-label={props.label ? props.label : ""}
             aria-hidden={props.label ? "false" : "true"}
         >

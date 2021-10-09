@@ -43,6 +43,27 @@ ol, ul {
 
 p { text-align: center; }
 
+.image {
+  margin: 0 auto;
+}
+.image[wobble='1'] {
+  animation: wobble 1s 1;
+}
+
+@keyframes wobble {
+  25% {
+    transform: rotate(15deg);
+  }
+  50% {
+    transform: rotate(-30deg);
+  }
+  75% {
+    transform: rotate(5deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
 </style>
 
 <html>
@@ -54,31 +75,32 @@ const { useState, useEffect } = React;
 
 function Counter(props) {
     const [clicks, setClicks] = useState(0);
-    const Emoji = props => (
-        <span
-            className="emoji"
-            role="img"
-            aria-label={props.label ? props.label : ""}
-            aria-hidden={props.label ? "false" : "true"}
-        >
-            {props.symbol}
-        </span>
-    );
+    const [wobble, setWobble] = useState(0)
 
     function handleButtonClick() {
         setClicks(clicks + 1);
+        console.log(wobble);
+        setWobble(1);
+        console.log(wobble);
     };
 
     return (
         <div>
-            <h2>{clicks} <Emoji symbol="🐟"/></h2>
+            <h2>{clicks}</h2>
+            <span
+                className="image"
+                onAnimationEnd={() => setWobble(0)}
+                wobble={wobble}
+            >
+                {props.symbol}
+            </span>
             <button onClick={handleButtonClick}>Catch More</button>
         </div>
     );
 }
 
 ReactDOM.render(
-    <Counter />,
+    <Counter symbol="🐟"/>,
     document.getElementById("root")
 );
 
