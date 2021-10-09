@@ -11,15 +11,31 @@
 </head>
 
 <style>
-    html {
-    background: ;
+
+* {margin: 0; padding: 0;}
+
+html {
+    background:url("https://data.whicdn.com/images/357323414/original.jpg");
     background-repeat: no-repeat;
     background-position-x: center;
+    background-size: cover;
 }
 
-body { color: pink; text-shadow: 2px 2px 1px black; font-size: 50px;
-font: "Century Gothic", Futura, sans-serif; margin: 8%;
+body { color: #17292d; font-size: 35px;
+font-family: "Verdana", sans-serif; margin-top: 10%; margin-bottom: 0%;
 text-align: center; width: 300px; margin-left: auto; margin-right: auto; }
+
+button {margin: 0; text-align: center;
+  background-color: #17292d;
+  color: #b2c4c9;
+  border: 0;
+  padding: 15px 20px;
+  min-width: 150px;
+  font-size: 17px;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: opacity 200ms ease-out;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);}
 
 ol, ul {
     padding-left: 30px;
@@ -36,23 +52,33 @@ p { text-align: center; }
 <script type="text/babel">
 const { useState, useEffect } = React;
 
-function Stopwatch() {
-    const [seconds, setSeconds] = useState(0);
+function Counter(props) {
+    const [clicks, setClicks] = useState(0);
+    const Emoji = props => (
+        <span
+            className="emoji"
+            role="img"
+            aria-label={props.label ? props.label : ""}
+            aria-hidden={props.label ? "false" : "true"}
+        >
+            {props.symbol}
+        </span>
+    );
 
-    function handleIncrementClick() {
-        setSeconds(seconds + 1);
-    }
+    function handleButtonClick() {
+        setClicks(clicks + 1);
+    };
 
-    return(
+    return (
         <div>
-            <h2>{seconds}</h2>
-            <button onClick={handleIncrementClick}>Click to add 1</button>
+            <h2>{clicks} <Emoji symbol="🐟"/></h2>
+            <button onClick={handleButtonClick}>Catch More</button>
         </div>
     );
 }
 
 ReactDOM.render(
-    <Stopwatch />,
+    <Counter />,
     document.getElementById("root")
 );
 
