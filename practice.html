@@ -73,12 +73,11 @@ p { text-align: center; }
 <script type="text/babel">
 const { useState, useEffect } = React;
 
-function WelcomeUser(props) {
-    if (props.user) {
-        return <h1>Welcome {props.user}</h1>;
-    } else {
-        return <h1>Please login!</h1>;
+function App(props) {
+    if (props.theme === "dark"){
+        return <DarkTheme />;
     }
+    return <LightTheme />;
 }
 
 ReactDOM.render(
