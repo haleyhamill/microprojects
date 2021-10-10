@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <link rel="stylesheet" href="index.css">
+    <title>React Simple Store Front</title>
+    <style>
+        :root {
+            --primary: #4CAF50;
+            --secondary: #FFC107;
+            --light-gray: #DADCE0;
+            --dark: #222;
+        }
+
+        body {
+            margin: 30px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            cursor: pointer;
+            min-width: 100px;
+            border: 0;
+            border-radius: 3px;
+            font-size: 16px;
+            color: white;
+            transition: opacity 180ms ease-out, transform 180ms ease-out;
+        }
+
+        .btn:hover {
+            opacity: 0.8;
+        }
+
+        .btn:active {
+            transform: translate(1px, 1px);
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+        }
+
+        .btn-outline {
+            border: 1px solid var(--dark);
+            color: var(--dark);
+        }
+
+        .store-front {
+            display: grid;
+            grid-gap: 30px;
+            grid-template-columns: 1fr 1fr;
+            margin-bottom: 20px;
+        }
+
+        .product {
+            background-color: #ececec;
+            border-radius: 4px;
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            align-items: center
+        }
+
+        .product img {
+            padding: 10px 20px 10px 10px;
+        }
+
+        .product-info h2 {
+            margin-top: 10px;
+            margin-bottom: 0;
+            font-size: 20px;
+            font-weight: normal;
+        }
+
+        .product-count {
+            margin: 0;
+            font-weight: normal;
+            font-size: 16px;
+        }
+
+        .product-info p {
+            font-size: 14px;
+            margin-top: 10px;
+        }
+
+        .product-buttons {
+            align-self: stretch;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            text-align: center;
+        }
+
+        .product-sub,
+        .product-add {
+            box-shadow: none;
+            border: 0;
+            transition: opacity 180ms ease-out;
+            padding: 5px;
+            font-size: 16px;
+            width: 28px;
+            height: 28px;
+            cursor: pointer;
+        }
+
+        .product-sub {
+            border-radius: 0 3px 0 0;
+            background-color: var(--secondary);
+        }
+
+        .product-add {
+            background-color: var(--primary);
+            color: white;
+            border-radius: 0 0 3px 0;
+        }
+
+        .product-buttons button:disabled {
+            opacity: 0.5;
+            cursor: default;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="react-root"></div>
+    <script type="text/babel">
+        const { useState } = React;
+        const { render } = ReactDOM;
+
+        function Product({ details, ...rest }) {
+            const [count, setCount] = useState(0);
+
+            function handleProductCount() {
+                if (count >= 1) {
+                    setCount(count - 1)
+                }
+            }
+
+            return <div className="product">
+                <img width="50" alt={details.name} src={details.image} />
+                <div className="product-info">
+                    <h2>{details.name}</h2>
+                    <p>{details.description}</p>
+                </div>
+                <div className="product-buttons">
+                    <button className="product-sub" disabled={count === 0} onClick={handleProductCount}>-</button>
+                    <h3 className="product-count" hidden={count === 0}>{count}</h3>
+                    <button className="product-add" onClick={() => setCount(count + 1)}>+</button>
+                </div>
+            </div>
+        }
+
+        function StoreFront() {
+            // hardcoded products for this project
+            const products = [{
+                name: "Cheese",
+                description: "200g cheese block",
+                image: "https://res.cloudinary.com/dbfn5lnvx/image/upload/q_auto,w_300/v1580649404/react-tutorial/products/cheese.png"
+            }, {
+                name: "Milk",
+                description: "1L of milk",
+                image: "https://res.cloudinary.com/dbfn5lnvx/image/upload/q_auto,w_300/v1580649400/react-tutorial/products/milk.png"
+            }]
+            return (
+                <div className="store-front">
+                    <Product details={products[0]} />
+                    <Product details={products[1]} />
+                </div>
+            );
+        }
+
+        function App() {
+            const [LoggedIn, setLoggedIn] = useState(false);
+            if (LoggedIn) {
+                return (
+                    <>
+                        <StoreFront />
+                        <button className="btn btn-outline" onClick={() => setLoggedIn(false)}>Logout</button>
+                    </>
+                );
+            }
+
+            return (
+                <div>
+                    <h2>Please login</h2>
+                    <button className="btn btn-primary" onClick={() => setLoggedIn(true)}>Login</button>
+                </div>);
+        }
+
+        render(<App />, document.querySelector("#react-root"));
+
+
+
+
+    </script>
+</body>
+
+</html>
