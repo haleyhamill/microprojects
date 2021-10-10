@@ -73,32 +73,23 @@ p { text-align: center; }
 <script type="text/babel">
 const { useState, useEffect } = React;
 
-function Navbar(props) {
-    return(
-        <div>
-            <h2>Welcome user</h2>
-            { 
-                props.notifications.length > 0 && <p>You've got {props.notifications.length} notifications</p>
-            }
-        </div>
-    );
+function App() {
+    const [isFree, setIsFree] = useState(true);
+
+    function handleUpgradeClick() {
+        setIsFree(false);
+    }
+
+    if (isFree) {
+        return <button onClick={handleUpgradeClick}>Upgrade</button>;
+    }
+    return <h2>Welcome Paid user!</h2>;
 }
 
-const notifications = [{
-    id: 1,
-    text: "Welcome to our supermarket"
-}, {
-    id: 2,
-    text: "Your order has shipped"
-}, {
-    id: 3,
-    text: "Your order has shipped"
-}];
-
-ReactDOM.render(<div>
-    <Navbar notifications={[]} />
-    <Navbar notifications={notifications} />
-</div>, document.getElementById("root"));
+ReactDOM.render(
+    <App />,
+    document.getElementById("root")
+);
 
 </script>
 
