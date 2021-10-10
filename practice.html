@@ -73,25 +73,24 @@ p { text-align: center; }
 <script type="text/babel">
 const { useState, useEffect } = React;
 
-function getWelcomeMessage(type) {
-    if (type === "admin") {
-        return "Welcome admin";
-    } else {
-        return "Welcome user";
-    }
-}
+function Dashboard(props) {
+    const loggedInMsg = <h1>Welcome back!</h1>;
+    const msg = <h1>Welcome.</h1>;
 
-function getWelcomeMessage(type) {
-    return (type === "admin") ? "Welcome admin" : "Welcome user";
-}
+    return(
+        <div className="container">
+            {props.loggedIn ? loggedInMsg : msg}
+        </div>
+    )
+};
 
-function App(props) {
-    const loginButton = <button>Login</button>;
-    const signupButton = <button>Signup</button>;
-
-    return <div className="app-container">{props.existingUser ? loginButton : 
-    signupButton}</div>;
-}
+ReactDOM.render(
+    <div>
+        <Dashboard loggedIn={true} />
+        <Dashboard loggedIn={false} />
+    </div>,
+    document.getElementById("root")
+);
 
 </script>
 
