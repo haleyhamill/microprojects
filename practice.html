@@ -73,13 +73,16 @@ p { text-align: center; }
 <script type="text/babel">
 const { useState, useEffect } = React;
 
-function App(props) {
-    const loginButton = <button>Login</button>;
-    const signupButton = <button>Signup</button>;
-    if (props.existingUser) {
-        return <div className="app-container">{loginButton}</div>;
+function getWelcomeMessage(type) {
+    if (type === "admin") {
+        return "Welcome admin";
+    } else {
+        return "Welcome user";
     }
-    return <div className="app-container">{signupButton}</div>;
+}
+
+function getWelcomeMessage(type) {
+    return (type === "admin") ? "Welcome admin" : "Welcome user";
 }
 
 </script>
