@@ -73,28 +73,32 @@ p { text-align: center; }
 <script type="text/babel">
 const { useState, useEffect } = React;
 
-function Counter(props) {
-    if (props.count > 99) {
-        return(
-            <div>
-                <h1>You have {props.count} items</h1>
-                <p>That is a lot of items.</p>
-            </div>;
-        )
-    }
-    return <h1>You have {props.count} items</h1>;
-}
-
-const element = <Counter count={15} />;
-
-function Counter2(props) {
+function Navbar(props) {
     return(
         <div>
-            <h1>You have {props.count} items</h1>
-            {props.count > 99 && <p>That is a lot of items.</p>}
+            <h2>Welcome user</h2>
+            { 
+                props.notifications.length > 0 && <p>You've got {props.notifications.length} notifications</p>
+            }
         </div>
     );
 }
+
+const notifications = [{
+    id: 1,
+    text: "Welcome to our supermarket"
+}, {
+    id: 2,
+    text: "Your order has shipped"
+}, {
+    id: 3,
+    text: "Your order has shipped"
+}];
+
+ReactDOM.render(<div>
+    <Navbar notifications={[]} />
+    <Navbar notifications={notifications} />
+</div>, document.getElementById("root"));
 
 </script>
 
