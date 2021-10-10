@@ -73,29 +73,12 @@ p { text-align: center; }
 <script type="text/babel">
 const { useState, useEffect } = React;
 
-function Counter(props) {
-    const [counter, setCounter] = useState(0);
-
-    function handleIncrementClick() {
-        if (props.incrementBy===1) {
-            setCounter(counter + 1)
-        }
-        if (props.incrementBy===2) {
-            setCounter(counter + 2)
-        }
-        if (props.incrementBy===5) {
-            setCounter(counter + 5)
-        }
+function WelcomeUser(props) {
+    if (props.user) {
+        return <h1>Welcome {props.user}</h1>;
+    } else {
+        return <h1>Please login!</h1>;
     }
-
-    return(
-        <div>
-            <h2>{counter} times clicked</h2>
-            <button onClick={handleIncrementClick}>
-                Add {props.incrementBy}
-            </button>
-        </div>
-    );
 }
 
 ReactDOM.render(
