@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import {render} from "react-dom";
-import StoreFront from "./StoreFront.js";
+import StoreFront from "StoreFront.js";
 
 function App() {
     const [LoggedIn, setLoggedIn] = useState(false);
