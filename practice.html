@@ -73,18 +73,23 @@ p { text-align: center; }
 <script type="text/babel">
 const { useState, useEffect } = React;
 
-function App(props) {
-    if (props.theme === "dark"){
-        return <DarkTheme />;
+function Admin(props) {
+    if (props.userType === "admin") {
+        return(
+            <div>
+                <h1>Welcome Admin</h1>
+                <p>The Admin portal allows you to manage all your items</p>
+            </div>
+        )
+    } else {
+        return <NoPermission />
     }
-    return <LightTheme />;
-}
+};
 
 ReactDOM.render(
     <div>
-        <Counter incrementBy={1} />
-        <Counter incrementBy={2} />
-        <Counter incrementBy={5} />
+    <Admin userType="admin" />
+    <Admin userType="client" />
     </div>,
     document.getElementById("root")
 );
