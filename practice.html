@@ -85,5 +85,13 @@ function getWelcomeMessage(type) {
     return (type === "admin") ? "Welcome admin" : "Welcome user";
 }
 
+function App(props) {
+    const loginButton = <button>Login</button>;
+    const signupButton = <button>Signup</button>;
+
+    return <div className="app-container">{props.existingUser ? loginButton : 
+    signupButton}</div>;
+}
+
 </script>
 
