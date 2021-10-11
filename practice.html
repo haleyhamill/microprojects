@@ -72,14 +72,15 @@ p { text-align: center; }
 
 <script type="text/babel">
 
-function addApp(apps, app) {
-    const result = [app, ...apps];
-    return result
-}
+const grades = [10, 20, 18, 14];
 
-const apps1 = ["Calculator", "Phone"];
-const newApps1 = addApp(apps1, "Preferences");
-console.log(newApps1);
+const updatedGrades = grades.map(grade => {
+    if (grade === 18) {
+        return 17;
+    }
+
+    return grade;
+});
 
 </script>
 
