@@ -72,11 +72,14 @@ p { text-align: center; }
 
 <script type="text/babel">
 
-function App() {
-    const [name, setName] = useState("");
-
-    return <input type="text" />
+function addApp(apps, app) {
+    const result = [app, ...apps];
+    return result
 }
+
+const apps1 = ["Calculator", "Phone"];
+const newApps1 = addApp(apps1, "Preferences");
+console.log(newApps1);
 
 </script>
 
