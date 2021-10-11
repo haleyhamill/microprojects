@@ -72,11 +72,11 @@ p { text-align: center; }
 
 <script type="text/babel">
 
-const grades = [10, 20, 18, 14];
+const grades = [10, 8, 9, 4, 16];
 
 const updatedGrades = grades.map(grade => {
-    if (grade === 18) {
-        return 17;
+    if (grade < 10) {
+        return grade + 1;
     }
 
     return grade;
