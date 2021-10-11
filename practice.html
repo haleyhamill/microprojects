@@ -72,11 +72,14 @@ p { text-align: center; }
 
 <script type="text/babel">
 
-const grades = [10, 8, 9, 4, 16];
-const subset1 = grades.slice(1);
-
-const grades2 = [10, 8, 9, 4, 16];
-const subset2 = grades.slice(0, grades.length - 2);
+function replaceApp(apps, oldApp, newApp) {
+    const results = apps.map(app => {
+        if (app === oldApp) {
+            return newApp
+        }
+        return app
+    })
+}
 
 </script>
 
