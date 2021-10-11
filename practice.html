@@ -71,25 +71,12 @@ p { text-align: center; }
 </html>
 
 <script type="text/babel">
-const { useState, useEffect } = React;
 
 function App() {
-    const [isFree, setIsFree] = useState(true);
+    const [name, setName] = useState("");
 
-    function handleUpgradeClick() {
-        setIsFree(false);
-    }
-
-    if (isFree) {
-        return <button onClick={handleUpgradeClick}>Upgrade</button>;
-    }
-    return <h2>Welcome Paid user!</h2>;
+    return <input type="text" />
 }
-
-ReactDOM.render(
-    <App />,
-    document.getElementById("root")
-);
 
 </script>
 
