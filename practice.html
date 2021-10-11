@@ -73,14 +73,10 @@ p { text-align: center; }
 <script type="text/babel">
 
 const grades = [10, 8, 9, 4, 16];
+const subset1 = grades.slice(1);
 
-const updatedGrades = grades.map(grade => {
-    if (grade < 10) {
-        return grade + 1;
-    }
-
-    return grade;
-});
+const grades2 = [10, 8, 9, 4, 16];
+const subset2 = grades.slice(0, grades.length - 2);
 
 </script>
 
