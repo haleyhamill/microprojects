@@ -72,13 +72,9 @@ p { text-align: center; }
 
 <script type="text/babel">
 
-function replaceApp(apps, oldApp, newApp) {
-    const results = apps.map(app => {
-        if (app === oldApp) {
-            return newApp
-        }
-        return app
-    })
+function removeApp(apps, appToRemove) {
+    const results = apps.filter(app => app !== appToRemove)
+    return result
 }
 
 </script>
