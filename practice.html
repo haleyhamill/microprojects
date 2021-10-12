@@ -72,8 +72,14 @@ p { text-align: center; }
 
 <script type="text/babel">
 
-function doSomething(array, itemToRemove) {
-    return array.filter(item => item !== itemToRemove)
+function function1(array, oldItem, newItem) {
+    const results = array.map(item => {
+        if (item === oldItem) {
+            return newItem
+        }
+        return item
+    })
+    return results
 }
 
 </script>
