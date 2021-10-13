@@ -73,12 +73,12 @@ p { text-align: center; }
 <script type="text/babel">
 const {useState} = React;
 
-function Container(props) {
-    return <div class="container">{props.children}</div>;
+function ShoppingCart(props) {
+    return <div>Hello {props.name} </div>
 }
 
 ReactDOM.render(
-    <Container />,
+    <ShoppingCart name="Sam" />,
     document.getElementById("root")
 );
 
