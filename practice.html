@@ -73,16 +73,12 @@ p { text-align: center; }
 <script type="text/babel">
 const {useState} = React;
 
-function Products() {
-    const [products, setProducts] = useState(["Almond", "Cashew", "Rice", "Water"]);
-
-    return <ul>
-        {products.map(product => <li key={product}>{product}</li>)}
-    </ul>;
+function Container(props) {
+    return <div class="container">{props.children}</div>;
 }
 
 ReactDOM.render(
-    <Products />,
+    <Container />,
     document.getElementById("root")
 );
 
