@@ -71,67 +71,20 @@ p { text-align: center; }
 </html>
 
 <script type="text/babel">
+const {useState} = React;
 
-function Grades() {
-    const grades = [8, 18, 10, 7, 14];
+function Products() {
+    const [products, setProducts] = useState(["Almond", "Cashew", "Rice", "Water"]);
 
     return <ul>
-        { grades.map(grade => <li>{grade}</li>) }
+        {products.map(product => <li key={product}>{product}</li>)}
     </ul>;
 }
 
 ReactDOM.render(
-    <Grades />,
+    <Products />,
     document.getElementById("root")
-)
-
-function Grades() {
-    const grades = [8, 18, 10, 7, 14];
-
-    const listItems = grades.map(grade => <li>{grade}</li>);
-
-    return <ul>
-        {listItems} 
-    </ul>;    
-}
-
-ReactDOM.render(
-    <Grades />,
-    document.getElementById("root")
-)
-
-function Grades() {
-    const grades = [8, 18, 10, 7, 14];
-
-    return <ul>{
-        grades.map((grade, index) => <li key={index}>{grade}</li>)
-    }</ul>;
-}
-
-function Users() {
-    const users = [1, 10, 3, 4, 13];
-
-    return <ul>{
-        users.map(user => <li key={user}>{user}</li>)
-    }</ul>;
-}
-
-function Users() {
-    //collection of user ids
-    const [users, setUsers] = useState([4, 8, 10, 17, 13]);
-
-    function handleRemoveClick() {
-        //remember array immutability ;)
-        setUsers(users.slice(1));
-    }
-
-    return <div>
-        <ul>{
-            users.map(user => <li key={user}>{user}</li>)
-        }</ul>
-        <button onClick={handleRemoveClick}>Remove first user</button>
-        </div>;
-}
+);
 
 </script>
 
