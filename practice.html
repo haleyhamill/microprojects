@@ -73,16 +73,22 @@ p { text-align: center; }
 <script type="text/babel">
 const {useState} = React;
 
-function Flashcard() {
+function Counter() {
+    const [counter, setCounter] = useState(0);
+
+    function handleIncrementClick() {
+        setCounter(counter + 1);
+    }
+
     return(
         <div>
-            <h1>Buy now</h1>
-        </div>
-    );
+            <h2>{counter} times click</h2>
+            <button onClick={handleIncrementClick}>Add 1</button>
+        </div>);
 }
 
 ReactDOM.render(
-    <Flashcard />,
+    <Counter />,
     document.getElementById("root")
 );
 
