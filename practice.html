@@ -72,25 +72,49 @@ p { text-align: center; }
 
 <script type="text/babel">
 const {useState} = React;
+const {render} = ReactDOM;
 
-function Counter() {
-    const [counter, setCounter] = useState(0);
+function Wallet() {
+    const [transactions, setTransactions] = useState([]);
 
-    function handleIncrementClick() {
-        setCounter(counter + 1);
+    function handleDepositClick() {
+        const transCopy = transactions.map(transaction => transaction);
+        transCopy.push(10);
+        setTransactions(transCopy);
+    }
+
+    function handleWithdrawClick() {
+        const transCopy = transactions.map(transaction => transaction);
+        transCopy.push(-10);
+        setTransactions(transCopy);
+    }
+
+    function handleClearClick() {
+        setTransactions([]);
+    }
+
+    function sum(array) {
+        var total = 0;
+        for (var i = 0; i < array.length; i++) {
+            total += array[i]
+        }
+        return total
     }
 
     return(
-        <div>
-            <h2>{counter} times click</h2>
-            <button onClick={handleIncrementClick}>Add 1</button>
-        </div>);
+    <div>
+        <button onClick={handleDepositClick}>Deposit 10</button>
+        <button onClick={handleWithdrawClick}>Withdraw 10</button>
+        <h2>Total: {sum(transactions)}</h2>
+        <button onClick={handleClearClick}>Reset</button>
+        <ul>
+            {transactions.map((transactions, index) => <li key={index}>{transactions}</li>)}
+        </ul>
+    </div> )
 }
 
-ReactDOM.render(
-    <Counter />,
-    document.getElementById("root")
-);
+render(<Wallet />, document.querySelector("#root"));
+
 
 </script>
 
