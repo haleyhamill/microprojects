@@ -73,12 +73,16 @@ p { text-align: center; }
 <script type="text/babel">
 const {useState} = React;
 
-function ShoppingCart(props) {
-    return <div>Hello {props.name} </div>
+function Flashcard() {
+    return(
+        <div>
+            <h1>Buy now</h1>
+        </div>
+    );
 }
 
 ReactDOM.render(
-    <ShoppingCart name="Sam" />,
+    <Flashcard />,
     document.getElementById("root")
 );
 
