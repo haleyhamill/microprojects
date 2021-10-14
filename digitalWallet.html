@@ -95,7 +95,7 @@ function Wallet() {
 
     function handleDepositClick() {
         const transCopy = transactions.map(transaction => transaction);
-        transCopy.push(+600);
+        transCopy.push(600);
         setTransactions(transCopy);
     }
 
@@ -136,7 +136,7 @@ function Wallet() {
         </header>
         <div id="balanceContainer">
             <p id="balance">${sum(transactions)}
-                <p id="balanceTitle">AVAILABLE BALANCE Checking ...4211</p>
+                <p id="balanceTitle">AVAILABLE BALANCE<br/>Checking ...4211</p>
             </p>
         </div>
         <nav>
@@ -146,9 +146,17 @@ function Wallet() {
         </nav>
         <div id="container">
             <p id="transactions"> Recent Transactions &nbsp;<i class="fas fa-info-circle"></i></p>
-            <ul>
-                {transactions.map((transactions, index) => <li key={index}>{transactions}</li>)}
-            </ul>
+            <table>
+                <tr>
+                    <th>Descripton</th>
+                    <th>Amount</th>
+                </tr>
+                {transactions.map((transaction, index) => ( 
+                    <tr>
+                        <td>{transaction > 0 ? "Deposit" : "Withdraw"}</td>
+                        <td>{transaction}</td>
+                    </tr> ))}
+            </table>
         </div>
     </div> )
 }
