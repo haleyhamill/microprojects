@@ -90,10 +90,15 @@ nav { display: flex; justify-content: space-between; background-color: rgba(255,
 const {useState} = React;
 const {render} = ReactDOM;
 
-function getNavbar(username) {
-    return <div>Welcome back {username}. Log out!</div>;
+function Game() {
+    const [remaining, setRemaining] = useState(3);
+    setRemaining(remaining - 1);
 }
 
+ReactDOM.render(
+    <Game />,
+    document.getElementById("root")
+)
 
 </script>
 
