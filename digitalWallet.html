@@ -90,9 +90,70 @@ nav { display: flex; justify-content: space-between; background-color: rgba(255,
 const {useState} = React;
 const {render} = ReactDOM;
 
-function getNavbar(username) {
-    return <div>Welcome back {username}. Log out!</div>;
+function Wallet() {
+    const [transactions, setTransactions] = useState([]);
+
+    function handleDepositClick() {
+        const transCopy = transactions.map(transaction => transaction);
+        transCopy.push(+600);
+        setTransactions(transCopy);
+    }
+
+    function handleWithdrawClick() {
+        const transCopy = transactions.map(transaction => transaction);
+        transCopy.push(-100);
+        setTransactions(transCopy);
+    }
+
+    function handleClearClick() {
+        setTransactions([]);
+    }
+
+    function sum(array) {
+        var total = 0;
+        for (var i = 0; i < array.length; i++) {
+            total += array[i]
+        }
+        return total
+    }
+
+    function getToday() {
+        var today = new Date();
+        var dd = String(today.getDate()).padStart(2, '0');
+        var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+        var yyyy = today.getFullYear();
+
+        const todaysDate = mm + '/' + dd + '/' + yyyy;
+        return todaysDate;
+    }
+    const now = getToday();
+
+    return(
+    <div>
+        <header>
+                <span id="logo">Femme<br/>Bank</span>
+                <span id="user">Hello<br/>Haley</span>
+        </header>
+        <div id="balanceContainer">
+            <p id="balance">${sum(transactions)}
+                <p id="balanceTitle">AVAILABLE BALANCE Checking ...4211</p>
+            </p>
+        </div>
+        <nav>
+            <button onClick={handleDepositClick}><i className="fas fa-money-check-alt"></i><br/>Deposit</button>
+            <button onClick={handleWithdrawClick}><i className="fas fa-money-bill"></i><br/>Withdraw</button>
+            <button onClick={handleClearClick}><i className="fas fa-sync"></i><br/>Reset</button>
+        </nav>
+        <div id="container">
+            <p id="transactions"> Recent Transactions &nbsp;<i class="fas fa-info-circle"></i></p>
+            <ul>
+                {transactions.map((transactions, index) => <li key={index}>{transactions}</li>)}
+            </ul>
+        </div>
+    </div> )
 }
+
+render(<Wallet />, document.querySelector("#root"));
 
 
 </script>
