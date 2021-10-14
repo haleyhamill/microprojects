@@ -7,63 +7,79 @@
     <script src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
     <script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+    <script src="https://kit.fontawesome.com/143890e1e3.js" crossorigin="anonymous"></script>
     <title>Fish Catcher</title>
 </head>
 
 <style>
 
-* {margin: 0; padding: 0;}
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video { margin: 0; padding: 0; border: 0; font-size: 100%; font: inherit; vertical-align: baseline; }
 
-html {
-    background:url("https://data.whicdn.com/images/357323414/original.jpg");
-    background-repeat: no-repeat;
-    background-position-x: center;
-    background-size: cover;
+html { background:url("https://data.whicdn.com/images/333965298/original.jpg"); background-repeat: no-repeat; 
+    background-size: cover; }
+
+body { color: white; font-family: "Verdana", sans-serif; text-align: center; height: 100vh; margin-left: auto; 
+    margin-right: auto; }
+
+header { display: flex; flex-direction: row; justify-content: space-between; height: 66px; }
+
+span { align-self: center; padding-left: 1em; padding-right: 1em; font-size: 18px; }
+
+#container { margin-left: auto; margin-right: auto; 
+    /*box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; width: 15em;*/}
+
+#balanceContainer { display: flex; flex-direction: column; justify-content: center; align-items: center; height: 256px; 
+    background-color: rgba(126, 246, 255, 0.26);}
+
+#balance { color: white; font-size: 76px;  padding: 1rem; margin-top: auto; margin-bottom: auto;}
+
+#balanceTitle { font-size: 14px; padding-bottom: 1rem; }
+
+#transactions { padding-left: 5px; background-color: rgba(0, 0, 0, 0.2);  display: flex; justify-content: center;
+    padding-top: 1em; padding-bottom: 1em; }
+
+button {  background-color: rgba(126, 44, 122, 0); text-align: center; font-weight: bold; color: white; 
+    border: 1px solid white; cursor: pointer; transition: opacity 200ms ease-out; border-style: none; 
+    font-size: 18px; display: inline-block; }
+
+button:hover { font-size: 17px; transition: 200ms ease-in-out; }
+
+ol, ul { list-style: none; background-color: rgba(0, 0, 0, 0.2); }
+
+nav { display: flex; justify-content: space-between; background-color: rgba(255, 206, 255, 0.315); padding: 5px; 
+    height: 66px; }
+
+@media only screen and (min-width: 601px) {
+    header { display: flex; flex-direction: row; justify-content: space-between; height: 76px; }
+
+    span { padding: 2em; }
+
+    body { color: white; font-family: "Verdana", sans-serif; text-align: center; height: 100vh; margin-left: auto; 
+    margin-right: auto; }
+
+    nav { display: flex; justify-content: space-between; background-color: rgba(255, 206, 255, 0.315); padding: 5px; 
+    height: 76px; }
+
+    #transactions { padding-left: 5px; background-color: rgba(0, 0, 0, 0.2);  display: flex; justify-content: center;
+    padding-top: 1em; font-size: 18px; }
+
+    button {  background-color: rgba(126, 44, 122, 0); text-align: center; font-weight: bold; color: white; 
+    border: 1px solid white; cursor: pointer; transition: opacity 200ms ease-out; border-style: none; 
+    font-size: 18px; display: inline-block; padding-left: 2em; padding-right: 2em; }
 }
 
-body { color: #17292d; font-size: 35px;
-font-family: "Verdana", sans-serif; margin-top: 10%; margin-bottom: 0%;
-text-align: center; width: 300px; margin-left: auto; margin-right: auto; }
-
-button {margin: 0; text-align: center;
-  background-color: #17292d;
-  color: #b2c4c9;
-  border: 0;
-  padding: 15px 20px;
-  min-width: 150px;
-  font-size: 17px;
-  border-radius: 3px;
-  cursor: pointer;
-  transition: opacity 200ms ease-out;
-  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);}
-
-ol, ul {
-    padding-left: 30px;
-}
-
-p { text-align: center; }
-
-.image {
-  margin: 0 auto;
-}
-.image[wobble='1'] {
-  animation: wobble 1s 1;
-}
-
-@keyframes wobble {
-  25% {
-    transform: rotate(15deg);
-  }
-  50% {
-    transform: rotate(-30deg);
-  }
-  75% {
-    transform: rotate(5deg);
-  }
-  100% {
-    transform: rotate(0deg);
-  }
-}
 </style>
 
 <html>
@@ -79,13 +95,13 @@ function Wallet() {
 
     function handleDepositClick() {
         const transCopy = transactions.map(transaction => transaction);
-        transCopy.push(10);
+        transCopy.push(+600);
         setTransactions(transCopy);
     }
 
     function handleWithdrawClick() {
         const transCopy = transactions.map(transaction => transaction);
-        transCopy.push(-10);
+        transCopy.push(-100);
         setTransactions(transCopy);
     }
 
@@ -101,15 +117,39 @@ function Wallet() {
         return total
     }
 
+    function getToday() {
+        var today = new Date();
+        var dd = String(today.getDate()).padStart(2, '0');
+        var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+        var yyyy = today.getFullYear();
+
+        const todaysDate = mm + '/' + dd + '/' + yyyy;
+        return todaysDate;
+    }
+    const now = getToday();
+
     return(
     <div>
-        <button onClick={handleDepositClick}>Deposit 10</button>
-        <button onClick={handleWithdrawClick}>Withdraw 10</button>
-        <h2>Total: {sum(transactions)}</h2>
-        <button onClick={handleClearClick}>Reset</button>
-        <ul>
-            {transactions.map((transactions, index) => <li key={index}>{transactions}</li>)}
-        </ul>
+        <header>
+                <span id="logo">Femme<br/>Bank</span>
+                <span id="user">Hello<br/>Haley</span>
+        </header>
+        <div id="balanceContainer">
+            <p id="balance">${sum(transactions)}
+                <p id="balanceTitle">AVAILABLE BALANCE Checking ...4211</p>
+            </p>
+        </div>
+        <nav>
+            <button onClick={handleDepositClick}><i className="fas fa-money-check-alt"></i><br/>Deposit</button>
+            <button onClick={handleWithdrawClick}><i className="fas fa-money-bill"></i><br/>Withdraw</button>
+            <button onClick={handleClearClick}><i className="fas fa-sync"></i><br/>Reset</button>
+        </nav>
+        <div id="container">
+            <p id="transactions"> Recent Transactions &nbsp;<i class="fas fa-info-circle"></i></p>
+            <ul>
+                {transactions.map((transactions, index) => <li key={index}>{transactions}</li>)}
+            </ul>
+        </div>
     </div> )
 }
 
