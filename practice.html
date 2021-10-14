@@ -90,15 +90,12 @@ nav { display: flex; justify-content: space-between; background-color: rgba(255,
 const {useState} = React;
 const {render} = ReactDOM;
 
-function getItemButton(out_of_stock) {
-    if (!out_of_stock) {
-        return <button>Add to cart</button>
-    }
-    return null
+function App() {
+    return <input onKeyDown={() => console.log("Changed")} placeholder="Enter your name" />;
 }
 
 ReactDOM.render(
-    <Game />,
+    <App />,
     document.getElementById("root")
 )
 
