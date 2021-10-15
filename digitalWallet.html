@@ -27,13 +27,15 @@ figure, figcaption, footer, header, hgroup,
 menu, nav, output, ruby, section, summary,
 time, mark, audio, video { margin: 0; padding: 0; border: 0; font-size: 100%; font: inherit; vertical-align: baseline; }
 
-html { background:url("https://data.whicdn.com/images/333965298/original.jpg"); background-repeat: no-repeat; 
+html { background-image:url("https://data.whicdn.com/images/333965298/original.jpg"); background-repeat: no-repeat; 
     background-size: cover; }
 
 body { color: white; font-family: "Verdana", sans-serif; text-align: center; height: 100vh; margin-left: auto; 
-    margin-right: auto; }
+    margin-right: auto; width: 100vw; }
 
-header { display: flex; flex-direction: row; justify-content: space-between; height: 66px; }
+#contentContainer { width: 75%; margin: auto; }
+
+header { display: flex; flex-direction: row; justify-content: space-between; height: 66px; background-color:rgba(0, 0, 0, 0.2); }
 
 span { align-self: center; padding-left: 1em; padding-right: 1em; font-size: 18px; }
 
@@ -51,34 +53,50 @@ span { align-self: center; padding-left: 1em; padding-right: 1em; font-size: 18p
     padding-top: 1em; padding-bottom: 1em; }
 
 button {  background-color: rgba(126, 44, 122, 0); text-align: center; font-weight: bold; color: white; 
-    border: 1px solid white; cursor: pointer; transition: opacity 200ms ease-out; border-style: none; 
-    font-size: 18px; display: inline-block; }
+    cursor: pointer; transition: opacity 200ms ease-out; border-style: none; font-size: 18px; display:}
 
 button:hover { font-size: 17px; transition: 200ms ease-in-out; }
 
-ol, ul { list-style: none; background-color: rgba(0, 0, 0, 0.2); }
 
-nav { display: flex; justify-content: space-between; background-color: rgba(255, 206, 255, 0.315); padding: 5px; 
-    height: 66px; }
+nav { display: flex; justify-content: space-between; background-color: rgba(255, 206, 255, 0.315); padding: 1em; 
+    height: 4em; margin: auto; }
+
+table, th, td { border-spacing: 0; border: 1px solid black; }
+
+table { width: 100%;table-layout: fixed }
+
+th, td { background-color: rgba(0, 0, 0, 0.2);}
+
 
 @media only screen and (min-width: 601px) {
-    header { display: flex; flex-direction: row; justify-content: space-between; height: 76px; }
+    header { display: flex; flex-direction: row; justify-content: space-between; height: 4.5em; }
 
     span { padding: 2em; }
 
-    body { color: white; font-family: "Verdana", sans-serif; text-align: center; height: 100vh; margin-left: auto; 
+    body { color: white; font-family: "Verdana", sans-serif; text-align: center; margin-left: auto; 
     margin-right: auto; }
 
-    nav { display: flex; justify-content: space-between; background-color: rgba(255, 206, 255, 0.315); padding: 5px; 
-    height: 76px; }
+    nav { display: flex; justify-content: space-between; background-color: rgba(255, 206, 255, 0.315); padding: 1em; 
+    height: 4.5em; }
 
     #transactions { padding-left: 5px; background-color: rgba(0, 0, 0, 0.2);  display: flex; justify-content: center;
     padding-top: 1em; font-size: 18px; }
 
     button {  background-color: rgba(126, 44, 122, 0); text-align: center; font-weight: bold; color: white; 
-    border: 1px solid white; cursor: pointer; transition: opacity 200ms ease-out; border-style: none; 
-    font-size: 18px; display: inline-block; padding-left: 2em; padding-right: 2em; }
+    cursor: pointer; transition: opacity 200ms ease-out; font-size: 18px; padding-left: 2em; 
+    padding-right: 2em; }
 }
+
+@media only screen and (min-width: 801px) {
+    #btn-break { display: none; }
+
+    nav { height: 43px; font-size: 20px; }
+
+    header { height: 85px; }
+
+    span { font-size: 25px; }
+
+
 
 </style>
 
@@ -109,12 +127,17 @@ function Wallet() {
         setTransactions([]);
     }
 
-    function sum(array) {
+    function sum(array, index = -1) {
         var total = 0;
-        for (var i = 0; i < array.length; i++) {
+        const end = index === -1 ? array.length : index + 1;
+        for (var i = 0; i < end; i++) {
             total += array[i]
         }
         return total
+    }
+
+    function displayMoney(amount){
+        return amount>=0?`$${amount}` :`-$${Math.abs(amount)}`
     }
 
     function getToday() {
@@ -129,7 +152,7 @@ function Wallet() {
     const now = getToday();
 
     return(
-    <div>
+    <div id="contentContainer">
         <header>
                 <span id="logo">Femme<br/>Bank</span>
                 <span id="user">Hello<br/>Haley</span>
@@ -140,21 +163,23 @@ function Wallet() {
             </p>
         </div>
         <nav>
-            <button onClick={handleDepositClick}><i className="fas fa-money-check-alt"></i><br/>Deposit</button>
-            <button onClick={handleWithdrawClick}><i className="fas fa-money-bill"></i><br/>Withdraw</button>
-            <button onClick={handleClearClick}><i className="fas fa-sync"></i><br/>Reset</button>
+            <button onClick={handleDepositClick}><i className="fas fa-money-check-alt"></i><br id="btn-break"/>Deposit</button>
+            <button onClick={handleWithdrawClick}><i className="fas fa-money-bill"></i><br id="btn-break"/>Withdraw</button>
+            <button onClick={handleClearClick}><i className="fas fa-sync"></i><br id="btn-break"/>Reset</button>
         </nav>
         <div id="container">
             <p id="transactions"> Recent Transactions &nbsp;<i class="fas fa-info-circle"></i></p>
             <table>
                 <tr>
-                    <th>Descripton</th>
+                    <th>Description</th>
                     <th>Amount</th>
+                    <th>Balance</th>
                 </tr>
                 {transactions.map((transaction, index) => ( 
                     <tr>
                         <td>{transaction > 0 ? "Deposit" : "Withdraw"}</td>
-                        <td>{transaction}</td>
+                        <td>{displayMoney(transaction)}</td>
+                        <td>{displayMoney(sum(transactions, index))}</td>
                     </tr> ))}
             </table>
         </div>
