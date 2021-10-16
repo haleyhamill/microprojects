@@ -90,13 +90,8 @@ nav { display: flex; justify-content: space-between; background-color: rgba(255,
 const {useState} = React;
 const {render} = ReactDOM;
 
-function Limit() {
-    const [timer, setTimer] = useState(60);
-
-    return (<>
-        <h2>{times} times remaining</h2>
-        <button onClick={() => setTimer(timer - 1)}>Use me</button>
-        </>);
+function getNavbar(name) {
+    return <div>Your name is {name.length} characters long</div>;
 }
 
 </script>
