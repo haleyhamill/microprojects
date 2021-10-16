@@ -90,8 +90,21 @@ nav { display: flex; justify-content: space-between; background-color: rgba(255,
 const {useState} = React;
 const {render} = ReactDOM;
 
-function getNavbar(name) {
-    return <div>Your name is {name.length} characters long</div>;
+function Countdown() {
+    const [count, setCount] = useState(5);
+
+    function handleDecrementClick() {
+        if (count > 0) {
+            setCount(count - 1);
+        }
+    }
+
+    return(
+        <div>
+            <h2>{count} times remaining</h2>
+            <button onClick={handleDecrementClick}>Countdown</button>
+        </div>
+    );
 }
 
 </script>
