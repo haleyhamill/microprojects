@@ -90,11 +90,9 @@ nav { display: flex; justify-content: space-between; background-color: rgba(255,
 const {useState} = React;
 const {render} = ReactDOM;
 
-function Clock() {
-    const [time, setTime] = useState(0);
+const root = document.querySelector("#react-root");
 
-    return null;
-}
+render(<h1 className="main-title">Buy now</h1>, root);
 
 </script>
 
