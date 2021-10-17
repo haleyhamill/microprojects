@@ -90,9 +90,14 @@ nav { display: flex; justify-content: space-between; background-color: rgba(255,
 const {useState} = React;
 const {render} = ReactDOM;
 
-const root = document.querySelector("#react-root");
-
-render(<h1 className="main-title">Buy now</h1>, root);
+function getFooter() {
+    return (
+        <>
+            <h3>Your online supermarket</h3>
+            <p>All rights reserved </p>
+        </>
+    );
+}
 
 </script>
 
