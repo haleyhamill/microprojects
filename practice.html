@@ -90,11 +90,19 @@ nav { display: flex; justify-content: space-between; background-color: rgba(255,
 const {useState} = React;
 const {render} = ReactDOM;
 
-function getFooter() {
-    return (
+function Countdown() {
+    if (count > 0) {
+        const [count, setCount] = useState(5);
+    }
+
+    function handleDecrementClick() {
+        setCount(count-1);
+    }
+
+    return(
         <>
-            <h3>Your online supermarket</h3>
-            <p>All rights reserved </p>
+            <h2>{count} times remaining</h2>
+            <button onClick={handleDecrementClick}>Countdown</button>
         </>
     );
 }
