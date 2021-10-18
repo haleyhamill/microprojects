@@ -90,8 +90,18 @@ nav { display: flex; justify-content: space-between; background-color: rgba(255,
 const {useState} = React;
 const {render} = ReactDOM;
 
-function Button() {
-    return <button onClick={() => console.log("Welcome")}>Click me</button>
+function Wallet() {
+    const [transactions, setTransactions] = useState([]);
+
+    return <>
+        <button onClick={() => setTransactions([...transactions, 10])}>Deposit 10</button>
+        <button onClick={() => setTransactions([])}>Reset</button>
+        <ul>
+            {transactions.map(
+                (transaction, index) => <li key={index}>{transaction}</li>
+            )}
+        </ul>
+    </>;
 }
 </script>
 
