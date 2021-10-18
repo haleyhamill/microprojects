@@ -90,19 +90,8 @@ nav { display: flex; justify-content: space-between; background-color: rgba(255,
 const {useState} = React;
 const {render} = ReactDOM;
 
-function Counter() {
-    const [counter, setCounter] = useState(0);
-
-    function handleIncrementClick() {
-        setCounter(counter + 1);
-    }
-
-    return (
-        <div>
-            <h2>{counter} times clicked</h2>
-            <button onClick={handleIncrementClick}>Add 1</button>
-        </div>
-    );
+function getFooter() {
+    return <h3>Footer</h3>;
 }
 
 </script>
