@@ -90,13 +90,13 @@ nav { display: flex; justify-content: space-between; background-color: rgba(255,
 const {useState} = React;
 const {render} = ReactDOM;
 
-function Counter() {
-    const [count, setCount] = useState(0);
+function Products() {
+    // do not modify the state
+    const [products, setProducts] = useState(["Almond", "Cashew", "Rice", "Water"]);
 
-    return(<>
-     <h2>{count} count elapsed)</h2>
-     <button onClick={() => setCount(count + 1)}>Add 1</button>
-     </>);
+    return <ul>
+        {products.map(product => <li key={index}>{product}</li>)}
+    </ul>;
 }
 
 </script>
