@@ -90,11 +90,9 @@ nav { display: flex; justify-content: space-between; background-color: rgba(255,
 const {useState} = React;
 const {render} = ReactDOM;
 
-function ShoppingCart(props) {
-    return <div>{props.name}</div>
+function getNavbar(name) {
+    return <div>Your name is {name.length} characters long</div>;
 }
-
-<ShoppingCart name="Sam" />
 
 </script>
 
