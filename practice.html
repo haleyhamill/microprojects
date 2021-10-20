@@ -90,14 +90,15 @@ nav { display: flex; justify-content: space-between; background-color: rgba(255,
 const {useState} = React;
 const {render} = ReactDOM;
 
-function doSomething(array, oldItem, newItem) {
-    return array.map(item => {
-        if (item === oldItem) {
-            return newItem;
-        }
-        return item;
-    });
+function getCanVote() {
+    return age >= 18;
 }
+
+function getUser(age) {
+    return getCanVote();
+}
+
+getUser(20);
 
 </script>
 
