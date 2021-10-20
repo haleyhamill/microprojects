@@ -90,10 +90,13 @@ nav { display: flex; justify-content: space-between; background-color: rgba(255,
 const {useState} = React;
 const {render} = ReactDOM;
 
-function Products() {
-    const [products, setProducts] = useState(['Almond', 'Cashew', 'Rice', 'Water']);
-
-    return <ul> {products.map(product => <li key={index}>{product}</li>)} </ul>;
+function doSomething(array, oldItem, newItem) {
+    return array.map(item => {
+        if (item === oldItem) {
+            return newItem;
+        }
+        return item;
+    });
 }
 
 </script>
