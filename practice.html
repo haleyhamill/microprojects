@@ -90,12 +90,11 @@ nav { display: flex; justify-content: space-between; background-color: rgba(255,
 const {useState} = React;
 const {render} = ReactDOM;
 
-const root = document.getElementById("#react-root");
+function Products() {
+    const [products, setProducts] = useState(['Almond', 'Cashew', 'Rice', 'Water']);
 
-ReactDOM.render(
-    <h1>Buy now</h1>,
-    root
-)
+    return <ul> {products.map(product => <li key={index}>{product}</li>)} </ul>;
+}
 
 </script>
 
