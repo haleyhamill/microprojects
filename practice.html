@@ -90,15 +90,16 @@ nav { display: flex; justify-content: space-between; background-color: rgba(255,
 const {useState} = React;
 const {render} = ReactDOM;
 
-function getCanVote() {
-    return age >= 18;
-}
+function Limit() {
+    const [times, setTimes] = useState(60);
 
-function getUser(age) {
-    return getCanVote();
+    return(
+        <div>
+            <h2>{times} times remaining</h2>
+            <button onClick={() => setTimes(times - 1)}>Use me</button>
+        </div>
+    );
 }
-
-getUser(20);
 
 </script>
 
