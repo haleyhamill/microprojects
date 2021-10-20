@@ -90,31 +90,12 @@ nav { display: flex; justify-content: space-between; background-color: rgba(255,
 const {useState} = React;
 const {render} = ReactDOM;
 
-function Wallet() {
-    const [transactions, setTransactions] = useState([]);
+const root = document.getElementById("#react-root");
 
-    function handleDepositClick() {
-        setTransactions([...transactions, transactions.length + 1]);
-    }
-
-    function handleUndoClick() {
-        const numOfTrans = transactions.length
-        const fewerTransactions = transactions.slice(0, numOfTrans-1)
-        setTransactions(fewerTransactions)
-    }
-
-    return(
-        <div>
-            <button onClick={handleDepositClick}>Deposit</button>
-            <button onClick={handleUndoClick}>Undo</button>
-            <ul>
-                {transactions.map(
-                    (transaction, index) => <li key={index}>{transaction}</li>
-                )}
-            </ul>
-        </div>;
-    )
-}
+ReactDOM.render(
+    <h1>Buy now</h1>,
+    root
+)
 
 </script>
 
