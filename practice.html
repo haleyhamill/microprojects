@@ -90,8 +90,29 @@ nav { display: flex; justify-content: space-between; background-color: rgba(255,
 const {useState} = React;
 const {render} = ReactDOM;
 
-function addEuro(data) {
-    const newObj = {...data, currency: 'EUR'};
+function App() {
+    const [data, setData] = useState({});
+
+    return null;
+}
+
+function App() {
+    const [data, setData] = useState({ dark_mode: false });
+
+    return null;
+}
+
+function App() {
+    const settings = {
+        title: "Blog",
+        theme: "dark"
+    }
+
+    return <ul>{
+        Object.entries(settings).map(item => {
+            return <li key={item[0]}>{item[0]} with value {item[1]}</li>
+        })
+    }</ul>;
 }
 
 </script>
