@@ -90,14 +90,13 @@ nav { display: flex; justify-content: space-between; background-color: rgba(255,
 const {useState} = React;
 const {render} = ReactDOM;
 
-function getPrice() {
-    const price = 10;
-
-    function describePrice() {
-        return `The price is ${price} euros`;
-    }
-
-    return [price, describePrice];
+function getFooter() {
+    return (
+        <div>
+            <h3>Your online supermarket</h3>
+            <p>All rights reserved &copy;</p>
+        </div>
+    );
 }
 
 </script>
