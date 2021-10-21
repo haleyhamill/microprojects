@@ -92,12 +92,14 @@ const {render} = ReactDOM;
 
 const data = {
     id: 1,
-    grades: [10, 14, 8],
-    count: 3,
-    course: "react"
-}
+    price: 19,
+    currency: 'EUR'
+};
 
-const {grades, course, ...newData} = data;
+function removePrice(data) {
+    const {price, ...newObj} = data;
+    return newObj;
+}
 
 </script>
 
