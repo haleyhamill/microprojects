@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+    <script src="https://kit.fontawesome.com/143890e1e3.js" crossorigin="anonymous"></script>
+    <title>Make Background Lighter</title>
+</head>
+
+<style>
+html {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 15rem;
+    width: 75%;
+    text-align: center;
+}
+</style>
+
+<html>
+
+<div id="root"></div>
+
+</html>
+
+<script type="text/babel">
+    const { useState, useEffect } = React;
+
+    function Person() {
+        const [background, setBackground] = useState({
+            number: 20
+        });
+
+        function ageBackground() {
+            const newObj = { ...background, number: background.number + 100 }
+            console.log(newObj);
+            setBackground(newObj);
+        }
+
+        const divStyle = {
+            backgroundColor: `rgb(255, ${background.number}, ${background.number})`
+        }
+
+        return <div style={divStyle}>
+            <p>this background will ~disappear~</p>
+            <button onClick={() => ageBackground()}>make background disappear</button>
+        </div>;
+    }
+
+    ReactDOM.render(
+        <Person />, 
+        document.getElementById("root"));
+
+</script>
