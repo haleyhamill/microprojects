@@ -90,12 +90,11 @@ nav { display: flex; justify-content: space-between; background-color: rgba(255,
 const {useState} = React;
 const {render} = ReactDOM;
 
-function attachUserType(user, type) {
-    const newObj = {...user, type: type} 
+function attachTimeStamps(user) {
+    var time = new Date();
+    const newObj = {...user, created_at: time, updated_at: time} 
     return newObj
 }
-
-
 
 </script>
 
