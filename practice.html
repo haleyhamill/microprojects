@@ -90,15 +90,14 @@ nav { display: flex; justify-content: space-between; background-color: rgba(255,
 const {useState} = React;
 const {render} = ReactDOM;
 
-function Limit() {
-    const [times, setTimes] = useState(60);
+function getPrice() {
+    const price = 10;
 
-    return(
-        <div>
-            <h2>{times} times remaining</h2>
-            <button onClick={() => setTimes(times - 1)}>Use me</button>
-        </div>
-    );
+    function describePrice() {
+        return `The price is ${price} euros`;
+    }
+
+    return [price, describePrice];
 }
 
 </script>
