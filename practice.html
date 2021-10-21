@@ -90,12 +90,12 @@ nav { display: flex; justify-content: space-between; background-color: rgba(255,
 const {useState} = React;
 const {render} = ReactDOM;
 
-const data = {
-    id: 1,
-    name: "Sam"
+function attachUserType(user, type) {
+    const newObj = {...user, type: type} 
+    return newObj
 }
 
-const newObj = {...data, age:18}
+
 
 </script>
 
