@@ -90,10 +90,14 @@ nav { display: flex; justify-content: space-between; background-color: rgba(255,
 const {useState} = React;
 const {render} = ReactDOM;
 
-function makeAdmin(user) {
-    const newObj = {...user, type: "admin"}
-    return newObj
+const data = {
+    id: 1,
+    grades: [10, 14, 8],
+    count: 3,
+    course: "react"
 }
+
+const {grades, course, ...newData} = data;
 
 </script>
 
