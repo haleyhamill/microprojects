@@ -90,30 +90,19 @@ nav { display: flex; justify-content: space-between; background-color: rgba(255,
 const {useState} = React;
 const {render} = ReactDOM;
 
-function App() {
-    const [data, setData] = useState({});
-
-    return null;
+function User(props) {
+    return( <form>
+        <input type="number" defaultValue={props.age} name="age" />
+        </form> );
 }
 
-function App() {
-    const [data, setData] = useState({ dark_mode: false });
+ReactDOM.render(
+    <div>
+        <User age={23} />
+        <User age={26} />
+    </div>,
+    document.getElementById("root"))
 
-    return null;
-}
-
-function App() {
-    const settings = {
-        title: "Blog",
-        theme: "dark"
-    }
-
-    return <ul>{
-        Object.entries(settings).map(item => {
-            return <li key={item[0]}>{item[0]} with value {item[1]}</li>
-        })
-    }</ul>;
-}
 
 </script>
 
