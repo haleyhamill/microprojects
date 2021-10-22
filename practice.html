@@ -90,18 +90,16 @@ nav { display: flex; justify-content: space-between; background-color: rgba(255,
 const {useState} = React;
 const {render} = ReactDOM;
 
-function User(props) {
-    return( <form>
-        <input type="number" defaultValue={props.age} name="age" />
-        </form> );
+function Checkout(props) {
+    return <form>
+        <input type="text" name="name" onChange={event => console.log(event.target.value)} />
+    </form>
 }
 
 ReactDOM.render(
-    <div>
-        <User age={23} />
-        <User age={26} />
-    </div>,
-    document.getElementById("root"))
+    <Checkout />,
+    document.getElementById("root")
+)
 
 
 </script>
