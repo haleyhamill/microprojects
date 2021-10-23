@@ -74,15 +74,10 @@ nav { display: flex; justify-content: space-between; background-color: rgba(255,
 const {useState} = React;
 const {render} = ReactDOM;
 
-const data = {
-    id: 1,
-    price: 19,
-    currency: 'EUR'
-};
-
-function removePrice(data) {
-    const {price, ...newObj} = data;
-    return newObj; 
+function Checkout(props) {
+    return <form>
+        <input type="text" name="name" onChange={e => console.log(e.target.value)} />
+        </form>;
 }
 
 
