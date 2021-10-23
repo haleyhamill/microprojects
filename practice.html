@@ -74,36 +74,21 @@ nav { display: flex; justify-content: space-between; background-color: rgba(255,
 const {useState} = React;
 const {render} = ReactDOM;
 
-function getButton(text, classes) {
-    return <button className={classes}>{text}</button>;
-}
+function OrderInsurance() {
+    const [order, setOrder] = useState({
+        id: 1,
+        item: [1, 4, 10],
+        insurance: "premium"
+    });
 
-const location = [10.23, 12.52]
-const [latitude, longitude] = location;
+    function handleRemoveClick(order) {
+        const {insurance, ...rest} = order;
+        setOrder(rest)
+    }
 
-function getFooter() {
-    return <h3>Footer</h3>;
-}
-
-function doSomething(array, item) {
-    return [item, ...array];
-}
-
-function Navbar(props) {
-    const free = <h1>Upgrade!</h1>;
-    const paid = <h1>Thanks for upgrading.</h1>;
-    return <div className="container">{
-        props.hasPaid ? paid : free
-    }</div>;
-}
-
-function Counter() {
-    const [count, setCount] = useState(0);
-
-    return(<div>
-        <h2>{count} count elapsed</h2>
-        <button onClick={() => setCount(count + 1)}>Add 1</button>
-        </div>)};
+    return <div>
+        <button onClick={handleRemoveClick}>Remove Insurance</button>
+        </div>;
 }
 
 
