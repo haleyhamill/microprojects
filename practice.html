@@ -90,27 +90,8 @@ nav { display: flex; justify-content: space-between; background-color: rgba(255,
 const {useState} = React;
 const {render} = ReactDOM;
 
-function Checkout(props) {
-    return <form>
-        <input type="text" name="name" onChange={event => console.log(event.target.value)} />
-    </form>
-}
-
-ReactDOM.render(
-    <Checkout />,
-    document.getElementById("root")
-)
-
-function App() {
-    const [address, setAddress] = useState("");
-
-    return <input type="text" value={address} onChange={event => setAddress(event.target.value)} />;
-}
-
-function App() {
-    const [address, setAddress] = useState("Amsterdam");
-
-    return <input type="text" value={address} onChange={event => setAddress(event.target.value)} />;
+function getButton(text, classes) {
+    return <button className={classes}>{text}</button>;
 }
 
 
