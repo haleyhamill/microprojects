@@ -74,22 +74,7 @@ nav { display: flex; justify-content: space-between; background-color: rgba(255,
 const {useState} = React;
 const {render} = ReactDOM;
 
-function OrderInsurance() {
-    const [order, setOrder] = useState({
-        id: 1,
-        item: [1, 4, 10],
-        insurance: "premium"
-    });
-
-    function handleRemoveClick(order) {
-        const {insurance, ...rest} = order;
-        setOrder(rest)
-    }
-
-    return <div>
-        <button onClick={handleRemoveClick}>Remove Insurance</button>
-        </div>;
-}
+const element = <input type="text" value="shmeep" />
 
 
 </script>
