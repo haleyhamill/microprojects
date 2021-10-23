@@ -74,7 +74,17 @@ nav { display: flex; justify-content: space-between; background-color: rgba(255,
 const {useState} = React;
 const {render} = ReactDOM;
 
-const element = <input type="text" value="shmeep" />
+const data = {
+    id: 1,
+    price: 19,
+    currency: 'EUR'
+};
+
+function removePrice(data) {
+    const {price, ...newObj} = data;
+    return newObj; 
+}
+
 
 
 </script>
