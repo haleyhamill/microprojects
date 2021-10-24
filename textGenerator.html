@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+    <script src="https://kit.fontawesome.com/143890e1e3.js" crossorigin="anonymous"></script>
+    <title>Text Generator</title>
+</head>
+
+<style>
+html {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 15rem;
+    width: 75%;
+    text-align: center;
+}
+</style>
+
+<html>
+
+<div id="root"></div>
+
+</html>
+
+<script type="text/babel">
+const { useState, useEffect } = React;
+
+function App() {
+    const [words, setWords] = useState("");
+    const [style, setStyle] = useState("default");
+
+    const defaultStyle = {
+        fontSize: "72px"
+    }
+
+    const gradientStyle = {
+        fontSize: "72px",
+        background: "linear-gradient(to right, hsl(98 100% 62%), hsl(204 100% 59%))",
+        webkitBackgroundClip: "text",
+        webkitTextFillColor: "transparent",
+        textAlign: "center"
+    }
+
+    const goldStyle = {
+        fontFamily: "'Times New Roman',serif",
+        letterSpacing: "5px",
+        fontSize: "72px",
+        fontWeight: "bold",
+        backgroundImage: "linear-gradient(to right, #462523 0, #cb9b51 22%, #f6e27a 45%, #f6f2c0 50%, #f6e27a 55%, #cb9b51 78%,#462523 100%)",
+        color: "transparent",
+        webkitBackgroundClip: "text"
+    }
+
+    return(
+        <div>
+            <p>Choose Your Styling</p>
+            <button style={{...goldStyle, fontSize: "24px"}} onClick={() => setStyle("gold")}>ABC</button>
+            <button style={{...gradientStyle, fontSize: "24px"}} onClick={() => setStyle("gradient")}>ABC</button><br/><br/>
+            <input type="text" name="words" value={words} onChange={e => setWords(e.target.value)} />
+            {style==="default" && (
+                <p style={defaultStyle}>{words}</p>
+            )}
+            {style==="gold" && (
+                <p style={goldStyle}>{words}</p>
+            )}
+            {style==="gradient" && (
+                <p style={gradientStyle}>{words}</p>
+            )}
+        </div>)
+}
+
+ReactDOM.render(<App />, document.getElementById("root"));
+
+</script>

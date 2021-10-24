@@ -74,13 +74,14 @@ nav { display: flex; justify-content: space-between; background-color: rgba(255,
 const {useState} = React;
 const {render} = ReactDOM;
 
-function Checkout(props) {
-    return <form>
-        <input type="text" name="name" onChange={e => console.log(e.target.value)} />
-        </form>;
+function Wallet() {
+    const [transactions, setTransactions] = useState([]);
+
+    return(
+        <div>
+            <button onClick={() => setTransactions([...transactions, 10])}>Deposit 10</button>
+            <button onClick={() => setTransactions}
+    )
 }
 
-
-
 </script>
-
