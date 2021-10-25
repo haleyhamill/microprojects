@@ -74,14 +74,15 @@ nav { display: flex; justify-content: space-between; background-color: rgba(255,
 const {useState} = React;
 const {render} = ReactDOM;
 
-function Wallet() {
-    const [transactions, setTransactions] = useState([]);
+function App() {
+    const [country, setCountry] = useState("");
 
-    return(
-        <div>
-            <button onClick={() => setTransactions([...transactions, 10])}>Deposit 10</button>
-            <button onClick={() => setTransactions}
-    )
+    return <select value={country} onChange={e => setCountry(e.target.value)}>
+        <option>Country</option>
+        <option value="netherlands">Netherlands</option>
+        <option value="belgium">Belgium</option>
+        <option value="france">France</option>
+        </select>
 }
 
 </script>
