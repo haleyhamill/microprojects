@@ -101,4 +101,16 @@ function Form() {
         </form>
 }
 
+function App3() {
+    
+    function handleFormSubmit(event) {
+        event.preventDefault();
+    }
+
+    return <form onSubmit={handleFormSubmit}>
+        <input type="text" name="name" />
+        <input type="submit" value="Add" />
+        </form>;
+}
+
 </script>
