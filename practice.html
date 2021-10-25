@@ -96,6 +96,23 @@ const usersCopy = [...users];
 // are they the same? If `false` then React thinks that the state has changed
 console.log(users===usersCopy); //false
 
+function List() {
+    const items = [1, 2, 3];
+
+    function handleButtonClick(item) {
+        console.log(item);
+    }
+
+    return(
+        <ul>
+            {items.map(item => <li key={item}>
+                {item}
+                <button onClick={() => handleButtonClick(item)}>Log me</button>
+            </li>)}
+        </ul>
+    )
+}
+
 ReactDOM.render(<RegisterForm />, document.getElementById("root"));
 
 </script>
