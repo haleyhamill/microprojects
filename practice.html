@@ -79,11 +79,22 @@ const users = [{
     name: "Alex"
 }];
 
-// create a (shallow) copy
+// create a (shallow) copy - a new array but obj still refer to old obj
 const usersCopy = [...users];
 usersCopy[0].name = "Sam";
 console.log(usersCopy[0].name); // "Sam"
 console.log(users[0].name); // Also changed! "Sam"
+
+const users = [{
+    id: 1,
+    name: "Alex"
+}]
+
+// create a shallow copy
+const usersCopy = [...users];
+
+// are they the same? If `false` then React thinks that the state has changed
+console.log(users===usersCopy); //false
 
 ReactDOM.render(<RegisterForm />, document.getElementById("root"));
 
