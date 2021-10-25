@@ -74,20 +74,17 @@ nav { display: flex; justify-content: space-between; background-color: rgba(255,
 const {useState} = React;
 const {render} = ReactDOM;
 
-function App() {
-    const [name, setName] = useState("");
+const users = [{
+    id: 1,
+    name: "Alex"
+}];
 
-    return(
-        <form>
-            <label htmlFor="user-name">User Name:</label>
-            <input type="text" id="user-name" placeholder="Your Name" value={name}
-                onChange={e => setName(e.target.value)} />
+// create a (shallow) copy
+const usersCopy = [...users];
+usersCopy[0].name = "Sam";
+console.log(usersCopy[0].name); // "Sam"
+console.log(users[0].name); // Also changed! "Sam"
 
-            <input type="submit" />
-            <p>Hello {name}</p>
-        </form>
-}
-
-ReactDOM.render(<App />, document.getElementById("root"));
+ReactDOM.render(<RegisterForm />, document.getElementById("root"));
 
 </script>
