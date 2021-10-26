@@ -83,6 +83,15 @@ function App() {
     return <Card onCardLoad={handleCardLoad} />
 }
 
+function Card(props) {
+
+    return(
+        <div className="card">
+            <button onClick={props.onCardLoad}>Click me</button>
+        </div>
+        )
+}
+
 ReactDOM.render(<RegisterForm />, document.getElementById("root"));
 
 </script>
