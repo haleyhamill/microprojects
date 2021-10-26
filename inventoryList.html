@@ -16,16 +16,22 @@
             --dark: #222;
         }
 
+        html {
+            margin-left: auto;
+            margin-right: auto;
+            width: 75%;
+        }
+
         body {
             margin: 15px;
         }
         label {
-            display: inline-block;
             min-width: 100px;
             margin: 5px 0;
         }
         .btn {
             padding: 10px 20px;
+            margin-right: 13px;
             cursor: pointer;
             min-width: 100px;
             border: 0;
@@ -67,20 +73,25 @@
         }
 
         .textfield {
-            width: 95%;
-            padding: 12px;
+            display: block;
+            width: 98%;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            padding-left: 5px;
             border-radius: 2px;
             border: 1px solid var(--light-gray);
             font-size: 16px;
             transition: opacity 200ms ease-out;
-            margin-left: auto;
-            margin-right: auto;
+            margin: 5px 0 15px 0;
         }
 
         form {
             background-color: var(--light-gray);
             padding: 20px;
             border-radius: 3px;
+            width: 100%;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .form-footer {
@@ -210,6 +221,7 @@
             }
 
             return( <div>
+                <h1> Store Inventory </h1>
                 <form onSubmit={(event) => handleButtonSubmit(event)} >
                     <div>
                         <label htmlFor="product-name">Product Name:</label>
