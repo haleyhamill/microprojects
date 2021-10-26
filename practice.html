@@ -75,19 +75,12 @@ const {useState} = React;
 const {render} = ReactDOM;
 
 function App() {
-    
-    function handleStoreOpen() {
 
+    function handleCardLoad() {
+        console.log("Card has loaded");
     }
 
-    function handleItemClick() {
-
-    }
-
-    return <StoreFront
-            onStoreOpen={handleStoreOpen}
-            onItemClick={handleItemClick}
-            />
+    return <Card onCardLoad={handleCardLoad} />
 }
 
 ReactDOM.render(<RegisterForm />, document.getElementById("root"));
