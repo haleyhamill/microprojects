@@ -84,7 +84,18 @@ function App() {
     return(
         <div>
             <h2>Hello {name}</h2>
-            <NameForm onNameChange={handleNameChange} />
+            <NameForm name={name} onNameChange={handleNameChange} />
+        </div>
+    )
+}
+
+function NameForm(props) {
+
+    return(
+        <form>
+            <label htmlFor="name">Name: </label>
+            <input type="text" id="name" value={props.name} onChange={props.onNameChange} />
+        </form>
     )
 }
 
