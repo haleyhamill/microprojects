@@ -76,17 +76,18 @@ const {render} = ReactDOM;
 
 function App() {
     
-    function handleWelcome() {
-        console.log("Hello World");
+    function handleStoreOpen() {
+
     }
 
-    return <Storefront onWelcome={handleWelcome} />;
-}
+    function handleItemClick() {
 
-function StoreFront(props) {
-    props.onWelcome();
+    }
 
-    return <div>Store renders here</div>;
+    return <StoreFront
+            onStoreOpen={handleStoreOpen}
+            onItemClick={handleItemClick}
+            />
 }
 
 ReactDOM.render(<RegisterForm />, document.getElementById("root"));
