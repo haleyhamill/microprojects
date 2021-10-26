@@ -75,26 +75,23 @@ const {useState} = React;
 const {render} = ReactDOM;
 
 function App() {
-    const [name, setName] = useState("");
+    const [email, setEmail] = useState("");
 
-    function handleNameChange(event) {
-        setName(event.target.value);
+    function handleEmailChange(event) {
+        setEmail(event.target.value);
     }
 
-    return(
-        <div>
-            <h2>Hello {name}</h2>
-            <NameForm name={name} onNameChange={handleNameChange} />
+    return <div>
+        <h2>Logged in as {email}</h2>
+        <EmailForm email={email} onEmailChange={handleEmailChange} />
         </div>
-    )
 }
 
-function NameForm(props) {
-
+function EmailForm() {
     return(
         <form>
-            <label htmlFor="name">Name: </label>
-            <input type="text" id="name" value={props.name} onChange={props.onNameChange} />
+            <label htmlFor="email">Email: </label>
+            <input type="email" id="email" value={props.email} onChange={props.onEmailChange} />
         </form>
     )
 }
