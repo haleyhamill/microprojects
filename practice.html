@@ -75,21 +75,17 @@ const {useState} = React;
 const {render} = ReactDOM;
 
 function App() {
+    const [name, setName] = useState("");
 
-    function handleCardLoad() {
-        console.log("Card has loaded");
+    function handleNameChange(event) {
+        setName(event.target.value);
     }
 
-    return <Card onCardLoad={handleCardLoad} />
-}
-
-function Card(props) {
-
     return(
-        <div className="card">
-            <button onClick={props.onCardLoad}>Click me</button>
-        </div>
-        )
+        <div>
+            <h2>Hello {name}</h2>
+            <NameForm onNameChange={handleNameChange} />
+    )
 }
 
 ReactDOM.render(<RegisterForm />, document.getElementById("root"));
