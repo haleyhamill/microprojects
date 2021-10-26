@@ -7,7 +7,7 @@
     <script src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
     <script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
-    <title>Inventory List</title>
+    <title>Online Store Admin</title>
     <style>
         :root {
             --primary: rgb(0, 8, 255);
@@ -202,9 +202,20 @@
             const [products, setProducts] = useState([]);
             const [name, setName] = useState("");
             const [description, setDescription] = useState("");
+            const [validation, setValidation] = useState("");
 
             function handleButtonSubmit(event) {
                 event.preventDefault();
+
+                if (!name) {
+                    setValidation("Please enter a name");
+                    return ;
+                }
+                if (!description) {
+                    setValidation("Please enter a description");
+                    return ;
+                }
+
                 setProducts([...products, {
                     id: products.length,
                     name: name,
@@ -222,7 +233,7 @@
             }
 
             return( <div>
-                <h1> Store Inventory </h1>
+                <h1> Online Store Admin Portal </h1>
                 <form onSubmit={(event) => handleButtonSubmit(event)} >
                     <div>
                         <label htmlFor="product-name">Product Name:</label>
