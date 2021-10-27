@@ -27,43 +27,6 @@ figure, figcaption, footer, header, hgroup,
 menu, nav, output, ruby, section, summary,
 time, mark, audio, video { margin: 0; padding: 0; border: 0; font-size: 100%; font: inherit; vertical-align: baseline; }
 
-html { background:url("https://data.whicdn.com/images/333965298/original.jpg"); background-repeat: no-repeat; 
-    background-size: cover; }
-
-body { color: white; font-family: "Verdana", sans-serif; text-align: center; height: 100vh; margin-left: auto; 
-    margin-right: auto; }
-
-header { display: flex; flex-direction: row; justify-content: space-between; height: 66px; }
-
-span { align-self: center; padding-left: 1em; padding-right: 1em; font-size: 18px; }
-
-button {  background-color: rgba(126, 44, 122, 0); text-align: center; font-weight: bold; color: white; 
-    border: 1px solid white; cursor: pointer; transition: opacity 200ms ease-out; border-style: none; 
-    font-size: 18px; display: inline-block; }
-
-button:hover { font-size: 17px; transition: 200ms ease-in-out; }
-
-ol, ul { list-style: none; background-color: rgba(0, 0, 0, 0.2); }
-
-nav { display: flex; justify-content: space-between; background-color: rgba(255, 206, 255, 0.315); padding: 5px; 
-    height: 66px; }
-
-@media only screen and (min-width: 601px) {
-    header { display: flex; flex-direction: row; justify-content: space-between; height: 76px; }
-
-    span { padding: 2em; }
-
-    body { color: white; font-family: "Verdana", sans-serif; text-align: center; height: 100vh; margin-left: auto; 
-    margin-right: auto; }
-
-    nav { display: flex; justify-content: space-between; background-color: rgba(255, 206, 255, 0.315); padding: 5px; 
-    height: 76px; }
-
-    button {  background-color: rgba(126, 44, 122, 0); text-align: center; font-weight: bold; color: white; 
-    border: 1px solid white; cursor: pointer; transition: opacity 200ms ease-out; border-style: none; 
-    font-size: 18px; display: inline-block; padding-left: 2em; padding-right: 2em; }
-}
-
 </style>
 
 <html>
@@ -74,45 +37,13 @@ nav { display: flex; justify-content: space-between; background-color: rgba(255,
 const {useState} = React;
 const {render} = ReactDOM;
 
-function TodoApp() {
-    const [todos, setTodo] = useState([]);
-    const [entry, setEntry] = useState("");
-
-    function handleEntryChange(event) {
-        setEntry(event.target.value);
-    }
-
-    function handleFormSubmit(event) {
-        event.preventDefault();
-        setTodos([...todos, entry]);
-        setEntry("");
-    }
-
-    return(
-        <div>
-            <TodoForm onFormSubmit={handleFormSubmit} entry={entry} onEntryChange={handleEntryChange} />
-            <TodoList todo={todo} />
-        </div>
-    );
+function App() {
+    return <>
+        <AddProductForm />
+        <ProductsList />
+    </>
 }
 
-function TodoForm(props) {
-    return(
-        <form onSubmit={props.onFormSubmit}>
-            <label htmlFor="todo">Enter To do: </label>
-            <input type="text" id="todo" value={props.entry} onChange={props.onEntryChange} />
-        </form>
-    );
-}
-
-function TodoList(props) {
-    return(
-        <ul>
-            {todos.map((todo, index) => <li key={index}>{props.todo}</li>)}
-        </ul>
-    );
-}
-
-ReactDOM.render(<RegisterForm />, document.getElementById("root"));
+ReactDOM.render(<TodoApp />, document.getElementById("root"));
 
 </script>
