@@ -42,19 +42,18 @@ function Counter() {
     const [times, setTimes] = useState(0);
 
     useEffect(() => {
-        document.title = `${times} times`;
+        if (times === 0) {
+            document.title = "Welcome";
+        } else if (times >= 0) {
+            document.title = `${times} times clicked`;
+        }
     });
-
-    function handleButtonClick() {
-        setTimes(prevTimes => prevTimes + 1);
-    }
 
     return(
         <div>
             <h2>{times} times clicked</h2>
-            <button onClick={handleButtonClick}>Add 1</button>
-        </div>
-    );
+            <button onClick={() => setTimes(prevTimes => prevTimes + 1)}>Add 1</button>
+        </div>);
 }
 
 render(<Counter />, document.getElementById("root"))
