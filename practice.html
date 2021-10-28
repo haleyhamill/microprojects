@@ -38,24 +38,33 @@ const {useState} = React;
 const {render} = ReactDOM;
 const {useEffect} = React;
 
-function Counter() {
-    const [times, setTimes] = useState(0);
+function Products() {
+    const [products, setProducts] = useState([]);
 
     useEffect(() => {
-        if (times === 0) {
-            document.title = "Welcome";
-        } else if (times >= 0) {
-            document.title = `${times} times clicked`;
+        if (products.length === 0) {
+            document.title = "Add your first product";
+        } else if (products.length === 1) {
+            document.title = "You have 1 product";
+        } else if (products.length > 1) {
+            document.title = `You have ${products.length} products`;
         }
-    });
+    })
 
-    return(
+    function handleButtonClick() {
+        setProducts([...products, {
+            id: products.length
+        }]);
+    }
+
+    return (
         <div>
-            <h2>{times} times clicked</h2>
-            <button onClick={() => setTimes(prevTimes => prevTimes + 1)}>Add 1</button>
-        </div>);
+            <h2>{products.length} times clicked</h2>
+            <button onClick={handleButtonClick}>Add a product</button>
+        </div>
+    );
 }
 
-render(<Counter />, document.getElementById("root"))
+render(<Products />, document.getElementById("root"))
 
 </script>
