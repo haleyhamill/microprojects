@@ -38,20 +38,18 @@ const {useState} = React;
 const {render} = ReactDOM;
 const {useEffect} = React;
 
-function App() 
+function App() {
+    const [random, setRandom] = useState(Math.random());
 
-useEffect(() => {
-    const map = new mapboxgl.Map({
-        container: "#map",
-        style: "mapbox://styles/mapbox/streets-v11",
-        center: [10, 20],
-        zoom: 13
-    });
+    useEffect(() => {
+        console.log("Done mounting")
+    }, []
+    );
 
-    return () => {
-        // map cleanup
-    }
-}, []);
+    return (
+        <button onClick={() => setRandom(Math.random())}>Re-render component</button>
+    );
+}
 
 render(<App />, document.getElementById("root"))
 
