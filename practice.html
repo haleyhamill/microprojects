@@ -39,29 +39,13 @@ const {render} = ReactDOM;
 const {useEffect} = React;
 
 function App() {
-    const [random, setRandom] = useState(Math.random()) ;
-
-    function handleWindowScroll(event) {
-        console.log(window.scrollY);
-    }
+    const [counter, setcounter] = useState(0);
 
     useEffect(() => {
-        window.addEventListener("scroll", handleWindowScroll);
+        console.log("effect is running");
+    }, [counter]);
 
-        return () =>  {window.removeEventListener("scroll", handleWindowScroll) };
-    });
-
-    const dummyItems = Array.from({length: 50});
-
-    return (
-        <div>
-            <button onClick={() => setRandom(Math.random())}>Re-render component</button>
-            <h2>List of products</h2>
-            <ul style={{lineHeight: "40px"}}>
-                {dummyItems.map((item, index) => <li key={index}>Lorem ipsum dolor sit amet.</li>)}
-            </ul>
-        </div>
-    );
+    return <button onClick={() => setCounter(prev => prev + 1)}>Click me</button>;
 }
 
 render(<App />, document.getElementById("root"))
