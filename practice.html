@@ -37,17 +37,25 @@ time, mark, audio, video { margin: 0; padding: 0; border: 0; font-size: 100%; fo
 const {useState} = React;
 const {render} = ReactDOM;
 
-function App() {
+function Counter() {
     const [counter, setCounter] = useState(0);
 
-    function handleButtonClick() {
-        setCounter(prevCounter => prevCounter + 1);
+    function handleIncrementClick() {
         setCounter(prevCounter => prevCounter + 1);
     }
 
-    return <button onClick={handleButtonClick}>Click me {counter}</button>
-}
+    function handleDecrementClick() {
+        setCounter(prevCounter => prevCounter - 1);
+    }
 
-ReactDOM.render(<App />, document.getElementById("root"));
+    return(
+        <div>
+            <h2>{counter}</h2>
+            <button onClick={handleIncrementClick}>+</button>
+            <button onClick={handleDecrementClick}>-</button>
+        </div>
+    )
+}
+ReactDOM.render(<Counter />, document.getElementById("root"));
 
 </script>
