@@ -38,12 +38,19 @@ const {useState} = React;
 const {render} = ReactDOM;
 
 function App() {
-    return <>
-        <AddProductForm />
-        <ProductsList />
-    </>
+    const [date, setDate] = useState(new Date());
+    const [counter, setCounter] = useState(0);
+
+    console.log("rendered");
+
+    function handleButtonClick() {
+        setDate(new Date());
+        setCounter(counter + 1);
+    }
+
+    return <button onClick={handleButtonClick}>Click me</button>
 }
 
-ReactDOM.render(<TodoApp />, document.getElementById("root"));
+ReactDOM.render(<App />, document.getElementById("root"));
 
 </script>
