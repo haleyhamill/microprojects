@@ -38,17 +38,14 @@ const {useState} = React;
 const {render} = ReactDOM;
 
 function App() {
-    const [date, setDate] = useState(new Date());
     const [counter, setCounter] = useState(0);
 
-    console.log("rendered");
-
     function handleButtonClick() {
-        setDate(new Date());
+        setCounter(counter + 1);
         setCounter(counter + 1);
     }
 
-    return <button onClick={handleButtonClick}>Click me</button>
+    return <button onClick={handleButtonClick}>Click me {counter}</button>
 }
 
 ReactDOM.render(<App />, document.getElementById("root"));
