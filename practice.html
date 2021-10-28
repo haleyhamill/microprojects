@@ -38,15 +38,20 @@ const {useState} = React;
 const {render} = ReactDOM;
 const {useEffect} = React;
 
-function App() {
-    const [counter, setcounter] = useState(0);
+function App() 
 
-    useEffect(() => {
-        console.log("effect is running");
-    }, [counter]);
+useEffect(() => {
+    const map = new mapboxgl.Map({
+        container: "#map",
+        style: "mapbox://styles/mapbox/streets-v11",
+        center: [10, 20],
+        zoom: 13
+    });
 
-    return <button onClick={() => setCounter(prev => prev + 1)}>Click me</button>;
-}
+    return () => {
+        // map cleanup
+    }
+}, []);
 
 render(<App />, document.getElementById("root"))
 
