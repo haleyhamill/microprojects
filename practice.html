@@ -39,21 +39,17 @@ const {render} = ReactDOM;
 const {useEffect} = React;
 
 function App() {
-    const [counter, setCounter] = useState(0);
-
     useEffect(() => {
-        console.log("effect running");
-        return () => {
-            console.log("effect cleaning up");
-        }
-    })
+        const timeId = setTimeout(() => {
+            console.log("this will run in 1 second");
+        }, 1000);
 
-    return (
-        <div>
-            <h2>{counter}</h2>
-            <button onClick={() => setCounter(prevCounter => prevCounter + 1)}>Add</button>
-        </div>
-    );
+        return () => {
+            clearTimeout(timerId);
+        };
+    });
+
+    return <h1>App</h1>;
 }
 
 render(<App />, document.getElementById("root"))
