@@ -36,26 +36,22 @@ time, mark, audio, video { margin: 0; padding: 0; border: 0; font-size: 100%; fo
 <script type="text/babel">
 const {useState} = React;
 const {render} = ReactDOM;
+const {useEffect} = React;
 
 function Counter() {
     const [counter, setCounter] = useState(0);
 
-    function handleIncrementClick() {
+    useEffect(() => {
+        document.title = `Counter is ${counter}`;
+    });
+
+    function handleButtonClick() {
         setCounter(prevCounter => prevCounter + 1);
     }
 
-    function handleDecrementClick() {
-        setCounter(prevCounter => prevCounter - 1);
-    }
-
-    return(
-        <div>
-            <h2>{counter}</h2>
-            <button onClick={handleIncrementClick}>+</button>
-            <button onClick={handleDecrementClick}>-</button>
-        </div>
-    )
+    return <button onClick={handleButtonClick}>Click me {counter}</button>
 }
+
 ReactDOM.render(<Counter />, document.getElementById("root"));
 
 </script>
