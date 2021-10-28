@@ -39,22 +39,21 @@ const {render} = ReactDOM;
 const {useEffect} = React;
 
 function App() {
-    const [counter, setCounter] = useState(0);
+
+    function handleWindowScroll(event) {
+        console.log("page scrolled");
+    }
 
     useEffect(() => {
-        document.title = "Welcome";
-        const timerId = setTimeout(() => {
-            document.title = "Still there?";}, 1000);
+        window.addEventListener("scroll", handleWindowScroll);
 
-        return function cleanupTimer() {
-            clearTimeout(timerId);
-        };
+        return () => { window.removeEventListener("scroll", handleWindowScroll); }
     });
 
     return (
         <div>
-            <h2>{counter}</h2>
-            <button onClick={() => setCounter(prevCounter => prevCounter + 1)}>Add</button>
+            <h2>List of products</h2>
+            <p>Lorem ipsum...</p>
         </div>
     );
 }
