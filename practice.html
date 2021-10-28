@@ -38,31 +38,14 @@ const {useState} = React;
 const {render} = ReactDOM;
 const {useEffect} = React;
 
-function Products() {
-    const [products, setProducts] = useState([]);
-
+function App() {
     useEffect(() => {
-        if (products.length === 0) {
-            document.title = "Add your first product";
-        } else if (products.length === 1) {
-            document.title = "You have 1 product";
-        } else if (products.length > 1) {
-            document.title = `You have ${products.length} products`;
-        }
-    })
+        setTimeout(() => {
+            console.log("This will run in 1 second");
+        }, 1000);
+    });
 
-    function handleButtonClick() {
-        setProducts([...products, {
-            id: products.length
-        }]);
-    }
-
-    return (
-        <div>
-            <h2>{products.length} times clicked</h2>
-            <button onClick={handleButtonClick}>Add a product</button>
-        </div>
-    );
+    return <h1>App</h1>;
 }
 
 render(<Products />, document.getElementById("root"))
