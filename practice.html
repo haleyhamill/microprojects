@@ -40,11 +40,10 @@ const {useEffect} = React;
 
 function App() {
     useEffect(() => {
-        const timeId = setTimeout(() => {
-            console.log("this will run in 1 second");
+        const timerId = setTimeout(() => {
+            console.log("This will run in 1 second");
         }, 1000);
-
-        return () => {
+        return function cleanupTimer() {
             clearTimeout(timerId);
         };
     });
