@@ -39,15 +39,23 @@ const {render} = ReactDOM;
 const {useEffect} = React;
 
 function App() {
-    useEffect(() => {
-        setTimeout(() => {
-            console.log("This will run in 1 second");
-        }, 1000);
-    });
+    const [counter, setCounter] = useState(0);
 
-    return <h1>App</h1>;
+    useEffect(() => {
+        console.log("effect running");
+        return () => {
+            console.log("effect cleaning up");
+        }
+    })
+
+    return (
+        <div>
+            <h2>{counter}</h2>
+            <button onClick={() => setCounter(prevCounter => prevCounter + 1)}>Add</button>
+        </div>
+    );
 }
 
-render(<Products />, document.getElementById("root"))
+render(<App />, document.getElementById("root"))
 
 </script>
