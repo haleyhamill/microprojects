@@ -61,64 +61,11 @@ const {useState} = React;
 const {render} = ReactDOM;
 const {useEffect} = React;
 
-function Bubble(props) {
-    const size = props.size;
-    const style = {
-        width: size*20,
-        height: size*20,
-        borderRadius: "50%",
-        backgroundColor: props.color,
-        textAlign: "center",
-        marginRight: "auto",
-        marginLeft: "auto"
-    }
-
-    return(
-        <div style={style}></div>
-    )
-}
-
-function Countdown() {
-    const [count, setCount] = useState(0);
-    const [lives, setLives] = useState(3);
-    const [total, setTotal] = useState(0);
-    const [bubbles, setBubbles] = useState(5);
-
+function App() {
     useEffect(() => {
-        document.title = `You have ${lives} left`;
-    }, [lives] );
-
-    function updateCount(e) {
-        e.preventDefault();
-        const limit = Math.floor(Math.random()*50);
-        if ( count + 1 < limit ) {
-            setCount(count + 1)
-        } else {
-            setCount(0);
-            setLives(lives - 1);
-        }
-    }
-
-    function collectTotal(e) {
-        e.preventDefault();
-        setTotal(total + count);
-        setCount(0);
-        
-        if ( bubbles > 0) { setBubbles(bubbles - 1); }
-    }
-
-    return(
-        <div id="borderborder">
-            <div id="textBackground">
-                <div class="highlight"><h2>Points: {count}</h2></div>
-                <h3 class="highlight"> lives remaining: {lives} </h3>
-                <h3 class="highlight"> times left to cash in: {bubbles} </h3>
-                <h2 class="highlight">Total Score: {total} </h2><br/>
-                <button disabled={lives === 0 || bubbles === 0} onClick={(e) => updateCount(e)}> play </button>
-                <button disabled={lives === 0 || bubbles === 0} onClick={(e) => collectTotal(e)}> cash in </button>
-            </div>
-            <div id="bubble"><Bubble size={total} color="#b19cd9"/></div>
-        </div>);
+        console.log("Once after component mounted")
+    }, []);
+    return null;
 }
 
 render(<Countdown />, document.getElementById("root"))
