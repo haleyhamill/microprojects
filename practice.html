@@ -61,10 +61,13 @@ const {useState} = React;
 const {render} = ReactDOM;
 const {useEffect} = React;
 
-function App() {
+function App(props) {
+    const [first, setFirst] = useState(0);
+    const [second, setSecond] = useState(0);
+
     useEffect(() => {
-        console.log("After it mounted the first time and after every re-render");
-    });
+        console.log("Only when first and/or props.user change.")
+    }, [first, props.user]);
     return null;
 }
 
