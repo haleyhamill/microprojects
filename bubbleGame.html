@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+    <script src="https://kit.fontawesome.com/143890e1e3.js" crossorigin="anonymous"></script>
+    <title>Fish Catcher</title>
+</head>
+
+<style>
+
+html, body, div, span, applet, object, iframe,
+h1, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video { margin: 0; padding: 0; border: 0; font-size: 100%; font: inherit; vertical-align: baseline; }
+
+html { background-image:url("https://data.whicdn.com/images/356262142/original.jpg"); background-repeat: no-repeat; 
+    background-size: cover;  }
+
+body { margin-top: 3rem; margin-right: auto; margin-left: auto; width: fit-content; text-align: center;
+    align-content: center; font-family: sans-serif; color: black}
+
+#textBackground { padding: 1rem; border-radius: 1rem; background-color: rgba(133,103,175,255);
+    width: fit-content; align-content: center; margin-left: auto; margin-right: auto; }
+
+button { padding: 1rem; margin-left: .5rem; border-radius: 1rem; background-color: #5e32c7; box-shadow: none;
+    padding: 10px 20px; cursor: pointer; min-width: 100px; border: 0; border-radius: 3px;
+    font-size: 16px; color: black; transition: opacity 180ms ease-out, transform 180ms ease-out; }
+
+button:hover { opacity: 0.8; }
+
+button:disabled { opacity: 0.5; }
+
+#bubble { margin: 3rem; }
+
+#borderborder { align-content: center; }
+
+.highlight { background-color: rgba(147,137,148,255); border-radius: 2rem; }
+
+</style>
+
+<html>
+    <div id="root"></div>
+</html>
+
+<script type="text/babel">
+const {useState} = React;
+const {render} = ReactDOM;
+const {useEffect} = React;
+
+function Bubble(props) {
+    const size = props.size;
+    const style = {
+        width: size*20,
+        height: size*20,
+        borderRadius: "50%",
+        backgroundColor: props.color,
+        textAlign: "center",
+        marginRight: "auto",
+        marginLeft: "auto"
+    }
+
+    return(
+        <div style={style}></div>
+    )
+}
+
+function Countdown() {
+    const [count, setCount] = useState(0);
+    const [lives, setLives] = useState(3);
+    const [total, setTotal] = useState(0);
+    const [bubbles, setBubbles] = useState(5);
+
+    useEffect(() => {
+        document.title = `You have ${lives} left`;
+    }, [lives] );
+
+    function updateCount(e) {
+        e.preventDefault();
+        const limit = Math.floor(Math.random()*50);
+        if ( count + 1 < limit ) {
+            setCount(count + 1)
+        } else {
+            setCount(0);
+            setLives(lives - 1);
+        }
+    }
+
+    function collectTotal(e) {
+        e.preventDefault();
+        setTotal(total + count);
+        setCount(0);
+        
+        if ( bubbles > 0) { setBubbles(bubbles - 1); }
+    }
+
+    return(
+        <div id="borderborder">
+            <div id="textBackground">
+                <div class="highlight"><h2>Points: {count}</h2></div>
+                <h3 class="highlight"> lives remaining: {lives} </h3>
+                <h3 class="highlight"> times left to cash in: {bubbles} </h3>
+                <h2 class="highlight">Total Score: {total} </h2><br/>
+                <button disabled={lives === 0 || bubbles === 0} onClick={(e) => updateCount(e)}> play </button>
+                <button disabled={lives === 0 || bubbles === 0} onClick={(e) => collectTotal(e)}> cash in </button>
+            </div>
+            <div id="bubble"><Bubble size={total} color="#b19cd9"/></div>
+        </div>);
+}
+
+render(<Countdown />, document.getElementById("root"))
+
+</script>
