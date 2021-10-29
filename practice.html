@@ -63,15 +63,11 @@ const {useEffect} = React;
 
 function App() {
     useEffect(() => {
-        console.log("Once after component mounted")
-
-        return () => {
-            console.log("Once before component unmounted");
-        }
-    }, []);
+        console.log("After it mounted the first time and after every re-render");
+    });
     return null;
 }
 
-render(<Countdown />, document.getElementById("root"))
+render(<App />, document.getElementById("root"))
 
 </script>
