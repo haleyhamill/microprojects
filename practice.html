@@ -64,6 +64,10 @@ const {useEffect} = React;
 function App() {
     useEffect(() => {
         console.log("Once after component mounted")
+
+        return () => {
+            console.log("Once before component unmounted");
+        }
     }, []);
     return null;
 }
