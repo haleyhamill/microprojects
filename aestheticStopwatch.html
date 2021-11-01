@@ -29,18 +29,24 @@ figure, figcaption, footer, header, hgroup,
 menu, nav, output, ruby, section, summary,
 time, mark, audio, video { margin: 0; padding: 0; border: 0; font-size: 100%; font: inherit; vertical-align: baseline; }
 
-html { background-image: url('https://data.whicdn.com/images/359425276/original.jpg'); background-repeat: no-repeat; 
-    background-size: cover; height: 100%; margin: 0; padding: 0; }
+html { background-image: url('https://data.whicdn.com/images/359425276/original.jpg'); 
+background-repeat: no-repeat; background-size: cover; height: 100%; margin: 0; padding: 0; }
 
 body { margin: 0; margin-top: 13rem; text-align: center; }
 
-h1 { color: rgb(207, 9, 9); font-family: 'Helvetica Neue', sans-serif; font-size: 275px; font-weight: bold; letter-spacing: -1px; line-height: 1; text-align: center; }
+h1 { color: rgb(207, 9, 9); font-family: 'Helvetica Neue', sans-serif; font-size: 275px; 
+font-weight: bold; letter-spacing: -1px; line-height: 1; text-align: center; }
 
 
-h2 { color: #111; font-family: 'Open Sans', sans-serif; font-size: 30px; font-weight: 300; line-height: 32px; margin: 0 0 72px; text-align: center; }
+h2 { color: #111; font-family: 'Open Sans', sans-serif; font-size: 30px; font-weight: 300; 
+line-height: 32px; margin: 0 0 72px; text-align: center; }
 
 
-p { color: #685206; font-family: 'Helvetica Neue', sans-serif; font-size: 14px; line-height: 24px; margin: 0 0 24px; text-align: justify; text-justify: inter-word; }
+p { color: #685206; font-family: 'Helvetica Neue', sans-serif; font-size: 14px; 
+line-height: 24px; margin: 0 0 24px; text-align: justify; text-justify: inter-word; }
+
+button { padding: 10px 20px; cursor: pointer; min-width: 100px; border: 0; border-radius: 3px;
+font-size: 16px; color: white; transition: opacity 180ms ease-out, transform 180ms ease-out; }
 
 </style>
 
@@ -70,9 +76,15 @@ function Stopwatch() {
         setRunning(prevValue => !prevValue)
     }
 
+    function handleStopButtonClick() {
+        setCounter(0);
+        setRunning(false);
+    }
+
     return(<div>
         <h1>{counter}</h1>
         <button onClick={handleButtonClick}>Start / Pause</button>
+        <button onClick={handleStopButtonClick}>Stop</button>
     </div>)
 }
 
