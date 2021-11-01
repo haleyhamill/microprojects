@@ -10,7 +10,7 @@
     <script src="https://kit.fontawesome.com/143890e1e3.js" crossorigin="anonymous"></script>
     <script src="https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.js"></script>
     <link href='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css' rel='stylesheet' />
-    <title>Maps</title>
+    <title>Aesthetic Time</title>
 </head>
 
 <style>
@@ -29,22 +29,18 @@ figure, figcaption, footer, header, hgroup,
 menu, nav, output, ruby, section, summary,
 time, mark, audio, video { margin: 0; padding: 0; border: 0; font-size: 100%; font: inherit; vertical-align: baseline; }
 
-body {
-    margin: 0;
-}
-#re-render {
-    position: absolute;
-    top: 0;
-    right: 0;
-    z-index: 1000;
-}
-#map {
-    height: 500px;
-}
+html { background-image: url('https://data.whicdn.com/images/359425276/original.jpg'); background-repeat: no-repeat; 
+    background-size: cover; height: 100%; margin: 0; padding: 0; }
 
-img {
-    height: 500px; width: 468.25px;
-}
+body { margin: 0; margin-top: 13rem; }
+
+h1 { color: #111; font-family: 'Helvetica Neue', sans-serif; font-size: 275px; font-weight: bold; letter-spacing: -1px; line-height: 1; text-align: center; }
+
+
+h2 { color: #111; font-family: 'Open Sans', sans-serif; font-size: 30px; font-weight: 300; line-height: 32px; margin: 0 0 72px; text-align: center; }
+
+
+p { color: #685206; font-family: 'Helvetica Neue', sans-serif; font-size: 14px; line-height: 24px; margin: 0 0 24px; text-align: justify; text-justify: inter-word; }
 
 </style>
 
@@ -66,7 +62,7 @@ function Clock() {
         return () => { clearInterval(intervalId); }
     }, []);
 
-    return <h2>{date.toLocaleTimeString()}</h2>
+    return <h1>{date.toLocaleTimeString()}</h1>
 }
 
 
