@@ -32,9 +32,9 @@ time, mark, audio, video { margin: 0; padding: 0; border: 0; font-size: 100%; fo
 html { background-image: url('https://data.whicdn.com/images/359425276/original.jpg'); background-repeat: no-repeat; 
     background-size: cover; height: 100%; margin: 0; padding: 0; }
 
-body { margin: 0; margin-top: 13rem; }
+body { margin: 0; margin-top: 13rem; text-align: center; }
 
-h1 { color: #111; font-family: 'Helvetica Neue', sans-serif; font-size: 275px; font-weight: bold; letter-spacing: -1px; line-height: 1; text-align: center; }
+h1 { color: rgb(207, 9, 9); font-family: 'Helvetica Neue', sans-serif; font-size: 275px; font-weight: bold; letter-spacing: -1px; line-height: 1; text-align: center; }
 
 
 h2 { color: #111; font-family: 'Open Sans', sans-serif; font-size: 30px; font-weight: 300; line-height: 32px; margin: 0 0 72px; text-align: center; }
@@ -51,24 +51,35 @@ p { color: #685206; font-family: 'Helvetica Neue', sans-serif; font-size: 14px; 
 const {useEffect} = React;
 const {useState} = React;
 
-function Clock() {
-    const [date, setDate] = useState(new Date());
+function Stopwatch() {
+    const [counter, setCounter] = useState(0);
+    const [running, setRunning] = useState(false);
 
-    useEffect(() => { 
-        const intervalId = setInterval(() => {
-            setDate(new Date());
-        }, 1000);
-        
-        return () => { clearInterval(intervalId); }
-    }, []);
+    useEffect(() => {
+        if (running) {
+            let timerId = setTimeout(() => {
+                setCounter(prevCounter => prevCounter + 1);
+            }, 1000);
+            return () => {
+                clearTimeout(timerId)
+            }
+        }
+    });
 
-    return <h1>{date.toLocaleTimeString()}</h1>
+    function handleButtonClick() {
+        setRunning(prevValue => !prevValue)
+    }
+
+    return(<div>
+        <h1>{counter}</h1>
+        <button onClick={handleButtonClick}>Start / Pause</button>
+    </div>)
 }
 
 
 ReactDOM.render(
     <div>
-        <Clock />
+        <Stopwatch />
     </div>,
     document.getElementById("react-root")
 )
