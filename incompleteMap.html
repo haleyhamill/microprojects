@@ -53,24 +53,40 @@ img {
 
 <script type="text/babel">
 const {useEffect} = React;
-const {useState} = React;
 
-function Clock() {
-    const [date, setDate] = useState(new Date());
+function App({title, target, lat, long}) {
+    const mapStyle = {
+        height: '300px',
+        weight: '300px',
+        margin: 'auto'
+    }
 
-    useEffect(() => { 
-        setInterval(() => {
-            setDate(new Date());
-        }, 1000);
-    }, []);
+    mapboxgl.accessToken = "pk.eyJ1IjoieG94b3hveG94byIsImEiOiJja3ZjcmFwZW05aHloMm5waDVxeTc4dW5iIn0.JQpWtubaYBPXqL2aJGbAzA";
 
-    return <h2>{date.toLocaleTimeString()}</h2>
+    useEffect(() => {
+        const map = new mapboxgl.Map({
+            container: target,
+            style: 'mapbox://styles/mapbox/dark-v10',
+            center: [long, lat],
+            zoom: 9
+        });
+
+    }, [])
+
+    return(
+        <div>
+            <h1>{title}</h1>
+            <div id={target} style={mapStyle}></div>
+            <img src="https://data.whicdn.com/images/323556833/original.jpg" />
+            <img src="https://data.whicdn.com/images/193055630/original.jpg" />
+            <img src="https://data.whicdn.com/images/357509549/original.jpg" />
+        </div>
+    );
 }
-
 
 ReactDOM.render(
     <div>
-        <Clock />
+        <App title="" target="map" lat={37.9811} long={23.7323}/>
     </div>,
     document.getElementById("react-root")
 )
