@@ -54,15 +54,18 @@ const {useState} = React;
 function App() {
     const [count, setCount] = useState(0);
 
+    useEffect(() => {
+        console.log(count)
+    }, [count]);
+
     function handleButtonClick() {
-        setCounter(prevCount => prevCount + 1);
-        console.log(count);
+        setCounter(prevCount => prevCount + 1)
     }
 
     return(
         <div>
             <h1>{count}</h1>
-            <button onClick={handleButtonClick}>Add 1</button>
+            <button onClick={handleButtonClick}>Click me</button>
         </div>
     );
 }
