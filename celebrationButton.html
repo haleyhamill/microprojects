@@ -10,7 +10,8 @@
     <script src="https://kit.fontawesome.com/143890e1e3.js" crossorigin="anonymous"></script>
     <script src="https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.js"></script>
     <link href='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css' rel='stylesheet' />
-    <title>Maps</title>
+    <script src='https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js'></script>
+    <title>Celebrate Button</title>
 </head>
 
 <style>
@@ -29,21 +30,50 @@ figure, figcaption, footer, header, hgroup,
 menu, nav, output, ruby, section, summary,
 time, mark, audio, video { margin: 0; padding: 0; border: 0; font-size: 100%; font: inherit; vertical-align: baseline; }
 
-body {
-    margin: 0;
-}
-#re-render {
-    position: absolute;
-    top: 0;
-    right: 0;
-    z-index: 1000;
-}
-#map {
-    height: 500px;
+* {
+  box-sizing: border-box;
 }
 
-img {
-    height: 500px; width: 468.25px;
+body {
+  background-color: #f5f8ff;
+  font-family: 'Roboto', sans-serif;
+  line-height: 1.5;
+  min-block-size: 100vh;
+  display: grid;
+  place-items: center;
+  text-align: center;
+}
+
+button {
+  cursor: pointer;
+  font: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+.button {
+  background-color: #404663;
+  color: #fff;
+  border: 0;
+  font-size: 2rem;
+  font-weight: 400;
+  padding: 0.5em 1.25em;
+  border-radius: 0.5em;
+  z-index: 999;
+  position: relative;
+  display: flex;
+  gap: 0.5em;
+  box-shadow:
+    0px 1.7px 2.2px rgba(0, 0, 0, 0.02),
+    0px 4px 5.3px rgba(0, 0, 0, 0.028),
+    0px 7.5px 10px rgba(0, 0, 0, 0.035),
+    0px 13.4px 17.9px rgba(0, 0, 0, 0.042),
+    0px 25.1px 33.4px rgba(0, 0, 0, 0.05),
+    0px 60px 80px rgba(0, 0, 0, 0.07);
+}
+
+.button:active {
+  transform: scale(1.01);
 }
 
 </style>
@@ -52,47 +82,34 @@ img {
     <div id="react-root"></div>
 
 <script type="text/babel">
-const {useEffect} = React;
+const {useEffect, useCallback} = React;
+const {useState} = React;
 
-function App({title, target, lat, long}) {
-    const [marker, setMarker] = useState();
-    const mapStyle = {
-        height: '300px',
-        weight: '300px',
-        margin: 'auto'
-    }
-
-    mapboxgl.accessToken = "pk.eyJ1IjoieG94b3hveG94byIsImEiOiJja3ZjcmFwZW05aHloMm5waDVxeTc4dW5iIn0.JQpWtubaYBPXqL2aJGbAzA";
-
-    useEffect(() => {
-        const map = new mapboxgl.Map({
-            container: target,
-            style: 'mapbox://styles/mapbox/dark-v10',
-            center: [long, lat],
-            zoom: 9
+function Celebrate() {
+    const onClick = useCallback(() => {
+        confetti({
+            particleCount: 2,
+            angle: 60,
+            spread: 55,
+            origin: { x: 0 },
         });
+    }, []);
 
-        const marker = new mapboxgl.Marker()
-        .setLngLat([12.567898, 55.67583])
-        .addTo(map);
-
-        setMarker(marker);
-    }, [])
-
-    return(
+    return (
         <div>
-            <h1>{title}</h1>
-            <div id={target} style={mapStyle}></div>
-            <img src="https://data.whicdn.com/images/323556833/original.jpg" />
-            <img src="https://data.whicdn.com/images/193055630/original.jpg" />
-            <img src="https://data.whicdn.com/images/357509549/original.jpg" />
+            <button className="button" onClick={onClick}>
+                <span>🎉</span>
+                <span>Celebrate</span>
+            </button>
+            <p>for when you need to celebrate</p>
         </div>
     );
 }
 
+
 ReactDOM.render(
     <div>
-        <App title="" target="map" lat={37.9811} long={23.7323}/>
+        <Celebrate />
     </div>,
     document.getElementById("react-root")
 )
