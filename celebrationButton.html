@@ -88,10 +88,8 @@ const {useState} = React;
 function Celebrate() {
     const onClick = useCallback(() => {
         confetti({
-            particleCount: 2,
-            angle: 60,
-            spread: 55,
-            origin: { x: 0 },
+            particleCount: 100,
+            spread: 100,
         });
     }, []);
 
