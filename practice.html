@@ -51,29 +51,34 @@ p { color: #685206; font-family: 'Helvetica Neue', sans-serif; font-size: 14px; 
 const {useEffect} = React;
 const {useState} = React;
 
-function App() {
-    const [count, setCount] = useState(0);
+function CurrencySelector() {
+    const [currency, setCurrency] = useState();
 
     useEffect(() => {
-        console.log(count)
-    }, [count]);
+        console.log(currency)
+    }, [currency])
 
-    function handleButtonClick() {
-        setCount(prevCount => prevCount + 1)
+    function handleCurrencyChange(event) {
+        setCurrency(event.target.value);
     }
 
     return(
         <div>
-            <h1>{count}</h1>
-            <button onClick={handleButtonClick}>Click me</button>
+            <h3>Select Currency</h3>
+            <select onChange={handleCurrencyChange}>
+                <option value="usd">USD</option>
+                <option value="eur">EUR</option>
+                <option value="cad">CAD</option>
+            </select>
+            <h1>{currency}</h1>
         </div>
-    );
+    )
 }
 
 
 ReactDOM.render(
     <div>
-        <App />
+        <CurrencySelector />
     </div>,
     document.getElementById("react-root")
 )
