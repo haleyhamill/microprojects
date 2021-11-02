@@ -59,7 +59,7 @@ function App() {
     }, [count]);
 
     function handleButtonClick() {
-        setCounter(prevCount => prevCount + 1)
+        setCount(prevCount => prevCount + 1)
     }
 
     return(
@@ -73,7 +73,7 @@ function App() {
 
 ReactDOM.render(
     <div>
-        <Stopwatch />
+        <App />
     </div>,
     document.getElementById("react-root")
 )
