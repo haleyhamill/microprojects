@@ -51,41 +51,15 @@ p { color: #685206; font-family: 'Helvetica Neue', sans-serif; font-size: 14px; 
 const {useEffect} = React;
 const {useState} = React;
 
-function Wallet() {
-    const [transactions, setTransactions] = useState([]);
+// restoring strings from localStorage
+localStorage.getItem("key-here");
 
-    function handleDepositClick() {
-        setTransactions([...transactions, 10]);
-    }
+// restoring numbers from localStorage
+let value = localStorage.getItem("key-here");
+value = Number.parseInt(value, 10);
 
-    function handleWithdrawClick() {
-        setTransactions([...transactions, -10]);
-    }
-
-    function handleClearClick() {
-        setTransactions([]);
-    }
-
-    useEffect(() => {
-        localStorage.setItem("transactions", JSON.stringify(transactions))
-    }, [transactions]);
-
-    const sum = transactions.reduce((total, current) => total + current, 0);
-
-    return(
-        <div>
-            <button onClick={handleDepositClick}>Deposit 10</button>
-            <button onClick={handleWithdrawClick}>Withdraw 10</button>
-            <h2>Total: {sum}</h2>
-            <button onClick={handleClearClick}>Reset</button>
-            <ul>
-                {transactions.map(
-                    (transaction, index) => <li key={index}>{transaction}</li>
-                )}
-            </ul>
-        </div>
-    );
-}
+//  restoring booleans from localStorage
+const value = localStorage.getItem("key-here") === "true";
 
 ReactDOM.render(
     <div>
