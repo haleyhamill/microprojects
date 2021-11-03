@@ -51,20 +51,20 @@ p { color: #685206; font-family: 'Helvetica Neue', sans-serif; font-size: 14px; 
 const {useEffect} = React;
 const {useState} = React;
 
-function App() {
-    const [name, setName] = useState("");
+//converting an object to a string
+const person = {
+    id: 1,
+    name: "Sam"
+};
+JSON.stringify(person); // '{"id": 1, "name": "Sam"}'
 
-    useEffect(() => {
-        localStorage.setItem("name", name)
-    }, [name]);
+//saving objects to localStorage
+localStorage.setItem("person", JSON.stringify(person));
 
-    return(
-        <div>
-            <input type="text" name="name" value={name} onChange={e => setName(e.target.value)} />
-            <p>Hello {name}</p>
-        </div>
-    );
-}
+//converting a string back to an object
+let person = localStorage.getItem("person");
+person = JSON.parse(person);
+console.log(person);
 
 
 ReactDOM.render(
