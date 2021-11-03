@@ -61,9 +61,15 @@ value = Number.parseInt(value, 10);
 //  restoring booleans from localStorage
 const value = localStorage.getItem("key-here") === "true";
 
+function App() {
+    const [state, setState] = useState(() => localStorage.getItem("some-state"));
+
+    return null;
+}
+
 ReactDOM.render(
     <div>
-        <Wallet />
+        <App />
     </div>,
     document.getElementById("react-root")
 )
