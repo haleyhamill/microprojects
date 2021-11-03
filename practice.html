@@ -51,36 +51,25 @@ p { color: #685206; font-family: 'Helvetica Neue', sans-serif; font-size: 14px; 
 const {useEffect} = React;
 const {useState} = React;
 
-let name = "Sam"
-// key is "name", value is the variable name (which has the value "Sam")
-localStorage.setItem("name", name);
-
-const age = 20
-localStorage.setItem("age", age);
-
-let age = localStorage.getItem("age");
-console.log(age); // "20 (string)"
-age = Number.parseInt(age, 10); // 20 (number)
-
-const is_verified = true;
-localStorage.setItem("is_verified", is_verified);
-const is_verified = localStorage.getItem("is_verified") === "true";
-
 function App() {
-    const [random, setRandom] = useState(Math.random());
+    const [name, setName] = useState("");
 
     useEffect(() => {
-        // every time the value of random changes, save it to localStorage:
-        localStorage.setItem("random", random);
-    }, [random]);
+        localStorage.setItem("name", name)
+    }, [name]);
 
-    return <button onClick={() => setRandom(Math.random())}>Re-render</button>;
+    return(
+        <div>
+            <input type="text" name="name" value={name} onChange={e => setName(e.target.value)} />
+            <p>Hello {name}</p>
+        </div>
+    );
 }
 
 
 ReactDOM.render(
     <div>
-        <CurrencySelector />
+        <App />
     </div>,
     document.getElementById("react-root")
 )
