@@ -51,29 +51,20 @@ p { color: #685206; font-family: 'Helvetica Neue', sans-serif; font-size: 14px; 
 const {useEffect} = React;
 const {useState} = React;
 
-function CurrencySelector() {
-    const [currency, setCurrency] = useState();
+let name = "Sam"
+// key is "name", value is the variable name (which has the value "Sam")
+localStorage.setItem("name", name);
 
-    useEffect(() => {
-        console.log(currency)
-    }, [currency])
+const age = 20
+localStorage.setItem("age", age);
 
-    function handleCurrencyChange(event) {
-        setCurrency(event.target.value);
-    }
+let age = localStorage.getItem("age");
+console.log(age); // "20 (string)"
+age = Number.parseInt(age, 10); // 20 (number)
 
-    return(
-        <div>
-            <h3>Select Currency</h3>
-            <select onChange={handleCurrencyChange}>
-                <option value="usd">USD</option>
-                <option value="eur">EUR</option>
-                <option value="cad">CAD</option>
-            </select>
-            <h1>{currency}</h1>
-        </div>
-    )
-}
+const is_verified = true;
+localStorage.setItem("is_verified", is_verified);
+const is_verified = localStorage.getItem("is_verified") === "true";
 
 
 ReactDOM.render(
