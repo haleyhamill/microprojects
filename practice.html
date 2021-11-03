@@ -66,6 +66,17 @@ const is_verified = true;
 localStorage.setItem("is_verified", is_verified);
 const is_verified = localStorage.getItem("is_verified") === "true";
 
+function App() {
+    const [random, setRandom] = useState(Math.random());
+
+    useEffect(() => {
+        // every time the value of random changes, save it to localStorage:
+        localStorage.setItem("random", random);
+    }, [random]);
+
+    return <button onClick={() => setRandom(Math.random())}>Re-render</button>;
+}
+
 
 ReactDOM.render(
     <div>
