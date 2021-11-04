@@ -64,6 +64,12 @@ const value = localStorage.getItem("key-here") === "true";
 function App() {
     const [state, setState] = useState(() => localStorage.getItem("some-state"));
 
+    const [state, setState] = useState(() => {
+        return localStorage.getItem("some-state")});
+
+    const [state, setState] = useState(function() {
+        return localStorage.getItem("some-state")});
+
     return null;
 }
 
