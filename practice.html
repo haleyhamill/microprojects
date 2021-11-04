@@ -51,7 +51,10 @@ p { color: #685206; font-family: 'Helvetica Neue', sans-serif; font-size: 14px; 
 const {useEffect} = React;
 const {useState} = React;
 
-functionThatReturnsPromise().then(result => { console.log(result); });
+functionThatReturnsPromise()
+.then(result => { console.log(result); }) //when successful
+.catch(error => { console.log(error); }) //when there's an error
+
 
     return(
         <div>
