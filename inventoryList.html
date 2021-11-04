@@ -182,7 +182,7 @@
     <div id="root"></div>
 
     <script type="text/babel">
-        const { useState } = React;
+        const { useState, useEffect } = React;
         const { render } = ReactDOM;
 
         function Product(props) {
@@ -244,7 +244,11 @@
         }
 
         function StoreFront(props) {
-            const [products, setProducts] = useState([]);
+            const [products, setProducts] = useState(() => {
+                let productString = localStorage.getItem("products")
+                if (productString) { return JSON.parse(productString) }
+                else { return [] }
+            });
             const [name, setName] = useState("");
             const [description, setDescription] = useState("");
             const [validation, setValidation] = useState("");
@@ -276,6 +280,11 @@
                 ))
                 setProducts(restProducts);
             }
+
+            useEffect(() => {
+                let productString = JSON.stringify(products)
+                localStorage.setItem("products", productString)
+            }, [products]);
 
             return (
                 <div>
