@@ -52,22 +52,25 @@ const {useEffect} = React;
 const {useState} = React;
 
 function App() {
-    const [settings, setSettings] = useState();
+    const [users, setUsers] = useState();
 
     useEffect(() => {
         fetch(URL)
         .then(response => response.json())
         .then(data => {
             console.log(data);
-            setSettings(data);
+            setUsers(data);
         });
     }, []);
 
-    if (!settings) { return null }
-
-    return <p>Welcome {settings.type}. <br/>
-        You have {settings.push_notifications ? "enabled" : "disabled"} push notifications and {settings.dark_mode ? "enabled" : 
-    "disabled"} dark mode.</p>
+    return(
+        <div>
+            <h1>Users</h1>
+            <ul>
+                {users.map(user => <li key={user.id}>{user.name}</li>)}
+            </ul>
+        </div>
+    )
 }
 
 ReactDOM.render(
