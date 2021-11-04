@@ -51,8 +51,9 @@ p { color: #685206; font-family: 'Helvetica Neue', sans-serif; font-size: 14px; 
 const {useEffect} = React;
 const {useState} = React;
 
-wait(500)
-.then(result => { console.log("The wait is over")});
+fetch("https://react-tutorial-demo.firebaseio.com/users.json")
+.then(response => response.json())
+.then(data => { console.log(data); });
 
 
     return(
