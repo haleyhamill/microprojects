@@ -51,32 +51,16 @@ p { color: #685206; font-family: 'Helvetica Neue', sans-serif; font-size: 14px; 
 const {useEffect} = React;
 const {useState} = React;
 
-function Counter() {
-    const [counter, setCounter] = useState(() => {
-        let counter = localStorage.getItem("counter")
-        return counter = Number.parseInt(counter, 10);
+function App() {
+    const [array, setArray] = useState(() => {
+        return JSON.parse(localStorage.getItem("key-here"));
     });
 
     useEffect(() => {
-        localStorage.setItem("counter", counter);
-    }, [counter]);
+        localStorage.setItem("key-here", JSON.stringify(array));
+    }, [array]);
 
-    function handleIncrementClick() {
-        setCounter(prevCounter => prevCounter + 1);
-    }
-
-    function handleDecrementClick() {
-        setCounter(prevCounter => prevCounter - 1);
-    }
-
-    return(
-        <div>
-            <h2>{counter}</h2>
-            <button onClick={handleIncrementClick}>+</button>
-            <button onClick={handleDecrementClick}>-</button>
-            <button onClick={() => setCounter(0)}>Reset</button>
-        </div>
-    );
+    return null;
 }
 
 ReactDOM.render(
