@@ -51,26 +51,21 @@ p { color: #685206; font-family: 'Helvetica Neue', sans-serif; font-size: 14px; 
 const {useEffect} = React;
 const {useState} = React;
 
-// restoring strings from localStorage
-localStorage.getItem("key-here");
-
-// restoring numbers from localStorage
-let value = localStorage.getItem("key-here");
-value = Number.parseInt(value, 10);
-
-//  restoring booleans from localStorage
-const value = localStorage.getItem("key-here") === "true";
-
 function App() {
-    const [state, setState] = useState(() => localStorage.getItem("some-state"));
+    const [name, setName] = useState(() => {
+        return localStorage.getItem("name")
+    });
 
-    const [state, setState] = useState(() => {
-        return localStorage.getItem("some-state")});
+    useEffect(() => {
+        localStorage.setItem("name", name);
+    }, [name]);
 
-    const [state, setState] = useState(function() {
-        return localStorage.getItem("some-state")});
-
-    return null;
+    return(
+        <div>
+            <input type="text" name="name" value={name} onChange={e => setName(e.target.value)} />
+            <p>Hello {name}</p>
+        </div>
+    );
 }
 
 ReactDOM.render(
