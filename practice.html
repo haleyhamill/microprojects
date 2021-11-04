@@ -51,31 +51,37 @@ p { color: #685206; font-family: 'Helvetica Neue', sans-serif; font-size: 14px; 
 const {useEffect} = React;
 const {useState} = React;
 
-function App() {
-    const [darkTheme, setDarkTheme] = useState(() => {
-        let value = localStorage.getItem("dark_theme") === "true";
-        return value
+function Counter() {
+    const [counter, setCounter] = useState(() => {
+        let counter = localStorage.getItem("counter")
+        return counter = Number.parseInt(counter, 10);
     });
 
     useEffect(() => {
-        localStorage.setItem("dark_theme", darkTheme);
-    }, [darkTheme]);
+        localStorage.setItem("counter", counter);
+    }, [counter]);
 
-    const className = darkTheme ? "dark" : "light";
-
-    function handleToggleClick() {
-        setDarkTheme(!darkTheme);
+    function handleIncrementClick() {
+        setCounter(prevCounter => prevCounter + 1);
     }
 
-    return <div className={className}>
-        <h1>Welcome</h1>
-        <button onClick={handleToggleClick}>Toggle theme</button>
-        </div>;
+    function handleDecrementClick() {
+        setCounter(prevCounter => prevCounter - 1);
+    }
+
+    return(
+        <div>
+            <h2>{counter}</h2>
+            <button onClick={handleIncrementClick}>+</button>
+            <button onClick={handleDecrementClick}>-</button>
+            <button onClick={() => setCounter(0)}>Reset</button>
+        </div>
+    );
 }
 
 ReactDOM.render(
     <div>
-        <App />
+        <Counter />
     </div>,
     document.getElementById("react-root")
 )
