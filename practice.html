@@ -51,28 +51,7 @@ p { color: #685206; font-family: 'Helvetica Neue', sans-serif; font-size: 14px; 
 const {useEffect} = React;
 const {useState} = React;
 
-function Wallet() {
-    const [transactions, setTransactions] = useState(() => {
-        return JSON.parse(localStorage.getItem("transactions"));
-    });
-
-    useEffect(() => {
-        localStorage.setItem("transactions", JSON.stringify(transactions));
-    }, [transactions]);
-
-    function handleDepositClick() {
-        setTransactions([ ... transactions, 10]);
-    }
-
-    function handleWithdrawClick() {
-        setTransactions([ ... transactions, -10]);
-    }
-
-    function handleClearClick() {
-        setTransactions([]);
-    }
-
-    const sum = transactions.reduce((total, current) => total + current, 0);
+functionThatReturnsPromise().then(result => { console.log(result); });
 
     return(
         <div>
