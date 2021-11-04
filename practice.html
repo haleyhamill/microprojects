@@ -51,21 +51,47 @@ p { color: #685206; font-family: 'Helvetica Neue', sans-serif; font-size: 14px; 
 const {useEffect} = React;
 const {useState} = React;
 
-function App() {
-    const [array, setArray] = useState(() => {
-        return JSON.parse(localStorage.getItem("key-here"));
+function Wallet() {
+    const [transactions, setTransactions] = useState(() => {
+        return JSON.parse(localStorage.getItem("transactions"));
     });
 
     useEffect(() => {
-        localStorage.setItem("key-here", JSON.stringify(array));
-    }, [array]);
+        localStorage.setItem("transactions", JSON.stringify(transactions));
+    }, [transactions]);
 
-    return null;
+    function handleDepositClick() {
+        setTransactions([ ... transactions, 10]);
+    }
+
+    function handleWithdrawClick() {
+        setTransactions([ ... transactions, -10]);
+    }
+
+    function handleClearClick() {
+        setTransactions([]);
+    }
+
+    const sum = transactions.reduce((total, current) => total + current, 0);
+
+    return(
+        <div>
+            <button onClick={handleDepositClick}>Deposit 10</button>
+            <button onClick={handleWithdrawClick}>Withdraw 10</button>
+            <h2> Total: {sum} </h2>
+            <button onClick={handleClearClick}>Reset</button>
+            <ul>
+                {transactions.map(
+                    (transaction, index) => <li key={index}>{transaction}</li>
+                )}
+            </ul>
+        </div>
+    );
 }
 
 ReactDOM.render(
     <div>
-        <Counter />
+        <Wallet />
     </div>,
     document.getElementById("react-root")
 )
