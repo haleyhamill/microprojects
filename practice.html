@@ -55,22 +55,17 @@ function App() {
     const [users, setUsers] = useState();
 
     useEffect(() => {
-        fetch(URL)
+        fetch(URL, { method: "post" })
         .then(response => response.json())
         .then(data => {
-            console.log(data);
-            setUsers(data);
+            console.log(data); 
+            //only set the users when there's no error
+            if (data && !data.error) {
+                setUsers(data);
+            }
         });
+        
     }, []);
-
-    return(
-        <div>
-            <h1>Users</h1>
-            <ul>
-                {users.map(user => <li key={user.id}>{user.name}</li>)}
-            </ul>
-        </div>
-    )
 }
 
 ReactDOM.render(
