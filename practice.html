@@ -51,22 +51,14 @@ p { color: #685206; font-family: 'Helvetica Neue', sans-serif; font-size: 14px; 
 const {useEffect} = React;
 const {useState} = React;
 
-function App() {
-    const [users, setUsers] = useState();
-
-    useEffect(() => {
-        fetch(URL, { method: "post" })
-        .then(response => response.json())
-        .then(data => {
-            console.log(data); 
-            //only set the users when there's no error
-            if (data && !data.error) {
-                setUsers(data);
-            }
-        });
-        
-    }, []);
-}
+fetch(URL)
+.then(response => response.json())
+.then(data => {
+    console.log(data);
+})
+.catch(error => {
+    console.log(error);
+});
 
 ReactDOM.render(
     <div>
