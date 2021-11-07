@@ -51,17 +51,17 @@ p { color: #685206; font-family: 'Helvetica Neue', sans-serif; font-size: 14px; 
 const {useEffect} = React;
 const {useState} = React;
 
-function App() {
-    const [name, setName] = useState("");
+function RegisterForm() {
+    const [type, setType] = useState('');
 
-    return <form>
-            <label >Name: </label>
-            <input type="text" id="register-name" name="name" placeholder="Your name" value={name}
-                onChange={e => setName(e.target.value)} />
-
-            <input type="submit" />
-        </form>;
-
+    return(
+        <form>
+            <select name="type">
+                <option>Choose a type</option>
+                <option>client</option>
+                <option>merchant</option>
+            </select>
+        </form>);
 }
 
 ReactDOM.render(
