@@ -51,17 +51,12 @@ p { color: #685206; font-family: 'Helvetica Neue', sans-serif; font-size: 14px; 
 const {useEffect} = React;
 const {useState} = React;
 
-function RegisterForm() {
-    const [type, setType] = useState('');
-
+export default function Card(props) {
     return(
-        <form>
-            <select name="type">
-                <option>Choose a type</option>
-                <option>client</option>
-                <option>merchant</option>
-            </select>
-        </form>);
+        <div className="card">
+            <button onClick={props.onCardClick}>Click me</button>
+        </div>
+    );
 }
 
 ReactDOM.render(
