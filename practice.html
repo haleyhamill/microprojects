@@ -51,19 +51,19 @@ p { color: #685206; font-family: 'Helvetica Neue', sans-serif; font-size: 14px; 
 const {useEffect} = React;
 const {useState} = React;
 
-function RegisterForm() {
-    function handleFormSubmit(event) {
-        event.preventDefault();
+function App() {
+    const [email, setEmail] = useState("");
+
+    function handleEmailChange(event) {
+        setEmail(event.target.value);
     }
 
     return(
         <div>
-            <form onSubmit={handleFormSubmit}>
-                <input type="text" />
-                <input type="submit" />
-            </form>
+            <h2>Logged in as {email}</h2>
+            <EmailForm onChange={handleEmailChange} />
         </div>
-    );
+    )
 }
 
 ReactDOM.render(
