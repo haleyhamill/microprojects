@@ -51,15 +51,11 @@ p { color: #685206; font-family: 'Helvetica Neue', sans-serif; font-size: 14px; 
 const {useEffect} = React;
 const {useState} = React;
 
-function App() {
-    const [name, setName] = useState("");
+function Counter() {
+    const [counter, setCounter] = useState(0);
 
-    return(
-        <div>
-            <input type="text" name="name" onChange={e => setName(e.target.value)} />
-        </div>);
+    return <button onClick={useState(counter + 1)}>+</button>
 }
-
 
 ReactDOM.render(
     <div>
