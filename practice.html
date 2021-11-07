@@ -51,10 +51,19 @@ p { color: #685206; font-family: 'Helvetica Neue', sans-serif; font-size: 14px; 
 const {useEffect} = React;
 const {useState} = React;
 
-function Counter() {
-    const [counter, setCounter] = useState(0);
+function RegisterForm() {
+    function handleFormSubmit(event) {
+        event.preventDefault();
+    }
 
-    return <button onClick={useState(counter + 1)}>+</button>
+    return(
+        <div>
+            <form onSubmit={handleFormSubmit}>
+                <input type="text" />
+                <input type="submit" />
+            </form>
+        </div>
+    );
 }
 
 ReactDOM.render(
