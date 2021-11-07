@@ -51,13 +51,15 @@ p { color: #685206; font-family: 'Helvetica Neue', sans-serif; font-size: 14px; 
 const {useEffect} = React;
 const {useState} = React;
 
-export default function Card(props) {
+function App() {
+    const [name, setName] = useState("");
+
     return(
-        <div className="card">
-            <button onClick={props.onCardClick}>Click me</button>
-        </div>
-    );
+        <div>
+            <input type="text" name="name" onChange={e => setName(e.target.value)} />
+        </div>);
 }
+
 
 ReactDOM.render(
     <div>
