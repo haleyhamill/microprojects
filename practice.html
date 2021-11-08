@@ -52,22 +52,18 @@ const {useEffect} = React;
 const {useState} = React;
 
 function App() {
-    const [users, setUsers] = useState();
-
     useEffect(() => {
-        fetch(URL)
-        .then(response => response.JSON())
-        .then(data => {
-            setUsers(data);
-        });
-    }, []);
+        document.title = "Welcome";
+        const timerId = setTimeout(() => {
+            document.title = "still there?";
+        }, 1000);
 
-    if (!users) {
-        return null
-    }
+        return () => {clearTimeout(timerId)}
+    });
 
-    return <h1>Users ({users.length})</h1>
+    return null;
 }
+
 
 ReactDOM.render(
     <div>
