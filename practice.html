@@ -51,32 +51,26 @@ p { color: #685206; font-family: 'Helvetica Neue', sans-serif; font-size: 14px; 
 const {useEffect} = React;
 const {useState} = React;
 
-function App() {
-    const [users, setUsers] = useState();
-    const [isLoading, setIsLoading] = useState(false);
+function CurrencySelector() {
+    const [currency, setCurrency] = useState("");
 
-    function handleButtonClick() {
-        setIsLoading(true);
-        fetch(URL)
-        .then(response => response.json())
-        .then(data => {
-            if (data) {
-                setUsers(data);
-            }
-        })
-        .catch(error => console.log(error))
-        .finally(() => {
-            setIsLoading(false);
-        });
+    useEffect(() => {
+        console.log(currency);
+        // fetch call here
+    }, [currency]);
+
+    function handleCurrencyChange(event) {
+        setCurrency(event.target.value);
     }
 
     return(
         <div>
-            <button onClick={handleButtonClick} disabled={isLoading}>Load users</button>
-            <h1>Users</h1>
-            <ul>
-                {users && users.map(user => <li key={user.id}>{user.name}</li>)}
-            </ul>
+            <h3>Select currency</h3>
+            <select onChange={handleCurrencyChange}>
+                <option value="usd">USD</option>
+                <option value="eur">EUR</option>
+            </select>
+            <h1>{currency}</h1>
         </div>
     );
 }
