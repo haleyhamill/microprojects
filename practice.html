@@ -52,17 +52,35 @@ const {useEffect} = React;
 const {useState} = React;
 
 function App() {
+    const [users, setUsers] = useState();
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        //same code above ...
+        fetch(URL)
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            if (data) {
+                setUsers(data);
+            }
+        })
+        .catch(error => {
+            console.error(error);
+        })
+        .finally(() => {
+            setIsLoading(false);
+        })
     }, []);
 
-    if (isLoading) {
-        return <p>Loading...</p>;
-    }
-
-    return null;
+    return(
+        <div>
+            { isLoading ? <Loader /> : (<div>
+                <h1>Users</h1>
+                <ul>
+                    {users && users.map(user => <li key={user.id}>{user.name}</li>)}
+                </ul></div>)}
+        </div>
+    )
 }
 
 ReactDOM.render(
