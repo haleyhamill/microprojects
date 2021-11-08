@@ -51,17 +51,23 @@ p { color: #685206; font-family: 'Helvetica Neue', sans-serif; font-size: 14px; 
 const {useEffect} = React;
 const {useState} = React;
 
-function Clock() {
-    const [date, setDate] = useState(new Date());
+function Countdown() {
+    const [count, setCount] = useState(5);
+    const [lives, setLives] = useState(3);
 
     useEffect(() => {
-        const intervalId = setInterval(() => {
-            setDate(new Date());
-        }, 1000);
-        return () => { clearInterval(intervalId); }
-    }, []);
+        document.title = `You have ${lives} left`;
+    }, [lives]);
 
-    return <h2>{date.toLocaleTimeString()}</h2>;
+    function handleCountdownClick() {
+        if (count > 0) {
+            setCount(count - 1);
+        } else if (count === 0) {
+            setCount(5);
+            setLives(lives - 1);
+        }
+    }
+    return null
 }
 
 ReactDOM.render(
