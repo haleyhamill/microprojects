@@ -51,23 +51,17 @@ p { color: #685206; font-family: 'Helvetica Neue', sans-serif; font-size: 14px; 
 const {useEffect} = React;
 const {useState} = React;
 
-function Countdown() {
-    const [count, setCount] = useState(5);
-    const [lives, setLives] = useState(3);
+function App() {
+    function handleWindowScroll() {
+        console.log(window.scrollY);
+    }
 
     useEffect(() => {
-        document.title = `You have ${lives} left`;
-    }, [lives]);
-
-    function handleCountdownClick() {
-        if (count > 0) {
-            setCount(count - 1);
-        } else if (count === 0) {
-            setCount(5);
-            setLives(lives - 1);
+        window.addEventListener("scroll", handleWindowScroll);
+        return () => {
+            window.removeEventListener("scroll", handleWindowScroll);
         }
-    }
-    return null
+    })
 }
 
 ReactDOM.render(
