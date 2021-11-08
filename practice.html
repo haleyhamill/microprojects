@@ -51,17 +51,17 @@ p { color: #685206; font-family: 'Helvetica Neue', sans-serif; font-size: 14px; 
 const {useEffect} = React;
 const {useState} = React;
 
-function Counter() {
-    const [times, setTimes] = useState(0);
+function Wallet() {
+    const [transactions, setTransactions] = useState(() => JSON.parse(localStorage.getItem("transactions")))
 
     useEffect(() => {
-        document.title = `${times} times`;
-    });
+        localStorage.setItem("transactions", JSON.stringify(transactions));
+    }, [transactions]);
 
     return(
         <div>
-            <h2>{times} times clicked</h2>
-            <button onClick={() => setTimes(times + 1)}>Add 1</button>
+            <button onClick={() => setTransactions([...transactions, 10])}>Deposit 10</button>
+            <button onClick={() => setTransactions([...transactions, -10])}>Withdraw 10</button>
         </div>
     );
 }
