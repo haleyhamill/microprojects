@@ -51,17 +51,19 @@ p { color: #685206; font-family: 'Helvetica Neue', sans-serif; font-size: 14px; 
 const {useEffect} = React;
 const {useState} = React;
 
-function App() {
-    function handleWindowScroll() {
-        console.log(window.scrollY);
-    }
+function Counter() {
+    const [times, setTimes] = useState(0);
 
     useEffect(() => {
-        window.addEventListener("scroll", handleWindowScroll);
-        return () => {
-            window.removeEventListener("scroll", handleWindowScroll);
-        }
-    })
+        document.title = `${times} times`;
+    });
+
+    return(
+        <div>
+            <h2>{times} times clicked</h2>
+            <button onClick={() => setTimes(times + 1)}>Add 1</button>
+        </div>
+    );
 }
 
 ReactDOM.render(
