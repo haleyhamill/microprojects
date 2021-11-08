@@ -51,12 +51,17 @@ p { color: #685206; font-family: 'Helvetica Neue', sans-serif; font-size: 14px; 
 const {useEffect} = React;
 const {useState} = React;
 
-function App() {
-    function handleCardLoad() {
-        console.log("Card has loaded");
-    }
+function Clock() {
+    const [date, setDate] = useState(new Date());
 
-    return <Card onCardLoad={handleCardLoad} />
+    useEffect(() => {
+        const intervalId = setInterval(() => {
+            setDate(new Date());
+        }, 1000);
+        return () => { clearInterval(intervalId); }
+    }, []);
+
+    return <h2>{date.toLocaleTimeString()}</h2>;
 }
 
 ReactDOM.render(
