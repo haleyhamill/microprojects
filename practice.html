@@ -51,12 +51,20 @@ p { color: #685206; font-family: 'Helvetica Neue', sans-serif; font-size: 14px; 
 const {useEffect} = React;
 const {useState} = React;
 
-fetch(URL)
-.then(response => response.json())
-.then(data => {
-    console.log(data);
-    setUsers(data);
-})
+function Wallet() {
+    const [transactions, setTransactions] = useState([]);
+
+    useEffect(() => {
+        localStorage.setItem("transactions", json.stringify(transactions);
+    }, [transactions]);
+
+    return(
+        <div>
+            <button onClick={() => setTransactions([...transactions, 10])}>Deposit 10</button>
+            <button onClick={() => setTransactions([...transactios, -10])}>Withdraw 10</button>
+        </div>
+    );
+}
 
 ReactDOM.render(
     <div>
