@@ -58,12 +58,13 @@ function App() {
         fetch(URL)
         .then(response => response.json())
         .then(data => {
-            setIsLoading(false); //stop the loader
             console.log(data)
         })
         .catch(error => {
-            setIsLoading(false); //stop the loader
             console.error(error);
+        })
+        .then(() => {
+            setIsLoading(false);
         });
     }, []);
 
