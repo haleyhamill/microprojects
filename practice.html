@@ -73,13 +73,9 @@ function App() {
     }, []);
 
     return(
-        <div>
-            { isLoading ? <Loader /> : (<div>
-                <h1>Users</h1>
-                <ul>
-                    {users && users.map(user => <li key={user.id}>{user.name}</li>)}
-                </ul></div>)}
-        </div>
+        <div><h1>Users</h1><ul>
+            { isLoading ? <Loader /> : {users && users.map(user => <li key={user.id}>{user.name}</li>)}
+        </ul></div>}
     )
 }
 
