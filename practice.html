@@ -52,17 +52,21 @@ const {useEffect} = React;
 const {useState} = React;
 
 function App() {
-    const [name, setName] = useState(() => localStorage.getItem("name"));
+    const [users, setUsers] = useState();
 
     useEffect(() => {
-        localStorage.setItem("name", name);
-    }, [name]);
+        fetch(URL)
+        .then(response => response.JSON())
+        .then(data => {
+            setUsers(data);
+        });
+    }, []);
 
-    return(
-        <div>
-            <input type="text" name="name" value={name} onChange={e => setName(e.target.value)} />
-        </div>
-    );
+    if (!users) {
+        return null
+    }
+
+    return <h1>Users ({users.length})</h1>
 }
 
 ReactDOM.render(
