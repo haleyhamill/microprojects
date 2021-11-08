@@ -52,21 +52,15 @@ const {useEffect} = React;
 const {useState} = React;
 
 function App() {
-    const [isLoading, setIsLoading] = useState(true); //create and start loader
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        fetch(URL)
-        .then(response => response.json())
-        .then(data => {
-            console.log(data)
-        })
-        .catch(error => {
-            console.error(error);
-        })
-        .then(() => {
-            setIsLoading(false);
-        });
+        //same code above ...
     }, []);
+
+    if (isLoading) {
+        return <p>Loading...</p>;
+    }
 
     return null;
 }
