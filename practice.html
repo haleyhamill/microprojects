@@ -51,7 +51,19 @@ p { color: #685206; font-family: 'Helvetica Neue', sans-serif; font-size: 14px; 
 const {useEffect} = React;
 const {useState} = React;
 
-const element = <input type="text" defaultValue="default text here" />
+function App() {
+    const [name, setName] = useState("");
+
+    useEffect(() => {
+        localStorage.setItem("name", name)
+    }, [name]);
+
+    return(
+        <div>
+            <input type="text" name="name" value={name} onChange={e => setName(e.target.value)} />
+        </div>
+    );
+}
 
 ReactDOM.render(
     <div>
