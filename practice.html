@@ -51,19 +51,7 @@ p { color: #685206; font-family: 'Helvetica Neue', sans-serif; font-size: 14px; 
 const {useEffect} = React;
 const {useState} = React;
 
-function App() {
-    useEffect(() => {
-        document.title = "Welcome";
-        const timerId = setTimeout(() => {
-            document.title = "still there?";
-        }, 1000);
-
-        return () => {clearTimeout(timerId)}
-    });
-
-    return null;
-}
-
+const element = <input type="text" defaultValue="default text here" />
 
 ReactDOM.render(
     <div>
