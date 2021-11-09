@@ -51,41 +51,11 @@ p { color: #685206; font-family: 'Helvetica Neue', sans-serif; font-size: 14px; 
 const {useEffect} = React;
 const {useState} = React;
 
-function CurrencyConversion() {
-    const [currency, setCurrency] = useState("");
-    const [rate, setRate] = useState("");
-    const [isLoading, setIsLoading] = useState(false);
-
-    useEffect(() => {
-        if (currency) {
-            setIsLoading(true);
-            fetch(`https://react-tutorial-demo.firebaseio.com/currencies/${currency}.json`)
-            .then(response => response.json())
-            .then(data => {
-                if (data) { setRate(data) }
-            })
-            .catch(error => console.log(error))
-            .finally(() => { setIsLoading(false); });
-        }
-    }, [currency]);
-
-    function handleCurrencyChange(event) {
-        setCurrency(event.target.value);
-    }
-
-    return(
-        <div>
-            <h2>Currency rates</h2>
-            <select onChange={handleCurrencyChange} disabled={isLoading}>
-                <option value="">Select A Currency</option>
-                <option value="usd">USD</option>
-                <option value="eur">EUR</option>
-                <option value="cad">CAD</option>
-            </select>
-            <h3>1 {currency.toUpperCase()} = {rate} USD</h3>
-        </div>
-    );
-}
+fetch(URL)
+.then(response => response.json())
+.then(data => {
+    console.log(data);
+});
 
 ReactDOM.render(
     <div>
