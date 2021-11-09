@@ -62,7 +62,16 @@ function App() {
         })();
     }, []);
 
-    return null;
+    if (!users) {
+        return null
+    }
+
+    return(
+        <div>
+            <h1> Users ({user.length})</h1>
+            <ul>{users.map(user => <li key={user.id}>{user.name}</li>)}</ul>
+        </div>
+    )
 }
 
 ReactDOM.render(
