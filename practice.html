@@ -51,11 +51,18 @@ p { color: #685206; font-family: 'Helvetica Neue', sans-serif; font-size: 14px; 
 const {useEffect} = React;
 const {useState} = React;
 
-fetch(URL)
-.then(response => response.json())
-.then(data => {
-    console.log(data);
-});
+function OrderInsurance() {
+    const [order, setOrder] = useState({
+        id: 1,
+        items: [1, 4, 10],
+        insurance: "premium"
+    });
+
+    function handleRemoveClick() {
+        const {insurance, ...modifiedOrder} = order;
+        setOrder(modifiedOrder);
+    }
+}
 
 ReactDOM.render(
     <div>
