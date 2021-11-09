@@ -53,28 +53,37 @@ const {useState} = React;
 
 function App() {
     const [users, setUsers] = useState();
-    const [isLoading, setIsLoading] = useState(true);
+    const [isLoading, setIsLoading] = useState(false);
 
-    useEffect(() => {
-        (async () => {
-            try {
-                const response = await fetch("URL")
-                const data = await response.json();
-                setIsLoading(false)
+    async function handleButtonClick() {
+        setIsLoading(true);
+        try {
+            const response = await fetch("URL")
+            const data = await response.json()
+            setIsLoading(false);
+            if (data) {
                 setUsers(data);
-            } catch(error) {
-                console.log(error)
-                setIsLoading(false);
             }
-        })()
-    }, []);
+        } catch(error) {
+            console.log(error);
+            setIsLoading(false);
+        }
+    }
 
-    return null
+    return(
+        <div>
+            <button onClick={handleButtonClick} disabled={isLoading}>Load users</button>
+            <h1>Users</h1>
+            <ul>
+                {users && users.map(user => <li key={user.id}>{user.name}</li>)}
+            </ul>
+        </div>
+    );
 }
 
 ReactDOM.render(
     <div>
-        <CurrencyConversion />
+        <App />
     </div>,
     document.getElementById("react-root")
 )
