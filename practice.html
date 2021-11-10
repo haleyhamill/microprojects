@@ -51,8 +51,8 @@ p { color: #685206; font-family: 'Helvetica Neue', sans-serif; font-size: 14px; 
 const {useEffect} = React;
 const {useState} = React;
 
-function App() {
-    const [number, setNumber] = useState(0);
+function GradeForm() {
+    const [grade, setGrade] = useState(0);
 
     function handleFormSubmit(event) {
         event.preventDefault();
@@ -60,22 +60,25 @@ function App() {
         fetch("URL", {
             method: "POST",
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type":"application/json"
             },
-            body: JSON.stringify({grade: number})
+            body: JSON.stringify({grade: grade})
         })
         .then(response => response.json())
         .then(data => {
-            console.log("Grade added");
+            console.log("Grade Added");
             console.log(data);
+            setGrade(data);
         });
     }
 
-    return <form onSubmit={handleFormSubmit}>
-        <input type="number" value={number} name="grade" onChange={event => setNumber(event.target.value)}
-        placeholder="Enter the grade" />
-        <input type="submit" />
+    return(
+        <form onSubmit={handleFormSubmit}>
+            <input type="number" value={grade} name="grade" onChange={event => setGrade(event.target.value)}
+            placeholder="Enter the grade" />
+            <input type="submit" />
         </form>
+    );
 }
 
 ReactDOM.render(
