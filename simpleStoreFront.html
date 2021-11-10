@@ -129,7 +129,7 @@
 <body>
     <div id="react-root"></div>
     <script type="text/babel">
-        const { useState } = React;
+        const { useState, useEffect } = React;
         const { render } = ReactDOM;
 
         function Product({ details, ...rest }) {
@@ -156,20 +156,24 @@
         }
 
         function StoreFront() {
-            // hardcoded products for this project
-            const products = [{
-                name: "Cheese",
-                description: "200g cheese block",
-                image: "https://res.cloudinary.com/dbfn5lnvx/image/upload/q_auto,w_300/v1580649404/react-tutorial/products/cheese.png"
-            }, {
-                name: "Milk",
-                description: "1L of milk",
-                image: "https://res.cloudinary.com/dbfn5lnvx/image/upload/q_auto,w_300/v1580649400/react-tutorial/products/milk.png"
-            }]
+            const [products, setProducts] = useState();
+
+            useEffect(() => {
+                try {
+                    (async () => {
+                        const response = await fetch("https://react-tutorial-demo.firebaseio.com/products.json")
+                        const data = await response.json()
+                        if (data) {
+                            console.log(data)
+                            setProducts(data)
+                        }
+                    })() }
+                catch(error) { console.log(error) }
+            }, [])
+
             return (
                 <div className="store-front">
-                    <Product details={products[0]} />
-                    <Product details={products[1]} />
+                    { products && products.map(product => <Product key={product.id} details={product} />)}
                 </div>
             );
         }
@@ -178,10 +182,10 @@
             const [LoggedIn, setLoggedIn] = useState(false);
             if (LoggedIn) {
                 return (
-                    <>
+                    <div>
                         <StoreFront />
                         <button className="btn btn-outline" onClick={() => setLoggedIn(false)}>Logout</button>
-                    </>
+                    </div>
                 );
             }
 
