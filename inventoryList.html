@@ -272,6 +272,14 @@
                 }])
                 setName("");
                 setDescription("");
+
+                fetch("https://api.learnjavascript.online/demo/react/admin/products", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "applications/json"
+                    },
+                    body: JSON.stringify({ "name": name, "description": description })
+                })
             }
 
             function handleProductDelete(id) {
