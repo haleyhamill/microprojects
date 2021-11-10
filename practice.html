@@ -51,42 +51,23 @@ p { color: #685206; font-family: 'Helvetica Neue', sans-serif; font-size: 14px; 
 const {useEffect} = React;
 const {useState} = React;
 
-function GradeForm() {
-    const [grade, setGrade] = useState(0);
-
-    function handleFormSubmit(event) {
-        event.preventDefault();
-
-        fetch("URL", {
-            method: "POST",
-            headers: {
-                "Content-Type":"application/json"
-            },
-            body: JSON.stringify({grade: grade})
-        })
-        .then(response => response.json())
-        .then(data => {
-            console.log("Grade Added");
-            console.log(data);
-            setGrade(data);
-        });
+var isShopping = prompt('would you like to go to the shops?')
+var message
+if(isShopping === 'yes') {
+    message = 'welcome to the shops'
+    var isSpending = prompt('would you like to spend more than $30?')
+    if (isSpending === 'yes') {
+        message = "whoop big spender!"
+    } else {
+        message = "better be careful!"
     }
-
-    return(
-        <form onSubmit={handleFormSubmit}>
-            <input type="number" value={grade} name="grade" onChange={event => setGrade(event.target.value)}
-            placeholder="Enter the grade" />
-            <input type="submit" />
-        </form>
-    );
+} else {
+    message = 'too bad, see you next time'
 }
+alert(message) 
 
-ReactDOM.render(
-    <div>
-        <App />
-    </div>,
-    document.getElementById("react-root")
-)
+
+
 </script>
 </body>
 </html>
