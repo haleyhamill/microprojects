@@ -51,22 +51,42 @@ p { color: #685206; font-family: 'Helvetica Neue', sans-serif; font-size: 14px; 
 const {useEffect} = React;
 const {useState} = React;
 
-var isShopping = prompt('would you like to go to the shops?')
-var message
-if(isShopping === 'yes') {
-    message = 'welcome to the shops'
-    var isSpending = prompt('would you like to spend more than $30?')
-    if (isSpending === 'yes') {
-        message = "whoop big spender!"
-    } else {
-        message = "better be careful!"
+function CurrencySelector() {
+    const [currency, setCurrency] = useState("");
+
+    useEffect(() => {
+        if (currency) {
+            console.log(currency);
+            fetch("URL", {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({currency: currency})
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+            });
+        }
+    }, [currency]);
+
+    function handleCurrencyChange(event) {
+        setCurrency(event.target.value);
     }
-} else {
-    message = 'too bad, see you next time'
+
+    return(
+        <div>
+            <h3>Select Currency</h3>
+            <select onChange={handleCurrencyChange}>
+                <option value="usd">USD</option>
+                <option value="eur">EUR</option>
+                <option value="cad">CAD</option>
+            </select>
+            <h1>{currency}</h1>
+        </div>
+    );
 }
-alert(message) 
-
-
 
 </script>
 </body>
