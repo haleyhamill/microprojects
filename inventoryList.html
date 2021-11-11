@@ -186,18 +186,18 @@
         const { render } = ReactDOM;
 
         function App() {
-            const [email, setEmail] = useState('');
+            const [users, setUsers] = useState();
 
-            function handleEmailChange(event) {
-                setEmail(event.target.value);
-            }
+            useEffect(() => {
+                fetch("URL")
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data);
+                    setUsers(data);
+                });
+            }, []);
 
-            return(
-                <div>
-                    <h2>Logged in as {email}</h2>
-                    <EmailForm email={email} onEmailChange={handleEmailChange} />
-                </div>
-            )
+            return null;
         }
 
 
