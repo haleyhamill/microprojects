@@ -185,16 +185,18 @@
         const { useState, useEffect } = React;
         const { render } = ReactDOM;
 
-        function useWelcomeGreeting(name) {
-            useEffect(() => {
-                console.log(`Welcome ${name} to my app`);
-            }, []);
-        }
-
         function App() {
-            useWelcomeGreeting("Sam");
+            const [users, setUsers] = useState();
 
-            return null;
+            useEffect(() => {
+                (async () => {
+                    const response = await fetch('URL')
+                    const data = await response.json();
+                    setUsers(data);
+                }, []);
+
+                return <h1>Users ({users.length})</h1>
+            })
         }
 
         ReactDOM.render(
