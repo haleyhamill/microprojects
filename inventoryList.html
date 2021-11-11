@@ -186,23 +186,13 @@
         const { render } = ReactDOM;
 
         function App() {
-            const [users, setUsers] = useState();
-
-            useEffect(() => {
-                fetch("URL")
-                .then(response => response.json())
-                .then(data => {
-                    setUsers(data);
-                });
-            }, []);
+            const [name, setName] = useState("");
 
             return(
                 <div>
-                    <ul>
-                        {users && users.map(users => <li key={user.id}>{user.name}</li>)}
-                    </ul>
+                    <input type="text" name="name" onChange={e => setName(e.target.value)} />
                 </div>
-            )
+            );
         }
 
 
