@@ -185,19 +185,21 @@
         const { useState, useEffect } = React;
         const { render } = ReactDOM;
 
-        function Wallet() {
-            const [transactions, setTransactions] = useState(() => localStorage.getItem("transactions"))
+        function App() {
+            const [settings, setSettings] = useState({
+                night_mode: true
+            });
 
-            useEffect(() => {
-                localStorage.setItem("transactions", JSON.stringify(transactions));
-            }, [transactions]);
+            function handleToggleClick() {
+                setSettings(settings.night_mode = !settings.night_mode);
+            }
 
-        return(
-            <div>
-                <button onClick={() => setTransactions([...transactions, 10])}>Deposit 10</button>
-                <button onClick={() => setTransactions([...transactions, -10])}>Withdraw 10</button>
-            </div>
-        );
+            return(
+                <div>
+                    <button onClick={handleToggleClick}>Toggle night mode</button>
+                </div>
+            );
+        }
 
         ReactDOM.render(
             <App />,
