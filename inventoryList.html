@@ -185,27 +185,19 @@
         const { useState, useEffect } = React;
         const { render } = ReactDOM;
 
-        function App() {
-            const [users, setUsers] = useState();
+        function Wallet() {
+            const [transactions, setTransactions] = useState(() => localStorage.getItem("transactions"))
 
             useEffect(() => {
-                fetch("URL")
-                .then(response => response.json())
-                .then(data => {
-                    setUsers(data);
-                });
-            }, []);
+                localStorage.setItem("transactions", JSON.stringify(transactions));
+            }, [transactions]);
 
-            if (!users) {
-                return null
-            }
-
-            return(
-                <div>
-                    <h1>Users ({users.length})</h1>
-                </div>
-            )
-        }
+        return(
+            <div>
+                <button onClick={() => setTransactions([...transactions, 10])}>Deposit 10</button>
+                <button onClick={() => setTransactions([...transactions, -10])}>Withdraw 10</button>
+            </div>
+        );
 
         ReactDOM.render(
             <App />,
