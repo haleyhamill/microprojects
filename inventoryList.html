@@ -185,18 +185,32 @@
         const { useState, useEffect } = React;
         const { render } = ReactDOM;
 
-        function App() {
-            const [users, setUsers] = useState();
+        function GradeForm() {
+            const [grade, setGrade] = useState(0);
 
-            useEffect(() => {
-                (async () => {
-                    const response = await fetch('URL')
-                    const data = await response.json();
-                    setUsers(data);
-                }, []);
+            function handleFormSubmit(event) {
+                event.preventDefault();
 
-                return <h1>Users ({users.length})</h1>
-            })
+                fetch('URL', {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({grade: grade})
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log("Grade added");
+                });
+            }
+
+            return(
+                <form onSubmit={handleFormSubmit}>
+                    <input type="number" value={grade} name="grade" onChange={event => setGrade(event.target.value)}
+                        placeholder="Enter the grade" />
+                    <input type="submit" />
+                </form>
+            );
         }
 
         ReactDOM.render(
