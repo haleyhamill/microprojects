@@ -185,15 +185,20 @@
         const { useState, useEffect } = React;
         const { render } = ReactDOM;
 
-       function useHelloWorld() {
-           useEffect(() => {
-               console.log("BDFAD");
-           });
-       }
+        function useWelcomeGreeting() {
+            useEffect(() => {
+                console.log("Welcome to my app")
+            })
+        }
 
+        function App() {
+            useWelcomeGreeting()
+
+            return <h1>My App</h1>
+        }
 
         ReactDOM.render(
-            <StoreFront />,
+            <App />,
             document.getElementById("root")
         )
 
