@@ -185,20 +185,23 @@
         const { useState, useEffect } = React;
         const { render } = ReactDOM;
 
-        function App() {
-            const [settings, setSettings] = useState({
-                night_mode: true
-            });
+        export default function useProductCounter() {
+            const [counter, setCounter] = useState(0);
 
-            function handleToggleClick() {
-                setSettings(settings.night_mode = !settings.night_mode);
+            function increment() {
+                setCounter(prevCounter => prevCounter + 1);
             }
 
-            return(
-                <div>
-                    <button onClick={handleToggleClick}>Toggle night mode</button>
-                </div>
-            );
+            function decrement() {
+                setCounter(prevCounter => {
+                    if (prevCounter > 0) {
+                        return prevCounter - 1;
+                    }
+                    return 0;
+                });
+            }
+
+            return ; /* need to return the counter and the 2 functions */
         }
 
         ReactDOM.render(
