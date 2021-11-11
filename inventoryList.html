@@ -185,19 +185,24 @@
         const { useState, useEffect } = React;
         const { render } = ReactDOM;
 
-        function App() {
-            const [users, setUsers] = useState();
+        function Countdown() {
+            const [count, setCount] = useState(5);
+            const [lives, setLives] = useState(3);
 
             useEffect(() => {
-                fetch("URL")
-                .then(response => response.json())
-                .then(data => {
-                    console.log(data);
-                    setUsers(data);
-                });
-            }, []);
+                document.title = `You have ${lives} left`;
+            }, [lives]);
 
-            return null;
+            function handleCountdownClick() {
+                if (count > 0) {
+                    setCount(count - 1);
+                } else if (count === 0) {
+                    setCount(5);
+                    setLives(lives - 1);
+                }
+            }
+
+            return null
         }
 
 
