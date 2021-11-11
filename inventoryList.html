@@ -185,33 +185,28 @@
         const { useState, useEffect } = React;
         const { render } = ReactDOM;
 
-        function GradeForm() {
-            const [grade, setGrade] = useState(0);
+        function App() {
+            const [users, setUsers] = useState();
 
-            function handleFormSubmit(event) {
-                event.preventDefault();
-
-                fetch('URL', {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify({grade: grade})
-                })
+            useEffect(() => {
+                fetch('URL')
                 .then(response => response.json())
                 .then(data => {
-                    console.log("Grade added");
+                    setUsers(data);
                 });
+            }, []);
+
+            if (!users) {
+                return null
             }
 
             return(
-                <form onSubmit={handleFormSubmit}>
-                    <input type="number" value={grade} name="grade" onChange={event => setGrade(event.target.value)}
-                        placeholder="Enter the grade" />
-                    <input type="submit" />
-                </form>
+                <div>
+                    <h1>Users ({users.length})</h1>
+                </div>
             );
         }
+
 
         ReactDOM.render(
             <App />,
