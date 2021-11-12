@@ -201,7 +201,19 @@
                 });
             }
 
-            return ; /* need to return the counter and the 2 functions */
+            return ;
+        }
+
+        function App() {
+            const {counter, increment, decrement} = useProductCounter();
+
+            return(
+                <div>
+                    <h2>{counter}</h2>
+                    <button onClick={increment}>+</button>
+                    <button onClick={decrement}>-</button>
+                </div>
+            );
         }
 
         ReactDOM.render(
