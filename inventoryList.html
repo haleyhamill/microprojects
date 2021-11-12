@@ -180,40 +180,195 @@
 
 <body>
     <div id="root"></div>
-
     <script type="text/babel">
         const { useState, useEffect } = React;
         const { render } = ReactDOM;
 
-        function GradeForm() {
-            const [grade, setGrade] = useState(0);
-            const {post} = useFetch("URL");
+        function useFetch(baseUrl) {
+            const [loading, setLoading] = useState(true);
+
+            function get(url) {
+                return new Promise((resolve, reject) => {
+                    fetch(baseUrl + url)
+                        .then(response => response.json())
+                        .then(data => {
+                            if (!data) {
+                                setLoading(false);
+                                return reject(data);
+                            }
+                            setLoading(false);
+                            resolve(data);
+                        })
+                        .catch(error => {
+                            setLoading(false);
+                            reject(error);
+                        });
+                });
+            }
+
+            function post(url, body) {
+                return new Promise((resolve, reject) => {
+                    fetch(baseUrl + url, {
+                        method: "post",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify(body)
+                    })
+                        .then(response => response.json())
+                        .then(data => {
+                            if (!data) {
+                                setLoading(false);
+                                return reject(data);
+                            }
+                            setLoading(false);
+                            resolve(data);
+                        })
+                        .catch(error => {
+                            setLoading(false);
+                            reject(error);
+                        });
+                });
+            }
+
+            return { get, post, loading };
+        };
+
+
+        function Product(props) {
+            const [count, setCount] = useState(0);
+            const {
+                details
+            }
+                = props;
+            function handleIncrementClick() {
+                setCount(count + 1);
+            }
+            function handleDecrementClick() {
+                if (count > 0) {
+                    setCount(count - 1);
+                }
+            }
+            if (!details) {
+                return null;
+            }
+            return (<div className="product"> <div className="product-info"> <h2> {
+                details.name
+            }
+            </h2> <p> {
+                details.description
+            }
+                </p> </div> <div className="product-buttons"> <button className="product-sub" disabled={
+                    count === 0
+                }
+                    onClick={
+                        handleDecrementClick
+                    }
+                >-</button> <h3 className="product-count"> {
+                    count ? count : ""
+                }
+                    </h3> <button className="product-add" onClick={
+                        handleIncrementClick
+                    }
+                    >+</button> </div> </div>)
+        }
+
+        function ProductsList(props) {
+            return (<ul className="store-front"> {
+                props.products.map(product => <li key={
+                    product.id
+                }
+                > <Product details={
+                    product
+                }
+                    /> <button className="btn-outline btn-delete" onClick={
+                        () => props.onDeleteClick(product.id)
+                    }
+                    >Delete</button> </li>)
+            }
+            </ul>)
+        }
+
+        function AddProductForm(props) {
+            return (<form onSubmit={
+                props.onFormSubmit
+            }
+            > <div> <label htmlFor="product-name">Name:</label> <input type="text" value={
+                props.name
+            }
+                onChange={
+                    (e) => props.onNameChange(e.target.value)
+                }
+                id="product-name" placeholder="Enter the name" className="textfield" /> </div> <div> <label htmlFor="product-description">Description:</label> <input type="text" value={
+                    props.description
+                }
+                    onChange={
+                        e => props.onDescriptionChange(e.target.value)
+                    }
+                    id="product-description" placeholder="Enter the description" className="textfield" /> </div> <div className="form-footer"> <input type="submit" className="btn btn-primary" value="Add product" /> </div> </form>)
+        }
+
+        function StoreFront(props) {
+            const [products, setProducts] = useState(() => {
+                let productString = localStorage.getItem("products")
+                if (productString) { return JSON.parse(productString) }
+                else { return [] }
+            });
+            const [name, setName] = useState("");
+            const [description, setDescription] = useState("");
+            const [validation, setValidation] = useState("");
+            const {post} = useFetch("https://api.learnjavascript.online/demo/react/admin/")
 
             function handleFormSubmit(event) {
                 event.preventDefault();
-                post("grades", {
-                    grade: grade
-                }).then(data => {
-                    console.log(data);
-                }).catch(error => console.error(error));
+                post("products", {"name": name, "description": description})
+                if (!name) {
+                    setValidation("Please enter a name");
+                    return;
+                }
+                if (!description) {
+                    setValidation("Please enter a description");
+                    return;
+                }
+                setProducts([...products, {
+                    id: products.length,
+                    name: name,
+                    description: description
+                }])
+                setName("");
+                setDescription("");
+            }
+            function handleProductDelete(id) {
+                const restProducts = products.filter(product => (
+                    product.id != id
+                ))
+                setProducts(restProducts);
             }
 
-            return (
-                <form onSubmit={handleFormSubmit}>
-                    <input type="number" value={grade} name="grade" 
-                    onChange={event => setGrade(event.target.value)} placeholder="Enter the grade"
-                    />
-                    <input type="submit" />
-                </form>
-            );
-        }
+            useEffect(() => {
+                let productString = JSON.stringify(products)
+                localStorage.setItem("products", productString)
+            }, [products]);
 
+            return (
+                <div>
+                    <h1> Online Store Admin Portal </h1>
+                    <AddProductForm onFormSubmit={handleFormSubmit} name={name}
+                        onNameChange={setName} description={description} onDescriptionChange={setDescription} />
+                    {products.length === 0 && (
+                        <div><p>Add your first product</p></div>
+                    )}
+                    <ProductsList products={products} onDeleteClick={handleProductDelete} />
+                </div>);
+        }
         ReactDOM.render(
-            <GradeForm />,
+            <StoreFront />,
             document.getElementById("root")
         )
-
     </script>
+        
 </body>
+    
+    
 
 </html>
