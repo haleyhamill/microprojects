@@ -185,35 +185,12 @@
         const { useState, useEffect } = React;
         const { render } = ReactDOM;
 
-        export default function useProductCounter() {
-            const [counter, setCounter] = useState(0);
-
-            function increment() {
-                setCounter(prevCounter => prevCounter + 1);
+        export default function useFetch(baseUrl) {
+            function get(url) {
+                return fetch(baseUrl+url)
+                .then(response => response.json())
             }
-
-            function decrement() {
-                setCounter(prevCounter => {
-                    if (prevCounter > 0) {
-                        return prevCounter - 1;
-                    }
-                    return 0;
-                });
-            }
-
-            return ;
-        }
-
-        function App() {
-            const {counter, increment, decrement} = useProductCounter();
-
-            return(
-                <div>
-                    <h2>{counter}</h2>
-                    <button onClick={increment}>+</button>
-                    <button onClick={decrement}>-</button>
-                </div>
-            );
+            return {get};
         }
 
         ReactDOM.render(
