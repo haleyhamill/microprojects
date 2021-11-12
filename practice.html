@@ -48,18 +48,28 @@ p { color: #685206; font-family: 'Helvetica Neue', sans-serif; font-size: 14px; 
     <div id="react-root"></div>
 
 <script type="text/babel">
-const {useEffect} = React;
+const {useEffect, useRef} = React;
 const {useState} = React;
 
-function App() {
+function Form() {
     const inputRef = useRef();
 
     useEffect(() => {
         inputRef.current.focus();
-    }, []);
+    })
 
-    return <input ref={inputRef} type="text" />;
+    return(
+        <form>
+            <h2>Welcome</h2>
+            <input ref={inputRef} type="text" placeholder="Enter your name" />
+        </form>
+    );
 }
+
+ReactDOM.render(
+    <Form />,
+    document.getElementById("react-root")
+)
 
 </script>
 </body>
