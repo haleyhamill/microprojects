@@ -185,15 +185,25 @@
         const { useState, useEffect } = React;
         const { render } = ReactDOM;
 
-        const {post} = useFetch(URL)
+        export default function useFetch(baseUrl) {
+    function get(url) {
+        return fetch(baseUrl + url)
+                .then(response => response.json());
+    }
 
-        post("grades", {
-            grade: 20
+    function post(url, body) {
+        return fetch(baseUrl + url, {
+            method: "post",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(body)
         })
-        .then(data => {
-            console.log(data)
-        })
-        .catch(error => console.log(error))
+        .then(response => response.json());
+    }
+
+    return { get, post };
+};
 
         ReactDOM.render(
             <App />,
