@@ -51,41 +51,14 @@ p { color: #685206; font-family: 'Helvetica Neue', sans-serif; font-size: 14px; 
 const {useEffect} = React;
 const {useState} = React;
 
-function CurrencySelector() {
-    const [currency, setCurrency] = useState("");
+function App() {
+    const inputRef = useRef();
 
     useEffect(() => {
-        if (currency) {
-            console.log(currency);
-            fetch("URL", {
-                method: "PUT",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({currency: currency})
-            })
-            .then(response => response.json())
-            .then(data => {
-                console.log(data);
-            });
-        }
-    }, [currency]);
+        inputRef.current.focus();
+    }, []);
 
-    function handleCurrencyChange(event) {
-        setCurrency(event.target.value);
-    }
-
-    return(
-        <div>
-            <h3>Select Currency</h3>
-            <select onChange={handleCurrencyChange}>
-                <option value="usd">USD</option>
-                <option value="eur">EUR</option>
-                <option value="cad">CAD</option>
-            </select>
-            <h1>{currency}</h1>
-        </div>
-    );
+    return <input ref={inputRef} type="text" />;
 }
 
 </script>
