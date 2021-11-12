@@ -15,32 +15,6 @@
 
 <style>
 
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed, 
-figure, figcaption, footer, header, hgroup, 
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video { margin: 0; padding: 0; border: 0; font-size: 100%; font: inherit; vertical-align: baseline; }
-
-html { background-image: url('https://data.whicdn.com/images/359425276/original.jpg'); background-repeat: no-repeat; 
-    background-size: cover; height: 100%; margin: 0; padding: 0; }
-
-body { margin: 0; margin-top: 13rem; text-align: center; }
-
-h1 { color: rgb(207, 9, 9); font-family: 'Helvetica Neue', sans-serif; font-size: 275px; font-weight: bold; letter-spacing: -1px; line-height: 1; text-align: center; }
-
-
-h2 { color: #111; font-family: 'Open Sans', sans-serif; font-size: 30px; font-weight: 300; line-height: 32px; margin: 0 0 72px; text-align: center; }
-
-
-p { color: #685206; font-family: 'Helvetica Neue', sans-serif; font-size: 14px; line-height: 24px; margin: 0 0 24px; text-align: justify; text-justify: inter-word; }
 
 </style>
 
@@ -51,23 +25,20 @@ p { color: #685206; font-family: 'Helvetica Neue', sans-serif; font-size: 14px; 
 const {useEffect, useRef} = React;
 const {useState} = React;
 
-function Form() {
-    const inputRef = useRef();
-
-    useEffect(() => {
-        inputRef.current.focus();
-    })
-
+function VideoPlayer() {
+    const videoRef = useRef();
     return(
-        <form>
-            <h2>Welcome</h2>
-            <input ref={inputRef} type="text" placeholder="Enter your name" />
-        </form>
-    );
+        <div>
+            <h2>Video player</h2>
+            <video ref={videoRef} width="300" controls src="https://res.cloudinary.com/dbfn5lnvx/video/upload/v1599125933/react-tutorial/ref-video-player-challenge.mp4" /><br/>
+            <button onClick={() => videoRef.current.play()}>Play</button>
+            <button onClick={() => videoRef.current.pause()}>Pause</button>
+        </div>
+    )
 }
 
 ReactDOM.render(
-    <Form />,
+    <VideoPlayer />,
     document.getElementById("react-root")
 )
 
