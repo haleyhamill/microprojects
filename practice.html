@@ -106,17 +106,17 @@ function ThemeProvider(props) {
 
     const value = {
         theme: theme,
-        toggleTheme: toggleTheme,
+        toggleTheme: toggleTheme
     }
 
     return(
-        <ThemeContext.Provider value={value}>
+        <ThemeContext.Provider theme={theme}>
             {props.children} 
         </ThemeContext.Provider>
     )
 }
 
-export { ThemeContext, ThemeProvider};
+export { ThemeContext, ThemeProvider };
 
 
 

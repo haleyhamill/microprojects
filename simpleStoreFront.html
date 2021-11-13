@@ -188,7 +188,7 @@
 <body>
     <div id="react-root"></div>
     <script type="text/babel">
-        const { useState, useEffect } = React;
+        const { useState, useEffect, useContext } = React;
         const { render } = ReactDOM;
 
         function useFetch(baseUrl) {
@@ -293,10 +293,12 @@
         }
 
         function App() {
+            const context = useContext(AppContext);
             const [LoggedIn, setLoggedIn] = useState(false);
             if (LoggedIn) {
                 return (
-                    <div>
+                    <div className={context.theme}>
+                        <Navbar />
                         <StoreFront />
                         <button className="btn btn-outline" onClick={() => setLoggedIn(false)}>Logout</button>
                     </div>
@@ -310,7 +312,11 @@
                 </div>);
         }
 
-        render(<App />, document.querySelector("#react-root"));
+        function AppWrapper(props) {
+            return <AppProvider><App /></AppProvider>
+        }
+
+        render(<AppWrapper />, document.querySelector("#react-root"));
 
 
 
