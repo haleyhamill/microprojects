@@ -51,6 +51,46 @@ function ThemeProvider(props) {
 
 export { ThemeContext, ThemeProvider };
 
+const ThemeContext = createContext();
+
+function ThemeProvider(props) {
+    const [theme, setTheme] = useState("dark");
+
+    function toggleTheme() {
+        //toggle the theme here
+    }
+
+    const value = {
+        theme: theme,
+        toggleTheme: toggleTheme
+    }
+
+    return(
+        <ThemeContext.Provider value={value}>
+            {props.children} 
+        </ThemeContext.Provider>
+    );
+};
+
+export { ThemeContext, ThemeProvider };
+
+function toggleTheme() {
+    if (theme === "dark") {
+        setTheme("light")
+    } else {
+        setTheme("dark")
+    }
+}
+
+import {ThemeContext} from "./ThemeContext.js";
+
+function App() {
+    const context = useContext(ThemeContext);
+    console.log(context);
+
+    return <button onClick={() => context.toggleTheme()}>Toggle Theme</button>;
+}
+
 ReactDOM.render(
     <VideoPlayer />,
     document.getElementById("react-root")
