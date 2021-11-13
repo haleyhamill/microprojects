@@ -25,19 +25,19 @@
 const {useEffect, useRef} = React;
 const {useState} = React;
 
-function App() {
-    const [theme, setTheme] = useState("dark");
+import React, {createContext} from "react";
+const ThemeContext = createContext();
 
-    return <Nav />
-}
+function ThemeProvider(props) {
+    const theme = "dark";
+    return(
+        <ThemeContext.Provider value={theme}>
+            {props.children} 
+        </ThemeContext.Provider>
+    );
+};
 
-function Nav() {
-    return <Button>Login</Button>;
-}
-
-function Button(props) {
-    return <button>{props.children}</button>;
-}
+export { ThemeContext, ThemeProvider };
 
 ReactDOM.render(
     <VideoPlayer />,
