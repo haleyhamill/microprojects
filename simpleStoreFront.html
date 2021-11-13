@@ -324,6 +324,21 @@
             );
         }
 
+        function Navbar() {
+            const context = useContext(AppContext)
+
+            return(
+                <div>
+                    Shopping in {context.currency}<select onChange={context.toggleCurrency}>
+                        <option value="USD">USD</option>
+                        <option value="EUR">EUR</option>
+                    </select>
+                    - Using {context.theme} theme <button onClick={() => context.toggleTheme()}>Toggle theme</button>
+                    <hr />
+                </div>
+            );
+        }
+
         function App() {
             const context = useContext(AppContext);
             const [LoggedIn, setLoggedIn] = useState(false);
