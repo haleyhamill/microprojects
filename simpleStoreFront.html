@@ -188,8 +188,40 @@
 <body>
     <div id="react-root"></div>
     <script type="text/babel">
-        const { useState, useEffect, useContext } = React;
+        const { useState, useEffect, useContext, createContext } = React;
         const { render } = ReactDOM;
+        const AppContext = createContext();
+
+        function AppProvider(props) {
+            const [theme, setTheme] = useState("dark");
+            const [currency, setCurrency] = useState("USD")
+
+            function toggleTheme() {
+                if (theme === "dark") {
+                    setTheme("light")
+                } else {
+                    setTheme("dark")
+                }
+            }
+
+            function toggleCurrency() {
+                event.preventDefault();
+                setCurrency(event.target.value)
+            }
+
+            const value = {
+                theme: theme,
+                toggleTheme: toggleTheme,
+                currency: currency,
+                toggleCurrency: toggleCurrency
+            }
+
+            return(
+                <AppContext.Provider value={value}>
+                    {props.children} 
+                </AppContext.Provider>
+            )
+        }
 
         function useFetch(baseUrl) {
             const [loading, setLoading] = useState(true);
