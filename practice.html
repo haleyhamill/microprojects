@@ -91,6 +91,35 @@ function App() {
     return <button onClick={() => context.toggleTheme()}>Toggle Theme</button>;
 }
 
+const ThemeContext = createContext();
+
+function ThemeProvider(props) {
+    const [theme, setTheme] = useState("dark");
+
+    function toggleTheme() {
+        if (theme === "dark") {
+            setTheme("light")
+        } else {
+            setTheme("dark")
+        }
+    }
+
+    const value = {
+        theme: theme,
+        toggleTheme: toggleTheme,
+    }
+
+    return(
+        <ThemeContext.Provider value={value}>
+            {props.children} 
+        </ThemeContext.Provider>
+    )
+}
+
+export { ThemeContext, ThemeProvider};
+
+
+
 ReactDOM.render(
     <VideoPlayer />,
     document.getElementById("react-root")
