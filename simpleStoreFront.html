@@ -304,22 +304,27 @@
         }
 
         function StoreFront() {
+            const context = useContext(AppContext);
             const [products, setProducts] = useState();
-            const [isLoading, setIsLoading] = useState(false);
+            const [isLoading, setIsLoading] = useState(true);
             const { get } = useFetch("https://react-tutorial-demo.firebaseio.com/")
 
             useEffect(() => {
-                setIsLoading(true);
                 get("products.json").then(data => {
                     console.log(data);
                     setProducts(data);
-                }).finally(() => setIsLoading(false))
+                })
+                .catch(error => console.log(error))
+                .finally(() => setIsLoading(false))
             }, []);
 
             return (
+                <div>
+                    <p>Shopping in {context.currency}</p>
                 <div className="store-front">
                     {isLoading && <Loader />}
                     {products && products.map(product => <Product key={product.id} details={product} />)}
+                </div>
                 </div>
             );
         }
