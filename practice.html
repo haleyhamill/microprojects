@@ -25,16 +25,26 @@
 const {useEffect, useRef} = React;
 const {useState} = React;
 
-function VideoPlayer() {
-    const videoRef = useRef();
-
-    return(
-        <div>
-            <button onClick={() => videoRef.current.play()}>Play</button>
-            <video ref={videoRef} src="..." />
-        </div>
-    );
+const Buttons = {
+    Default: function(props) {
+        return <button className="btn-default">{props.children}</button>;
+    },
+    Outline: function(props) {
+        return <button className="btn-outline">{props.children}</button>;
+    }
 }
+
+<Buttons.Default>Login</Buttons.Default>
+<Buttons.Outline>Register</Buttons.Buttons.Outline>
+
+React.createElement(Buttons.Default, {}, "Login");
+React.createElement(Buttons.Outline, {}, "Register");
+
+return (
+    <ThemeContext.Provider value={value}>
+        {props.children} 
+    </ThemeContext.Provider>
+);
 
 
 
