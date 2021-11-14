@@ -49,13 +49,26 @@ return (
 function Footer() {
     const text = "<strong>All rights reserved &copy;</strong>";
 
-    return <div>{test}</div>;
+    return <div>{text}</div>;
 }
 
 function Footer() {
     const text = "<strong>All rights reserved &copy;</strong>";
 
     return <div dangerouslySetInnerHTML={{__html: text}}></div>;
+}
+
+import React from "react";
+import {render} from "react-dom";
+import {EN} from "./translations.js";
+
+function App() {
+    return (
+        <div>
+            <div dangerouslySetInnerHTML={{__html: EN.welcome}}></div>
+            <button dangerouslySetInnerHTML={{__html: EN.login}}></button>
+        </div>
+    );
 }
 
 ReactDOM.render(
