@@ -25,51 +25,22 @@
 const {useEffect, useRef} = React;
 const {useState} = React;
 
-const Buttons = {
-    Default: function(props) {
-        return <button className="btn-default">{props.children}</button>;
-    },
-    Outline: function(props) {
-        return <button className="btn-outline">{props.children}</button>;
-    }
-}
-
-<Buttons.Default>Login</Buttons.Default>
-<Buttons.Outline>Register</Buttons.Buttons.Outline>
-
-React.createElement(Buttons.Default, {}, "Login");
-React.createElement(Buttons.Outline, {}, "Register");
-
-return (
-    <ThemeContext.Provider value={value}>
-        {props.children} 
-    </ThemeContext.Provider>
-);
-
-function Footer() {
-    const text = "<strong>All rights reserved &copy;</strong>";
-
-    return <div>{text}</div>;
-}
-
-function Footer() {
-    const text = "<strong>All rights reserved &copy;</strong>";
-
-    return <div dangerouslySetInnerHTML={{__html: text}}></div>;
-}
-
 import React from "react";
-import {render} from "react-dom";
-import {EN} from "./translations.js";
+import clsx from "clsx";
 
-function App() {
-    return (
-        <div>
-            <div dangerouslySetInnerHTML={{__html: EN.welcome}}></div>
-            <button dangerouslySetInnerHTML={{__html: EN.login}}></button>
-        </div>
-    );
+function ButtonPrimary(props) {
+    const {children, className, ...rest} = props;
+    const classes = clsx("btn-primary", className);
+    return <button className={classes} {...rest}>{children}</button>;
 }
+
+function ButtonSecondary(props) {
+    const {children, className, ...rest} = props;
+    const classes = clsx("btn-primary", className);
+    return <button className={classes} {...rest}>{children}</button>;
+}
+
+export {ButtonPrimary, ButtonSecondary};
 
 ReactDOM.render(
     <VideoPlayer />,
