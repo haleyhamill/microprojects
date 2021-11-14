@@ -46,7 +46,17 @@ return (
     </ThemeContext.Provider>
 );
 
+function Footer() {
+    const text = "<strong>All rights reserved &copy;</strong>";
 
+    return <div>{test}</div>;
+}
+
+function Footer() {
+    const text = "<strong>All rights reserved &copy;</strong>";
+
+    return <div dangerouslySetInnerHTML={{__html: text}}></div>;
+}
 
 ReactDOM.render(
     <VideoPlayer />,
