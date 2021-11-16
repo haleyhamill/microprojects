@@ -26,21 +26,14 @@ const {useEffect, useRef} = React;
 const {useState} = React;
 
 import React from "react";
-import clsx from "clsx";
 
-function ButtonPrimary(props) {
-    const {children, className, ...rest} = props;
-    const classes = clsx("btn-primary", className);
-    return <button className={classes} {...rest}>{children}</button>;
+function Button() {
+    function handleButtonClick(event) {
+        console.log(event.nativeEvent);
+    }
+
+    return <button onClick={handleButtonClick}>Click me</button>;
 }
-
-function ButtonSecondary(props) {
-    const {children, className, ...rest} = props;
-    const classes = clsx("btn-primary", className);
-    return <button className={classes} {...rest}>{children}</button>;
-}
-
-export {ButtonPrimary, ButtonSecondary};
 
 ReactDOM.render(
     <VideoPlayer />,
