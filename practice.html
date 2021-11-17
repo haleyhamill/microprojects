@@ -25,11 +25,16 @@
 const {useEffect, useRef} = React;
 const {useState} = React;
 
-const data = {
-    price: 19
-};
+function VideoPlayer() {
+    const videoRef = useRef();
 
-{...data, {currency: 'EUR'}}
+    return (
+        <div>
+            <button onClick={() => videoRef.current.play()}>Play</button>
+            <video ref={videoRef} src="..." />
+        </div>
+    );
+}
 
 ReactDOM.render(
     <VideoPlayer />,
