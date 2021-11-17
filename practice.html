@@ -25,10 +25,15 @@
 const {useEffect, useRef} = React;
 const {useState} = React;
 
-function product(a, b) {
-    return a * b;
+function verifyDiscount(name, age) {
+    if (age < 18) {
+        return "child discount applied"
+    } else {
+        return name + "is not eligible for discount";
+    }
 }
 
+console.log(verifyDiscount('James Bond', 56))
 function App() {
     useWelcomeGreeting();
     return <h1>My App</h1>
