@@ -25,15 +25,15 @@
 const {useEffect, useRef} = React;
 const {useState} = React;
 
-function VideoPlayer() {
-    const videoRef = useRef();
+function useWelcomeGreeting() {
+    useEffect(() => {
+        console.log("Welcome to my app");
+    }, []);
+}
 
-    return (
-        <div>
-            <button onClick={() => videoRef.current.play()}>Play</button>
-            <video ref={videoRef} src="..." />
-        </div>
-    );
+function App() {
+    useWelcomeGreeting();
+    return <h1>My App</h1>
 }
 
 ReactDOM.render(
