@@ -25,22 +25,10 @@
 const {useEffect, useRef} = React;
 const {useState} = React;
 
-function shoppingCart(item, cost, balance) {
-    if( cost <= balance ) {
-        console.log('you can afford item' + item)
-    } else {
-        console.log("bad luck, you don't have enough money")
-    }
-}
-
-console.log(
-    shoppingCart('apple', 1, 1)
-)
-
-
-function App() {
-    useWelcomeGreeting();
-    return <h1>My App</h1>
+function useWelcomeGreeting() {
+    useEffect(() => {
+        console.log("Welcome to my app")
+    }, []);
 }
 
 ReactDOM.render(
