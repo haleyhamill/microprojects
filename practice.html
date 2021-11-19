@@ -26,22 +26,13 @@ const {useEffect, useRef} = React;
 const {useState} = React;
 
 function App() {
-    const [users, setUsers] = useState();
+    const [name, setName] = useState("");
 
-    useEffect(() => {
-        fetch("https://react-tutorial-demo.firebaseio.com/users.json")
-        .then(response => response.json())
-        .then(data => {
-            setUsers(data);
-        });
-    }, []);
     return(
         <div>
-            <ul>
-                {users && users.map(user => <li key={user.id}>{user.name}</li>)}
-            </ul>
+            <input type="text" name="name" onChange={e => setName(e.target.value)} />
         </div>
-    )
+    );
 }
 
 ReactDOM.render(
