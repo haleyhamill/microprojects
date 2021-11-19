@@ -25,10 +25,23 @@
 const {useEffect, useRef} = React;
 const {useState} = React;
 
-function useWelcomeGreeting() {
+function App() {
+    const [users, setUsers] = useState();
+
     useEffect(() => {
-        console.log("Welcome to my app")
+        fetch("https://react-tutorial-demo.firebaseio.com/users.json")
+        .then(response => response.json())
+        .then(data => {
+            setUsers(data);
+        });
     }, []);
+    return(
+        <div>
+            <ul>
+                {users && users.map(user => <li key={user.id}>{user.name}</li>)}
+            </ul>
+        </div>
+    )
 }
 
 ReactDOM.render(
