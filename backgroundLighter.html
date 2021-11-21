@@ -31,7 +31,7 @@ html {
 <script type="text/babel">
     const { useState, useEffect } = React;
 
-    function Person() {
+    function BackgroundWrap() {
         const [background, setBackground] = useState({
             number: 20
         });
@@ -54,7 +54,7 @@ html {
     }
 
     ReactDOM.render(
-        <Person />, 
+        <BackgroundWrap />, 
         document.getElementById("root"));
 
 </script>
