@@ -25,14 +25,17 @@
 const {useEffect, useRef} = React;
 const {useState} = React;
 
-function RegisterForm() {
-    const [type, setType] = useState("");
+function Game() {
+    const [remaining, setRemaining] = useState(3);
 
-    return(<form>
-        <select name="type">
-            <option>Choose a type</option>
-        </select>
-        </form>);
+    function countdown() {
+        if (remaining > 0) {
+            remaining--
+        }
+        setRemaining(remaining)
+    }
+
+    return null;
 }
 
 ReactDOM.render(
