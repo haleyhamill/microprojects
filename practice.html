@@ -25,7 +25,15 @@
 const {useEffect, useRef} = React;
 const {useState} = React;
 
-const {get, loading} = useFetch("https://example.com");
+function RegisterForm() {
+    const [type, setType] = useState("");
+
+    return(<form>
+        <select name="type">
+            <option>Choose a type</option>
+        </select>
+        </form>);
+}
 
 ReactDOM.render(
     <VideoPlayer />,
