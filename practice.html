@@ -25,7 +25,13 @@
 const {useEffect, useRef} = React;
 const {useState} = React;
 
-const buttonRef = useRef();
+function App() {
+    function handleCardLoad() {
+        console.log("Card has loaded");
+    }
+
+    return <Card onCardLoad={handleCardLoad}/>
+}
 
 ReactDOM.render(
     <VideoPlayer />,
