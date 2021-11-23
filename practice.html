@@ -25,17 +25,13 @@
 const {useEffect, useRef} = React;
 const {useState} = React;
 
-function App() {
-    const [email, setEmail] = useState("");
+export default function Card(props) {
 
-    function handleEmailChange(event) {
-        setEmail(event.target.value);
-    }
-
-    return <div>
-        <h2>Logged in as {email}</h2>
-        <EmailForm email={email} onEmailChange={onEmailChange} />
-    </div>
+    return (
+        <div className="card">
+            <button onClick={props.onCardClick}>Click me</button>
+        </div>
+        );
 }
 
 ReactDOM.render(
