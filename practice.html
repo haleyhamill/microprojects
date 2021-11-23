@@ -25,17 +25,17 @@
 const {useEffect, useRef} = React;
 const {useState} = React;
 
-function Game() {
-    const [remaining, setRemaining] = useState(3);
+function App() {
+    const [email, setEmail] = useState("");
 
-    function countdown() {
-        if (remaining > 0) {
-            remaining--
-        }
-        setRemaining(remaining)
+    function handleEmailChange(event) {
+        setEmail(event.target.value);
     }
 
-    return null;
+    return <div>
+        <h2>Logged in as {email}</h2>
+        <EmailForm email={email} onEmailChange={onEmailChange} />
+    </div>
 }
 
 ReactDOM.render(
