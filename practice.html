@@ -25,17 +25,15 @@
 const {useEffect, useRef} = React;
 const {useState} = React;
 
-function Counter() {
-    const [times, setTimes] = useState(0);
-    useEffect(() => {
-        document.title = `${times} times`;"
-    })
+//access the native event
+function Button() {
+    function handleButtonClick(event) {
+        console.log(event.nativeEvent);
+    }
+
+    return <button onClick={handleButtonClick}>Click me</button>;
 }
 
-ReactDOM.render(
-    <VideoPlayer />,
-    document.getElementById("react-root")
-)
 
 </script>
 </body>
