@@ -25,12 +25,13 @@
 const {useEffect, useRef} = React;
 const {useState} = React;
 
-const ThemeContext = createContext();
-
-function ThemeProvider(props) {
-    return (
-        
-    )
+function App() {
+    const welcome = "Welcome to our <strong>Supermarket</strong";
+        return(
+            <div>
+                <div dangerouslySetInnerHTML={{__html: welcome}}></div>
+            </div>
+        );
 }
 
 ReactDOM.render(
