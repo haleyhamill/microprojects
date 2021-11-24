@@ -25,17 +25,11 @@
 const {useEffect, useRef} = React;
 const {useState} = React;
 
-function App() {
-    const [users, setUsers] = useState();
-
+function Counter() {
+    const [times, setTimes] = useState(0);
     useEffect(() => {
-        fetch("api/users.json")
-        .then(response => response.json())
-        .then(data => {
-            console.log(data);
-            setUsers(data);
-        });
-    }, []);
+        document.title = `${times} times`;"
+    })
 }
 
 ReactDOM.render(
