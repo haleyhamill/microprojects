@@ -25,12 +25,12 @@
 const {useEffect, useRef} = React;
 const {useState} = React;
 
-function App() {
-    function handleCardLoad() {
-        console.log("Card has loaded");
-    }
+const ThemeContext = createContext();
 
-    return <Card onCardLoad={handleCardLoad}/>
+function ThemeProvider(props) {
+    return (
+        
+    )
 }
 
 ReactDOM.render(
