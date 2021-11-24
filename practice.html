@@ -25,14 +25,10 @@
 const {useEffect, useRef} = React;
 const {useState} = React;
 
-function App() {
-    useEffect(() => {
-        document.title = "Welcome";
-        const timerId = setTimeout(() => {
-            document.title = "Still there?";
-        }, 1000);
-        clearTimeout(timerId)
-    })
+function Checkout(props) {
+    return <form>
+        <input type="text" name="name" onChange={e => console.log(e.target.value)} />
+    </form>;
 }
 
 ReactDOM.render(
