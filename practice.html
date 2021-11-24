@@ -34,6 +34,30 @@ function Button() {
     return <button onClick={handleButtonClick}>Click me</button>;
 }
 
+//store the property in a variable
+function Button() {
+    function handleButtonClick(event) {
+        const target = event.target;
+        setTimeout(() => {
+            console.log(target); //<button></button>
+        }, 1);
+    }
+
+    return <button onClick={handleButtonClick}>Click me</button>;
+}
+
+//event.persist()
+function Button() {
+    function handleButtonClick(event) {
+        event.persist();
+        setTimeout(() => {
+            console.log(event.target);
+        }, 1);
+    }
+
+    return <button onClick={handleButtonClick}>Click me</button>;
+}
+
 
 </script>
 </body>
