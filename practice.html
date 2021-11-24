@@ -25,10 +25,17 @@
 const {useEffect, useRef} = React;
 const {useState} = React;
 
-function Checkout(props) {
-    return <form>
-        <input type="text" name="name" onChange={e => console.log(e.target.value)} />
-    </form>;
+function App() {
+    const [users, setUsers] = useState();
+
+    useEffect(() => {
+        fetch("api/users.json")
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            setUsers(data);
+        });
+    }, []);
 }
 
 ReactDOM.render(
