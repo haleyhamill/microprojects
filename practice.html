@@ -26,12 +26,13 @@ const {useEffect, useRef} = React;
 const {useState} = React;
 
 function App() {
-    const welcome = "Welcome to our <strong>Supermarket</strong";
-        return(
-            <div>
-                <div dangerouslySetInnerHTML={{__html: welcome}}></div>
-            </div>
-        );
+    useEffect(() => {
+        document.title = "Welcome";
+        const timerId = setTimeout(() => {
+            document.title = "Still there?";
+        }, 1000);
+        clearTimeout(timerId)
+    })
 }
 
 ReactDOM.render(
