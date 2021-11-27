@@ -59,6 +59,15 @@ function App() {
 
 render(<App />, document.querySelector("#react-root"));
 
+import React from "react";
+import {BrowserRouter} from "react-router-dom";
+
+function App() {
+    return <BrowserRouter>
+        <div>The rest of your app here</div>
+    </BrowserRouter>;
+}
+
 
 </script>
 </body>
