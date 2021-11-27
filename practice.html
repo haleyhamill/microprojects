@@ -29,8 +29,7 @@ import React from "react";
 import {BrowserRouter, Switch, Route, Link} from "react-router-dom";
 import {render} from "react-dom";
 import Home from "./Home.js";
-import Products from "./Products.js";
-import Team from "./Team.js";
+import Product from "./Product.js";
 
 function App() {
   return (
@@ -38,13 +37,16 @@ function App() {
         <nav>
           <ul>
             <li>
-              <Link to="/">Home</Link>
+                <Link to="/">Home</Link>
             </li>
             <li>
-              <Link to="/products">Products</Link>
+                <Link to="/products/1">Product 1</Link>
             </li>
             <li>
-              <Link to="/team">Team</Link>
+                <Link to="/products/2">Product 2</Link>
+            </li>
+            <li>
+                <Link to="/products/3">Product 3</Link>
             </li>
           </ul>
         </nav>
@@ -54,11 +56,8 @@ function App() {
                 <Route exact path="/">
                     <Home />
                 </Route>
-                <Route exact path="/products">
-                    <Products />
-                </Route>
-                <Route exact path="/team">
-                    <Team />
+                <Route exact path="/products/:id">
+                    <Product />
                 </Route>
             </Switch>
         </main>
