@@ -28,12 +28,12 @@ const {useState} = React;
 import React from "react";
 import {useParams} from "react-router-dom";
 
-export default function Product() {
+export default function Book() {
   const params = useParams();
   console.log(params);
   return <>
-    <h2>Product</h2>
-    <p>Description for the product with id: {params.id}</p>
+    <h2>Book</h2>
+    <p>Description of a {params.type} book</p>
   </>;
 }
 
