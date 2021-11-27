@@ -65,14 +65,12 @@ import {BrowserRouter} from "react-router-dom";
 function App() {
     return <BrowserRouter>
         <div>The rest of your app goes here</div>
-
-        /*we still need to wrap these two route components with a switch*/
-        <Route exact path="/about">
-            <About />
-        </Route>
-        <Route exact path="/">
-            <Home />
-        </Route>
+    
+        <Switch>
+            <Route exact path="/about">
+                <About />
+            </Route>
+        </Switch>
     </BrowserRouter>
 }
 
