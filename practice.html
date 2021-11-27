@@ -26,14 +26,46 @@ const {useEffect, useRef} = React;
 const {useState} = React;
 
 import React from "react";
-import {useParams} from "react-router-dom";
+import {BrowserRouter, Switch, Route, Link} from "react-router-dom";
+import {render} from "react-dom";
+import Home from "./Home.js";
+import Product from "./Product.js";
 
-function Product() {
-  const params = useParams();
-  console.log(params); // object containing params
+function App() {
+  return (
+    <BrowserRouter>
+        <nav>
+          <ul>
+            <li>
+                <Link to="/">Home</Link>
+            </li>
+            <li>
+                <Link to="/products/1">Product 1</Link>
+            </li>
+            <li>
+                <Link to="/products/2">Product 2</Link>
+            </li>
+            <li>
+                <Link to="/products/3">Product 3</Link>
+            </li>
+          </ul>
+        </nav>
 
-  return <h2>Product</h2>;
+        <main>
+            <Switch>
+                <Route exact path="/">
+                    <Home />
+                </Route>
+                <Route exact path="/products/:id">
+                    <Product />
+                </Route>
+            </Switch>
+        </main>
+    </BrowserRouter>
+  );
 }
+
+render(<App />, document.querySelector("#react-root"));
 
 
 </script>
