@@ -9,7 +9,7 @@
     <script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-    <script src='https://unpkg.com/react-router-dom@5.0.0/umd/react-router-dom.min.js'></script>
+    <script src='https://unpkg.com/react-router-dom@5.0.0/umd/react-router-dom.js'></script>
     <link rel="stylesheet" href="index.css">
     <title>React Simple Store Front</title>
     <style>
@@ -203,9 +203,8 @@
         const { useState, useEffect, useContext, createContext } = React;
         const { render } = ReactDOM;
         const AppContext = createContext();
-        const { BrowserRouter, Route, Link, Switch, useParams } = ReactRouterDOM;
-        console.log(BrowserRouter);
-        console.log("angry lady");
+        const { BrowserRouter, Route, Link, Switch } = ReactRouterDOM;
+
 
         function AppProvider(props) {
             const [theme, setTheme] = useState("dark");
@@ -298,7 +297,7 @@
             }
 
             return(
-                <Link to={"/products/" + details.id}>
+                <Link to={"/simpleStoreFront.html/product/" + details.id}>
                     <div className="product">
                         <img width="50" alt={details.name} src={details.image} />
                         <div className="product-info">
@@ -316,8 +315,9 @@
         }
 
         function ProductDetails() { 
-            const params = useParams();
-            console.log(params);
+            console.log('inside product details')
+            const href = window.location.href.toString()
+            const params = { id: href[href.length-1] }
             const [product, setProduct] = useState({});
             const {get} = useFetch("https://react-tutorial-demo.firebaseio.com/");
 
@@ -325,20 +325,20 @@
                 get(`productdetails/id${params.id}.json`)
                 .then(data => {
                 setProduct(data);
-            })
+                })
                 .catch(error => console.log(error))
             }, []);
 
             return(
                 <div>
-                    <Link to="/">Back home</Link>
+                    <Link to="/simpleStoreFront.html">Back home</Link>
                     {product && <div>
                     <h2>{product.name}</h2>
                     <p>{product.description}</p>
                     <h3>${product.price}</h3>
                     <img src={product.image} width="100" />
-                </div>}
-            </div>
+                    </div>}
+                </div>
             );
         }
 
@@ -396,18 +396,16 @@
             if (LoggedIn) {
                 return (
                     <BrowserRouter>
-                        <div className={context.theme}>
-                            <Navbar />
-                            <StoreFront />
-                            <button className="btn btn-outline" onClick={() => setLoggedIn(false)}>Logout</button>
-                        </div>
-
                         <Switch>
-                            <Route exact path="/">
-                                <StoreFront />
+                            <Route exact path="/simpleStoreFront.html">
+                                <div className={context.theme}>
+                                    <Navbar />
+                                    <StoreFront />
+                                    <button className="btn btn-outline" onClick={() => setLoggedIn(false)}>Logout</button>
+                                </div>
                             </Route>
-                            <Route exact path="/products/:id">
-                                <ProductDetails />
+                            <Route exact path="/simpleStoreFront.html/product/:id">
+                                <ProductDetails/>
                             </Route>
                         </Switch>
                     </BrowserRouter>
