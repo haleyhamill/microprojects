@@ -25,34 +25,35 @@
 const {useEffect, useRef} = React;
 const {useState} = React;
 
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
+import useFetch from "./useFetch.js";
 import {BrowserRouter, Route, Link, Switch, useParams} from "react-router-dom";
 
-export default function Product(props) {
-    const [count, setCount] = useState(0);
+export default function ProductDetails () {
+    const params = useParams();
+    console.log(params);
+    const [product, setProduct] = useState({});
+    const {get} = useFetch("https://react-tutorial-demo.firebaseio.com/");
 
-    const {details} = props;
+    useEffect(() => {
+        get(`productdetails/id${params.id}.json`)
+        .then(data => {
+            setProduct(data);
+        })
+        .catch(error => console.log(error))
+    }, []);
 
-    function handleIncrementClick() {
-        setCount(count + 1);
-    }
-    function handleDecrementClick() {
-        if (count > 0){
-            setCount(count - 1);
-        }
-    }
-    console.log(details);
-    return (
-        <Link to={"/products/" + details.id}>
-            <div className="product">
-                <img src={details.image} width="50" alt={details.name} />
-                    <div className="product-info">
-                    <h2>{details.name}</h2>
-                    <p>{details.description}</p>
-                    </div>
-            </div>
-        </Link>
-    );
+    return(
+        <div>
+        <Link to="/">Back home</Link>
+        {product && <div>
+            <h2>{product.name}</h2>
+            <p>{product.description}</p>
+            <h3>${product.price}</h3>
+            <img src={product.image} width="100" />
+        </div>}
+        </div>
+);
 }
 
 
