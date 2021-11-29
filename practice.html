@@ -25,36 +25,35 @@
 const {useEffect, useRef} = React;
 const {useState} = React;
 
-import React from "react";
-import {render} from "react-dom";
-import StoreFront from "./StoreFront.js";
-import {BrowserRouter, Switch, Route, Link} from "react-router-dom";
-import Product from "./Product.js";
-import ProductDetails from "./ProductDetails.js";
-import {useParams} from "react-router-dom";
+import React, {useState} from "react";
+import {BrowserRouter, Route, Link, Switch, useParams} from "react-router-dom";
 
-function App() {
+export default function Product(props) {
+    const [count, setCount] = useState(0);
+
+    const {details} = props;
+
+    function handleIncrementClick() {
+        setCount(count + 1);
+    }
+    function handleDecrementClick() {
+        if (count > 0){
+            setCount(count - 1);
+        }
+    }
+    console.log(details);
     return (
-        <BrowserRouter>
-            <Switch>
-                <Route exact path="/">
-                    <StoreFront />
-                </Route>
-                <Route exact path="/products/:id">
-                    <ProductDetails />
-                </Route>
-            </Switch>
-        </BrowserRouter>
+        <Link to={"/products/" + details.id}>
+            <div className="product">
+                <img src={details.image} width="50" alt={details.name} />
+                    <div className="product-info">
+                    <h2>{details.name}</h2>
+                    <p>{details.description}</p>
+                    </div>
+            </div>
+        </Link>
     );
 }
-
-export default function Loader() {
-    return <svg className="spinner" width="65px" height="65px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
-   <circle className="path" fill="none" strokeWidth="6" strokeLinecap="round" cx="33" cy="33" r="30"></circle>
-</svg>;
-}
-
-render(<App />, document.querySelector("#react-root"));
 
 
 </script>
