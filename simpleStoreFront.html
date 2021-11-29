@@ -9,6 +9,7 @@
     <script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src='https://unpkg.com/react-router-dom@5.0.0/umd/react-router-dom.min.js'></script>
     <link rel="stylesheet" href="index.css">
     <title>React Simple Store Front</title>
     <style>
@@ -200,6 +201,9 @@
         const { useState, useEffect, useContext, createContext } = React;
         const { render } = ReactDOM;
         const AppContext = createContext();
+        const { BrowserRouter, Route, Link, Switch, useParams } = ReactRouterDOM;
+        console.log(BrowserRouter);
+        console.log("angry lady");
 
         function AppProvider(props) {
             const [theme, setTheme] = useState("dark");
@@ -291,18 +295,22 @@
                 }
             }
 
-            return <div className="product">
-                <img width="50" alt={details.name} src={details.image} />
-                <div className="product-info">
-                    <h2>{details.name}</h2>
-                    <p>{details.description}</p>
-                </div>
-                <div className="product-buttons">
-                    <button className="product-sub" disabled={count === 0} onClick={handleProductCount}>-</button>
-                    <h3 className="product-count" hidden={count === 0}>{count}</h3>
-                    <button className="product-add" onClick={() => setCount(count + 1)}>+</button>
-                </div>
-            </div>
+            return(
+                <Link to={"/products/" + details.id}>
+                    <div className="product">
+                        <img width="50" alt={details.name} src={details.image} />
+                        <div className="product-info">
+                            <h2>{details.name}</h2>
+                            <p>{details.description}</p>
+                        </div>
+                        <div className="product-buttons">
+                            <button className="product-sub" disabled={count === 0} onClick={handleProductCount}>-</button>
+                            <h3 className="product-count" hidden={count === 0}>{count}</h3>
+                            <button className="product-add" onClick={() => setCount(count + 1)}>+</button>
+                        </div>
+                    </div>
+                </Link>
+            );
         }
 
         function ProductDetails() { 
@@ -385,11 +393,22 @@
             const [LoggedIn, setLoggedIn] = useState(false);
             if (LoggedIn) {
                 return (
-                    <div className={context.theme}>
-                        <Navbar />
-                        <StoreFront />
-                        <button className="btn btn-outline" onClick={() => setLoggedIn(false)}>Logout</button>
-                    </div>
+                    <BrowserRouter>
+                        <div className={context.theme}>
+                            <Navbar />
+                            <StoreFront />
+                            <button className="btn btn-outline" onClick={() => setLoggedIn(false)}>Logout</button>
+                        </div>
+
+                        <Switch>
+                            <Route exact path="/">
+                                <StoreFront />
+                            </Route>
+                            <Route exact path="/products/:id">
+                                <ProductDetails />
+                            </Route>
+                        </Switch>
+                    </BrowserRouter>
                 );
             }
 
