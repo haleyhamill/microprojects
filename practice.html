@@ -26,16 +26,29 @@ const {useEffect, useRef} = React;
 const {useState} = React;
 
 import React from "react";
+import {render} from "react-dom";
+import StoreFront from "./StoreFront.js";
+import {BrowserRouter, Switch, Route, Link} from "react-router-dom";
+import Product from "./Product.js";
+import ProductDetails from "./ProductDetails.js";
 import {useParams} from "react-router-dom";
 
-export default function Book() {
-  const params = useParams();
-  console.log(params);
-  return <>
-    <h2>Book</h2>
-    <p>Description of a {params.type} book with id {params.id}</p>
-  </>;
+function App() {
+    return (
+        <BrowserRouter>
+            <Switch>
+                <Route exact path="/">
+                    <StoreFront />
+                </Route>
+                <Route exact path="/products/:id">
+                    <ProductDetails />
+                </Route>
+            </Switch>
+        </BrowserRouter>
+    );
 }
+
+render(<App />, document.querySelector("#react-root"));
 
 
 </script>
