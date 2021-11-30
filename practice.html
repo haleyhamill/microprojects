@@ -25,36 +25,20 @@
 const {useEffect, useRef} = React;
 const {useState} = React;
 
-import React from "react";
-import {BrowserRouter, NavLink, Switch, Route} from "react-router-dom";
-import {render} from "react-dom";
-import About from "./About.js";
+import React, {useEffect} from "react";
+import {useHistory} from "react-router-dom";
 
-function App() {
-    return (<BrowserRouter>
-        <ul>
-            <li>
-                <NavLink activeClassName="nav-active" exact to="/">Home page</NavLink>
-            </li>
-            <li>
-                <NavLink activeClassName="nav-active" exact to="/about">About pages</NavLink>
-            </li>
-            <li>
-                <NavLink activeClassName="nav-active" to="/about/us">About us</NavLink>
-            </li>
-            <li>
-                <NavLink activeClassName="nav-active" to="/about/mission">About our mission</NavLink>
-            </li>
-        </ul>
-          <Switch>
-            <Route exact path="/">
-                <h1>Homepage</h1>
-            </Route>
-            <Route path="/about">
-                <About />
-            </Route>
-          </Switch>
-        </BrowserRouter>);
+function HelpPage() {
+    const history = useHistory();
+
+    useEffect(() => {
+        const isLoggedIn = window.localStorage.getItem("isLoggedIn");
+        if (!isLoggedIn) {
+            history.push("/login");
+        }
+    }, []);
+
+    return <h2>Help page</h2>;
 }
 
 render(<App />, document.querySelector("#react-root"));
