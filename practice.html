@@ -25,62 +25,55 @@
 const {useEffect, useRef} = React;
 const {useState} = React;
 
-function About() {
-    return(
-        <div>
-            {/* Content always rendered when the URL starts with /about */}
-            <h1>About</h1>
-            <Link to="/about/us">About us</Link>
-            |   <Link to="/about/team">About the team</Link>
-            
-            <Switch>
-                <Route exact path="/about/us">
-                    {/* Content rendered when on /about/us in addition to the ones rendered by /about */}
-                    <h2>About us</h2>
-                </Route>
-                <Route exact path="/about/team">
-                    {/* Content rendered when on /about/team in addition to the ones rendered by /about */}
-                    <h2>About the Team</h2>
-                </Route>
-            </Switch>
-        </div>
-    );
-}
+import React from "react";
+import {BrowserRouter, Switch, Route, Link} from "react-router-dom";
+import {render} from "react-dom";
+import Home from "./Home.js";
+import Products from "./Products.js";
+import Team from "./Team.js";
+import NotFound from "./NotFound.js";
 
 function App() {
-    return(
-        <BrowserRouter>
+  return (
+    <BrowserRouter>
+        <nav>
+          <ul>
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+            <li>
+              <Link to="/products">Products</Link>
+            </li>
+            <li>
+              <Link to="/team">Team</Link>
+            </li>
+            <li>
+              <Link to="/non-existing-page">Non existing page</Link> (should trigger 404)
+            </li>
+          </ul>
+        </nav>
+
+        <main>
             <Switch>
-                <Route path="/about">
-                    <About />
+                <Route exact path="/">
+                    <Home />
+                </Route>
+                <Route exact path="/products">
+                    <Products />
+                </Route>
+                <Route exact path="/team">
+                    <Team />
+                </Route>
+                <Route>
+                  <NotFound />
                 </Route>
             </Switch>
-        </BrowserRouter>
-    );
+        </main>
+    </BrowserRouter>
+  );
 }
 
 render(<App />, document.querySelector("#react-root"));
-
-import React from "react";
-import {useRouteMatch} from "react-router-dom";
-
-function Product() {
-    const match = useRouteMatch();
-    console.log(match);
-
-    return null;
-}
-
-<Switch>
-    <Route path={`${match.path}/details`}>Details</Route>
-    <Route path={`${match.path}/buy`}>Buy</Route>
-</Switch>
-
-<Switch>
-            <Route path={`${match.path}/details`}>
-                <ProductDetails />
-            </Route>
-        </Switch>
 
 
 </script>
