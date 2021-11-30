@@ -61,6 +61,16 @@ function App() {
 
 render(<App />, document.querySelector("#react-root"));
 
+import React from "react";
+import {useRouteMatch} from "react-router-dom";
+
+function Product() {
+    const match = useRouteMatch();
+    console.log(match);
+
+    return null;
+}
+
 
 </script>
 </body>
