@@ -76,6 +76,12 @@ function Product() {
     <Route path={`${match.path}/buy`}>Buy</Route>
 </Switch>
 
+<Switch>
+            <Route path={`${match.path}/details`}>
+                <ProductDetails />
+            </Route>
+        </Switch>
+
 
 </script>
 </body>
