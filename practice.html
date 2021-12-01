@@ -104,28 +104,25 @@ code {
 const {useEffect, useRef} = React;
 const {useState} = React;
 
-export default function Home(props) {
-    const history = useHistory();
-    
-    const {loggedIn} = props;
+import React, {useEffect} from "react";
+import {BrowserRouter, Switch, Route, useLocation} from "react-router-dom";
+import {render} from "react-dom";
 
-    function handleStartClick() {
-        if (loggedIn) {
-            history.push("/dashboard");
-        } else {
-            history.push("/login");
-        }
-    }
+function App() {
+    const location = useLocation();
 
-    return <>
-        <h2>Home: {loggedIn ? "Logged in" : "Logged out"}</h2>
-        <button onClick={handleStartClick}>Start</button>
-        <hr />
-    </>;
+    // run a piece of code on location change
+    useEffect(() => {
+        console.log(location.pathname);
+        // send it to analytic, or do some conditional logic here
+    }, [location]);
+
+    return <Switch>
+        {/* routes here... */}
+    </Switch>
 }
 
-ReactDOM.render(<App />, document.querySelector("#react-root"));
-
+render(<BrowserRouter><App /></BrowserRouter>, document.querySelector("#react-root"));
 
 </script>
 </body>
