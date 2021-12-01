@@ -104,98 +104,24 @@ code {
 const {useEffect, useRef} = React;
 const {useState} = React;
 
-function Navbar () {
-    return (
-        <div className="navbar">
-            <a className="navbar-item" href="#gallery">Gallery</a>
-            <a className="navbar-item" href="#flavours">Flavors</a>
-            <a className="navbar-item" href="#shops">Shops</a>
-        </div>
-    )
-};
+export default function Home(props) {
+    const history = useHistory();
+    
+    const {loggedIn} = props;
 
-function Gallery() {
-    return (
-        <div id="gallery" className="pad1">
-            <h2>Ice Cream Picture Gallery</h2>
-            <div className="images">
-                <img width="30%" src="https://www.cuisinart.co.uk/on/demandware.static/-/Sites-uk-cuisinart-Library/default/dw85481aea/images/recipes/Strawberry-Ice-Cream.jpg" />
-                <img width="30%" src="https://www.thespruceeats.com/thmb/E69KpId_2UzDmLKqj_cqBTsyykw=/3135x3135/smart/filters:no_upscale()/GettyImages-90053856-588b7aff5f9b5874ee534b04.jpg" />    
-                <img width="30%" src="https://img.buzzfeed.com/thumbnailer-prod-us-east-1/video-api/assets/216744.jpg?output-format=auto&output-quality=auto" />    
-            </div>
-        </div>
-    )
-}
+    function handleStartClick() {
+        if (loggedIn) {
+            history.push("/dashboard");
+        } else {
+            history.push("/login");
+        }
+    }
 
-function Flavors() {
-  const [selectedFlavour, setSelectedFlavour] = useState('coconut');
-
-  function handleChange(event) {
-    setSelectedFlavour(event.target.value);
-  }
-
-  return (
-    <div id="flavours" className="page-break pad1">
-      <h2>Ice Cream Flavors</h2>
-      <label>
-        Pick your favorite ice cream flavor:
-        <select value={selectedFlavour} onChange={handleChange}>
-          <option value="grapefruit">Grapefruit</option>
-          <option value="lime">Lime</option>
-          <option value="coconut">Coconut</option>
-          <option value="mango">Mango</option>
-        </select>
-      </label>
-      <p>Your flavor of choice is: <strong>{selectedFlavour}</strong></p>
-    </div>
-  );
-}
-
-function Shops() {
-const [list, setList] = useState(['Janetta\'s Gelataria', 'Dairy Queen', 'Luca\'s Gelato']);
-const [item, setItem] = useState('');
-
-function handleChange(event) {
-    setItem(event.target.value);
-}
-
-function handleSubmit(event) {
-    const listCopy = [...list];
-    listCopy.push(item);
-    setList(listCopy);
-    event.preventDefault();
-}
-
-return (
-    <div id="shops" className="page-break pad1">
-        <h2>Ice Cream Shops</h2>
-        <p>Use this as a place to note down your favorite places to get ice cream:</p>
-        <ul>
-            {list.map(listItem => <li key={listItem}>{listItem}</li>)}
-        </ul>
-        
-        <form onSubmit={handleSubmit}>
-            <label>Add a place:</label>
-            <input value={item} onChange={handleChange} />
-            <button type="submit">+ add</button>
-        </form>
-    </div>
-);
-}
-
-function App() {
-  return (
-    <div className="App">
-      <Navbar />
-      <header>
-        <h1>Welcome To My Ice Cream React Site</h1>
-      </header>
-      <Gallery />
-      <Flavors />
-      <Shops />
-      <Navbar />
-    </div>
-  );
+    return <>
+        <h2>Home: {loggedIn ? "Logged in" : "Logged out"}</h2>
+        <button onClick={handleStartClick}>Start</button>
+        <hr />
+    </>;
 }
 
 ReactDOM.render(<App />, document.querySelector("#react-root"));

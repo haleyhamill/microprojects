@@ -112,7 +112,7 @@ function Navbar () {
     return (
         <div className="navbar">
             <a className="navbar-item" href="#gallery">Gallery</a>
-            <a className="navbar-item" href="#flavours">Flavors</a>
+            <a className="navbar-item" href="#flavors">Flavors</a>
             <a className="navbar-item" href="#shops">Shops</a>
         </div>
     )
@@ -132,25 +132,25 @@ function Gallery() {
 }
 
 function Flavors() {
-  const [selectedFlavour, setSelectedFlavour] = useState('coconut');
+  const [selectedFlavor, setSelectedFlavor] = useState('coconut');
 
   function handleChange(event) {
-    setSelectedFlavour(event.target.value);
+    setSelectedFlavor(event.target.value);
   }
 
   return (
-    <div id="flavours" className="page-break pad1">
+    <div id="flavors" className="page-break pad1">
       <h2>Ice Cream Flavors</h2>
       <label>
         Pick your favorite ice cream flavor:
-        <select value={selectedFlavour} onChange={handleChange}>
+        <select value={selectedFlavor} onChange={handleChange}>
           <option value="grapefruit">Grapefruit</option>
           <option value="lime">Lime</option>
           <option value="coconut">Coconut</option>
           <option value="mango">Mango</option>
         </select>
       </label>
-      <p>Your flavor of choice is: <strong>{selectedFlavour}</strong></p>
+      <p>Your flavor of choice is: <strong>{selectedFlavor}</strong></p>
     </div>
   );
 }
