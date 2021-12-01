@@ -10,7 +10,7 @@
     <script src="https://kit.fontawesome.com/143890e1e3.js" crossorigin="anonymous"></script>
     <script src="https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.js"></script>
     <link href='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css' rel='stylesheet' />
-    <title>Video Player</title>
+    <title>Ice Cream Shop</title>
 </head>
 
 <style>
@@ -93,6 +93,10 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+#container1 {
+    display: float;
 }
 
 </style>
@@ -186,14 +190,16 @@ return (
 function App() {
   return (
     <div className="App">
-      <Navbar />
-      <header>
-        <h1>Welcome To My Ice Cream React Site</h1>
-      </header>
-      <Gallery />
-      <Flavors />
-      <Shops />
-      <Navbar />
+        <Navbar />
+        <header>
+            <h1>Welcome To My Ice Cream React Site</h1>
+        </header>
+        <div id="container1">
+            <Gallery />
+            <Flavors />
+        </div>
+        <Shops />
+        <Navbar />
     </div>
   );
 }
