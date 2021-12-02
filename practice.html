@@ -103,24 +103,15 @@ code {
 <script type="text/babel">
 const {useEffect, useRef} = React;
 const {useState} = React;
-
-import React from "react";
-import {loadStripe} from "@stripe/stripe-js";
-
-const stripeLoadedPromise = loadStripe('PK_REPLACE_WITH_STRIPE_PUBLISHABLE_KEY');
+const {loadStripe} = "@stripe/stripe-js";
 
 function App() {
-    return <button>Pay</button>;
-}
-
-//hkhkjjlk
-
-function App() {
-  function handleClick(event) {
+  const stripeLoadedPromise = loadStripe('pk_test_51HsqkCGuhXEITAut89vmc4jtjYd7XPs8hWfo2XPef15MFqI8rCFc8NqQU9WutlUBsd8kmNqHBeEmSrdMMpeEEyfT00KzeVdate');
+    function handleClick(event) {
     stripeLoadedPromise.then(stripe => {
       stripe.redirectToCheckout({
         lineItems: [{
-          price: 'REPLACE_WITH_PRICE_ID_HERE',
+          price: 'price_1HuavSGuhXEITAut56IgndJf',
           quantity: 1,
         }],
         mode: 'payment',
@@ -138,6 +129,8 @@ function App() {
 
   return <button onClick={handleClick}>Pay</button>;
 }
+
+ReactDOM.render(<App />, document.querySelector("#react-root"));
 
 </script>
 </body>
