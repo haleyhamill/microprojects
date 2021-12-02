@@ -104,42 +104,13 @@ code {
 const {useEffect, useRef} = React;
 const {useState} = React;
 
-import React, {useEffect, useState} from "react";
-import {useParams, Link, Switch, Route, useRouteMatch} from "react-router-dom";
-import useFetch from "./useFetch.js";
-import ProductDelivery from "./ProductDelivery.js";
+import React from "react";
+import {loadStripe} from "@stripe/stripe-js";
 
-export default function ProductDetails () {
-    const params = useParams();
-    const match = useRouteMatch();
+const stripeLoadedPromise = loadStripe('PK_REPLACE_WITH_STRIPE_PUBLISHABLE_KEY');
 
-    const [product, setProduct] = useState({});
-    const {get} = useFetch("https://react-tutorial-demo.firebaseio.com/");
-
-    const id = params.id;
-
-    useEffect(() => {
-        get(`productdetails/id${id}.json`)
-        .then(data => {
-            setProduct(data);
-        })
-        .catch(error => console.log(error))
-    }, []);
-
-    return <div>
-        {product && <div>
-            <h2>{product.name}</h2>
-            <p>{product.description}</p>
-            <h3>${product.price}</h3>
-            <img src={product.image} width="100" />
-            <p>View <Link to={`${match.url}/delivery`}>delivery notes</Link></p>
-        </div>
-        }
-
-        <Switch>
-            <Route path={`${match.path}/delivery`}><ProductDelivery /></Route>
-        </Switch>
-    </div>
+function App() {
+    return <button>Pay</button>;
 }
 
 </script>
