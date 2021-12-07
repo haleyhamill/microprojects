@@ -105,32 +105,7 @@ const {useEffect, useRef} = React;
 const {useState} = React;
 const {loadStripe} = "@stripe/stripe-js";
 
-function App() {
-  const stripeLoadedPromise = loadStripe('pk_test_51HsqkCGuhXEITAut89vmc4jtjYd7XPs8hWfo2XPef15MFqI8rCFc8NqQU9WutlUBsd8kmNqHBeEmSrdMMpeEEyfT00KzeVdate');
-    function handleClick(event) {
-    stripeLoadedPromise.then(stripe => {
-      stripe.redirectToCheckout({
-        lineItems: [{
-          price: 'price_1HuavSGuhXEITAut56IgndJf',
-          quantity: 1,
-        }],
-        mode: 'payment',
-        successUrl: 'https://react-tutorial.app/app.html',
-        cancelUrl: 'https://react-tutorial.app/app.html',
-      }).then(response => {
-        // this will only log if the redirect did not work
-        console.log(response.error);
-      }).catch(error => {
-        // wrong API key? you will see the error message here
-        console.log(error);
-      });
-    });
-  };  
-
-  return <button onClick={handleClick}>Pay</button>;
-}
-
-ReactDOM.render(<App />, document.querySelector("#react-root"));
+const match = useRouteMatch();
 
 </script>
 </body>
