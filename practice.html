@@ -105,9 +105,10 @@ const {useEffect, useRef} = React;
 const {useState} = React;
 const {loadStripe} = "@stripe/stripe-js";
 
-<Route exact path="/books/:type">
-    <Book />
-</Route>
+import React from "react";
+import {Link} from "react-router-dom";
+
+<Link activeClassName="active" to="/" exact>Home</Link>
 
 </script>
 </body>
