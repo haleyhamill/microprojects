@@ -105,10 +105,9 @@ const {useEffect, useRef} = React;
 const {useState} = React;
 const {loadStripe} = "@stripe/stripe-js";
 
-import React from "react";
-import {Link} from "react-router-dom";
-
-<NavLink activeClassName="active" to="/" exact>Home</NavLink>
+<Route path="/products">
+  <ProductDetails />
+</Route>
 
 </script>
 </body>
