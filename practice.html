@@ -105,7 +105,9 @@ const {useEffect, useRef} = React;
 const {useState} = React;
 const {loadStripe} = "@stripe/stripe-js";
 
-const match = useRouteMatch();
+<Route exact path="/books/:type">
+    <Book />
+</Route>
 
 </script>
 </body>
