@@ -105,9 +105,8 @@ const {useEffect, useRef} = React;
 const {useState} = React;
 const {loadStripe} = "@stripe/stripe-js";
 
-function getPassingTests(results) {
-    console.log(results);
-    return results.filter(result => result.grade >= 10)
+function getReactVersion() {
+    return React.version
 }
 
 </script>
