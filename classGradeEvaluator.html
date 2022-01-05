@@ -304,9 +304,9 @@ a:hover {
         <table border="1" id="stats-table" class="table table-center">
             <thead>
                 <tr>
-                    <th width="33%">Number of tests taken</th>
-                    <th width="33%">Sum of grades</th>
-                    <th>Average grade</th>
+                    <th width="33%">Number of Tests Taken</th>
+                    <th width="33%">Sum of Grades</th>
+                    <th>Average Grade</th>
                 </tr>
             </thead>
             <tbody></tbody>
@@ -314,9 +314,9 @@ a:hover {
         <table border="1" id="stats-table2" class="table table-center">
             <thead>
                 <tr>
-                    <th width="33%">Passing grades</th>
-                    <th width="33%">Failing grades</th>
-                    <th>Raised grades</th>
+                    <th width="33%">Passing Grades</th>
+                    <th width="33%">Failing Grades</th>
+                    <th>Raised Grades</th>
                 </tr>
             </thead>
             <tbody></tbody>
@@ -325,40 +325,34 @@ a:hover {
 
 <script type="text/babel">
 
-function getNumberOfGrades(grades) {
-    return grades.length;
-}
+const getNumberOfGrades = (grades) => grades.length;
 
-function getSumGrades(grades) {
+const getSumGrades = grades => {
     let sum = 0;
-    grades.forEach(function(grade) {
-        sum = sum + grade;
-    })
+    grades.forEach(grade => {sum = sum + grade})
     return sum;
 }
 
-function getAverageValue(grades) {
-    if (grades.length === 0) {
-        return "NA";
+const getAverageValue = grades => {
+    if (grades.length > 0) {
+        return getSumGrades(grades)/grades.length;
     }
-    return getSumGrades(grades) / grades.length;
+    return null;
 }
 
-function getPassingGrades(grades) {
-    return grades.filter(function(grade) {
-        return grade >= 10;
-    }).join(", ")
+const getPassingGrades = grades => {
+    return grades.filter(grade => grade >= 10).join(", ")
 }
 
-function getFailingGrades(grades) {
-    return grades.filter(function(grade) {
-        return grade <= 60;
-    }).join(", ")
+const getFailingGrades = grades => {
+    return grades.filter(grade => grade <= 9)
 }
 
-function getRaisedGrades(grades) {
-    return grades.map(function(grade) {
-        if (grade <= 99) { return grade + 1 }
+const getRaisedGrades = grades => {
+    return grades.map(grade => {
+        if (grade <= 99) {
+            return grade + 1
+        }
         return grade;
     }).join(", ")
 }
