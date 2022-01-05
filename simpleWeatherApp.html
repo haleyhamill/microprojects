@@ -282,32 +282,21 @@ input:not(.btn):focus {
 </style>
 
 <body>
-    <nav id="navbar">
-      <a href="" class="nav-brand">Voter Stats</a>
-      <ul>
-        <li class="nav-item"><a href="https://haleyhamill.github.io/">About Us</a></li>
-        <li><a href="" class="nav-item btn btn-default">Register</a></li>
-      </ul>
+    <nav class="navbar">
+        <h1 class="nav-brand">Weather in <span id="country"></span></h1>
     </nav>
-
-    <div class="container" id="main">
-        <p>Choose a city from the list below!</p><br />
-        <select id="city-select">
-            <option value="">Select a city</option>
-            <option value="amsterdam">Amsterdam</option>
-            <option value="berlin">Berlin</option>
-        </select>
-        <div class="card"><div><span id="count"></span> citizens can vote in <span id="city-name"></span></div></div>
-
-    <footer id="footer-wrapper">
-        <a href="https://haleyhamill.github.io/" target="_blank">About Us</a>
-        <a href="https://haleyhamill.github.io/" target="_blank">Contact Us</a>
-    </footer>
-</div>
-
+    
+    <main class="container">
+        <div class="card">
+            <h2 id="city-country"></h2>
+            <div class="icon-temp">
+                <img src="" alt="weather icon" id="icon" />
+                <h3><span id="temperature"></span>&deg;C</h3>
+            </div>
+        </div>
+    </main>    
 
 <script>
-
 function getVotersCount(ages) {
     console.log(ages);
     return ages.filter(function(age) {
