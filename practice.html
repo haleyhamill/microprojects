@@ -106,7 +106,16 @@ const {useState} = React;
 const {loadStripe} = "@stripe/stripe-js";
 const {render} = ReactDOM;
 
+function getProductDetails() {
+    return {
+        id: 1,
+        title: "Road bike",
+        inStock: true
+    }
+}
 
+// Sample usage - do not modify
+console.log(getProductDetails()); // the object you define
 
 </script>
 </body>
