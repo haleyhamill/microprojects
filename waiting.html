@@ -53,7 +53,9 @@ const {useState} = React;
 
 function Navbar() {
     const [className, newClassName] = useState("light");
+
     const [buttonStyle, newButtonStyle] = useState('lightButton');
+
     const handleClick = (e) => {
         e.preventDefault();
         if (className === "light") {
@@ -68,7 +70,7 @@ function Navbar() {
 
     return (
         <div className={className}>
-            <h1>WHAT ARE YOU WAITING FOR?</h1>
+            <h1>WHAT ARE WE WAITING FOR?</h1>
             <button className={buttonStyle} onClick={handleClick}>CHANGE MODE</button>
         </div>
     )
