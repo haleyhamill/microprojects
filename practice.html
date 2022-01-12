@@ -101,21 +101,8 @@ code {
     <div id="react-root"></div>
 
 <script type="text/babel">
-const {useEffect, useRef} = React;
-const {useState} = React;
-const {loadStripe} = "@stripe/stripe-js";
-const {render} = ReactDOM;
-
-function getProductDetails() {
-    return {
-        id: 1,
-        title: "Road bike",
-        inStock: true
-    }
-}
-
-// Sample usage - do not modify
-console.log(getProductDetails()); // the object you define
+const messages = tweets.map(tweet => tweet.message);
+console.log(messages);
 
 </script>
 </body>
