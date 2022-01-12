@@ -101,19 +101,22 @@ code {
     <div id="react-root"></div>
 
 <script type="text/babel">
-const getTemperatures = recordings => {
-    return recordings.map(recording => recording.temperature)
+const getFullNames = users => {
+    console.log(users);
+    return users.map(user => `${user.firstName} ${user.lastName}`.toUpperCase());
 }
 
 // Sample usage - do not modify
-const recordings = [{
-    date: "2020-01-03",
-    temperature: 3
+const users = [{
+    id: 1,
+    firstName: "Sam",
+    lastName: "Green"
 }, {
-    date: "2020-01-04",
-    temperature: -4
+    id: 2,
+    firstName: "Alex",
+    lastName: "Blue"
 }];
-console.log(getTemperatures(recordings)); // [3, -4]
+console.log(getFullNames(users)); // ["SAM GREEN", "ALEX BLUE"]
 
 </script>
 </body>
