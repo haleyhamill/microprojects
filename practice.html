@@ -101,22 +101,12 @@ code {
     <div id="react-root"></div>
 
 <script type="text/babel">
-const getCompletedCourses = courses => {
-    return courses.filter(course => course.isCompleted);
-    // course.isCompleted is already a boolean so there's no need to compare it to true with === true
-}
+const grades = [10, 15, 5];
 
-// Sample usage - do not modify
-const sampleCourses = [{
-    id: 1,
-    name: "Learn Programming",
-    isCompleted: true
-}, {
-    id: 2,
-    name: "Learn JavaScript",
-    isCompleted: false
-}];
-console.log(getCompletedCourses(sampleCourses));
+const sum = grades.reduce((total, current) => {
+  return total + current
+}, 0);
+
 </script>
 </body>
 </html>
