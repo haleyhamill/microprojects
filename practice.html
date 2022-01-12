@@ -101,18 +101,22 @@ code {
     <div id="react-root"></div>
 
 <script type="text/babel">
-tweets.filter(tweet => {
-  console.log(tweet);
-  return tweet.stats.likes > 30;
-})
+const getCompletedCourses = courses => {
+    return courses.filter(course => course.isCompleted);
+    // course.isCompleted is already a boolean so there's no need to compare it to true with === true
+}
 
-const tweet = tweets.find(tweet => tweet.id === searchId);
-console.log(tweet);
-
-tweets.some(tweet => tweet.stats.likes > 30);
-
-tweets.every(tweet => tweet.status.likes > 10);
-
+// Sample usage - do not modify
+const sampleCourses = [{
+    id: 1,
+    name: "Learn Programming",
+    isCompleted: true
+}, {
+    id: 2,
+    name: "Learn JavaScript",
+    isCompleted: false
+}];
+console.log(getCompletedCourses(sampleCourses));
 </script>
 </body>
 </html>
