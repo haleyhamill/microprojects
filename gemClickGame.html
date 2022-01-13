@@ -296,7 +296,28 @@
   </style>
 
   <body>
-    <div id="react-root"></div>
+    <nav id="navbar">
+      <a href="" class="nav-brand">Gem Click Game</a>
+      <ul>
+        <li class="nav-item nav-stats">Score <span id="show-score"></span></li>
+      </ul>
+    </nav>
+
+    <div class="container" id="main">
+      <div>
+        <h2>Collect coins</h2>
+        <p class="collection-description">Every coin is worth 10 points</p>
+        <button id="collect-coin" class="btn btn-default">Collect coin</button>
+        <p id="coins-collected" class="collection-stat">0 coins collected</p>
+      </div>
+
+      <div>
+        <h2>Collect gems</h2>
+        <p class="collection-description">Every gem is worth 50 points</p>
+        <button id="collect-gem" class="btn btn-outline">Collect gem</button>
+        <p id="gems-collected" class="collection-stat">0 gems collected</p>
+      </div>
+    </div>
 
     <script type="text/babel"></script>
   </body>
