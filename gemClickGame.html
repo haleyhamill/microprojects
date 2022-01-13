@@ -319,6 +319,91 @@
       </div>
     </div>
 
-    <script type="text/babel"></script>
+    <script type="text/babel">
+      class Collectible {
+        constructor(name, worth) {
+          this.name = name;
+          this.worth = worth;
+          this.count = 0;
+        }
+
+        getCollectedMessage() {
+          return `${this.count} ${this.name}s collected`;
+        }
+
+        collect() {
+          this.count++;
+        }
+
+        getScore() {
+          return this.count * this.worth;
+        }
+      }
+
+      class Coin extends Collectible {
+        constructor() {
+          super("coin", 10);
+        }
+      }
+
+      class Gem extends Collectible {
+        constructor() {
+          super("gem", 50);
+        }
+      }
+
+      class GameScore {
+        constructor() {
+          this.collectibles = [];
+        }
+
+        addCollectible(collectible) {
+          this.collectibles.push(collectible);
+        }
+
+        getTotalScore() {
+          return this.collectibles.reduce((total, current) => {
+            return total + current.getScore();
+          }, 0);
+        }
+      }
+      // ---------------------------
+
+      const coin = new Coin();
+      const gem = new Gem();
+      const gameScore = new GameScore();
+      try {
+        gameScore.addCollectible(coin);
+        gameScore.addCollectible(gem);
+      } catch (error) {
+        console.error(error);
+      }
+      // ---------------------------
+
+      const collectCoin = document.querySelector("#collect-coin");
+      const collectGem = document.querySelector("#collect-gem");
+      const coinsCollected = document.querySelector("#coins-collected");
+      const gemsCollected = document.querySelector("#gems-collected");
+      const showScore = document.querySelector("#show-score");
+
+      const render = () => {
+        try {
+          coinsCollected.textContent = coin.getCollectedMessage();
+          gemsCollected.textContent = gem.getCollectedMessage();
+          showScore.textContent = gameScore.getTotalScore();
+        } catch (error) {
+          console.error(error);
+        }
+      };
+
+      collectCoin.addEventListener("click", () => {
+        coin.collect();
+        render();
+      });
+      collectGem.addEventListener("click", () => {
+        gem.collect();
+        render();
+      });
+    </script>
   </body>
 </html>
