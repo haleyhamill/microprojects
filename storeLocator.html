@@ -1,114 +1,192 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
     <script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
-    <script src="https://kit.fontawesome.com/143890e1e3.js" crossorigin="anonymous"></script>
+    <script
+      src="https://kit.fontawesome.com/143890e1e3.js"
+      crossorigin="anonymous"
+    ></script>
     <script src="https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.js"></script>
-    <link href='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css' rel='stylesheet' />
+    <link
+      href="https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css"
+      rel="stylesheet"
+    />
     <title>Maps</title>
-</head>
+  </head>
 
-<style>
+  <style>
+    html,
+    body,
+    div,
+    span,
+    applet,
+    object,
+    iframe,
+    h2,
+    h4,
+    h5,
+    h6,
+    p,
+    blockquote,
+    pre,
+    a,
+    abbr,
+    acronym,
+    address,
+    big,
+    cite,
+    code,
+    del,
+    dfn,
+    em,
+    img,
+    ins,
+    kbd,
+    q,
+    s,
+    samp,
+    small,
+    strike,
+    strong,
+    sub,
+    sup,
+    tt,
+    var,
+    b,
+    u,
+    i,
+    center,
+    dl,
+    dt,
+    dd,
+    ol,
+    ul,
+    li,
+    fieldset,
+    form,
+    label,
+    legend,
+    table,
+    caption,
+    tbody,
+    tfoot,
+    thead,
+    tr,
+    th,
+    td,
+    article,
+    aside,
+    canvas,
+    details,
+    embed,
+    figure,
+    figcaption,
+    footer,
+    header,
+    hgroup,
+    menu,
+    nav,
+    output,
+    ruby,
+    section,
+    summary,
+    time,
+    mark,
+    audio,
+    video {
+      margin: 0;
+      padding: 0;
+      border: 0;
+      font-size: 100%;
+      font: inherit;
+      vertical-align: baseline;
+      text-align: right;
+    }
+  </style>
 
-html, body, div, span, applet, object, iframe,
-h2, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed, 
-figure, figcaption, footer, header, hgroup, 
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video { margin: 0; padding: 0; border: 0; font-size: 100%; font: inherit; vertical-align: baseline; }
-
-
-</style>
-
-<body>
+  <body>
     <div id="react-root"></div>
 
-<script type="text/babel">
-const {useEffect, useState} = React;
+    <script type="text/babel">
+      const { useEffect, useState } = React;
 
-function App({title, target, lat, long}) {
-    const [marker, setMarker] = useState();
+      function App({ title, target, lat, long }) {
+        const [marker, setMarker] = useState();
 
-    mapboxgl.accessToken = "pk.eyJ1IjoieG94b3hveG94byIsImEiOiJja3ZjcmFwZW05aHloMm5waDVxeTc4dW5iIn0.JQpWtubaYBPXqL2aJGbAzA";
+        mapboxgl.accessToken =
+          "pk.eyJ1IjoieG94b3hveG94byIsImEiOiJja3ZjcmFwZW05aHloMm5waDVxeTc4dW5iIn0.JQpWtubaYBPXqL2aJGbAzA";
 
-    useEffect(() => {
-        const map = new mapboxgl.Map({
+        useEffect(() => {
+          const map = new mapboxgl.Map({
             container: target,
-            style: 'mapbox://styles/mapbox/dark-v10',
+            style: "mapbox://styles/mapbox/dark-v10",
             center: [long, lat],
-            zoom: 10
-        });
+            zoom: 10,
+          });
 
-        const marker = new mapboxgl.Marker()
-        .setLngLat([12.567898, 55.67583])
-        .addTo(map);
-        setMarker(marker);
-    }, []);
+          const marker = new mapboxgl.Marker()
+            .setLngLat([12.567898, 55.67583])
+            .addTo(map);
+          setMarker(marker);
+        }, []);
 
-    const stores = {
-        central: [12.567898, 55.67583],
-        norrebro: [12.553806, 55.699299],
-        airport: [12.650784, 55.618042]
-    }
+        const stores = {
+          central: [12.567898, 55.67583],
+          norrebro: [12.553806, 55.699299],
+          airport: [12.650784, 55.618042],
+        };
 
-    const setMarkerLocation = (e) => {
-        e.preventDefault()
-        const location = e.target.value 
-        marker.setLngLat(stores[location])
-    }
+        const setMarkerLocation = (e) => {
+          e.preventDefault();
+          const location = e.target.value;
+          marker.setLngLat(stores[location]);
+        };
 
-    const mapOverlay = {
-        position: "absolute",
-        zIndex: "100",
-        backgroundColor: "rgba(255, 255, 255, 0.9)",
-        left: "0",
-        right: "0",
-        padding: "0 20px",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "space-between",
-        fontFamily: "Helvetica",
-    }
+        const mapOverlay = {
+          position: "absolute",
+          zIndex: "100",
+          backgroundColor: "rgba(255, 255, 255, 0.9)",
+          left: "0",
+          right: "0",
+          padding: "0 20px",
+          display: "flex",
+          alignItems: "center",
 
-    const mapStyle = {
-        height: '100vh',
-        width: '100vw',
-        margin: 'auto'
-    }
+          fontFamily: "Helvetica",
+        };
 
-    return(
-        <div>
+        const mapStyle = {
+          height: "100vh",
+          width: "100vw",
+          margin: "auto",
+        };
+
+        return (
+          <div>
             <div style={mapOverlay}>
-                <h3>Choose store: </h3>
-                <select onChange={setMarkerLocation}>
-                    <option value="center">Central Station</option>
-                    <option value="norrebro">Norrebro Street</option>
-                    <option value="airport">CPH Airport</option>
-                </select>
+              <h3>Choose store: </h3>
+              <select onChange={setMarkerLocation}>
+                <option value="center">Central Station</option>
+                <option value="norrebro">Norrebro Street</option>
+                <option value="airport">CPH Airport</option>
+              </select>
             </div>
             <div id={target} style={mapStyle}></div>
-        </div>
-    );
-}
+          </div>
+        );
+      }
 
-ReactDOM.render(
-    <div>
-        <App target="map" lat={55.67583} long={12.567898}/>
-    </div>,
-    document.getElementById("react-root")
-)
-</script>
-</body>
+      ReactDOM.render(
+        <div>
+          <App target="map" lat={55.67583} long={12.567898} />
+        </div>,
+        document.getElementById("react-root")
+      );
+    </script>
+  </body>
 </html>
