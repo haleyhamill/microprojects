@@ -8,175 +8,70 @@
   </head>
 
   <style>
-    html,
-    body,
-    div,
-    span,
-    applet,
-    object,
-    iframe,
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6,
-    p,
-    blockquote,
-    pre,
-    a,
-    abbr,
-    acronym,
-    address,
-    big,
-    cite,
-    code,
-    del,
-    dfn,
-    em,
-    img,
-    ins,
-    kbd,
-    q,
-    s,
-    samp,
-    small,
-    strike,
-    strong,
-    sub,
-    sup,
-    tt,
-    var,
-    b,
-    u,
-    i,
-    center,
-    dl,
-    dt,
-    dd,
-    ol,
-    ul,
-    li,
-    fieldset,
-    form,
-    label,
-    legend,
-    table,
-    caption,
-    tbody,
-    tfoot,
-    thead,
-    tr,
-    th,
-    td,
-    article,
-    aside,
-    canvas,
-    details,
-    embed,
-    figure,
-    figcaption,
-    footer,
-    header,
-    hgroup,
-    menu,
-    nav,
-    output,
-    ruby,
-    section,
-    summary,
-    time,
-    mark,
-    audio,
-    video {
-      margin: 0;
-      padding: 0;
-      border: 0;
-      font-size: 100%;
-      font: inherit;
-      vertical-align: baseline;
-    }
-
     :root {
       --white: #fff;
       --black: #000;
 
-      /* Primary colors*/
-      --primary-1: #d07a1c;
-      --primary-2: #e79e4f;
-      --primary-3: #e1b98e;
-      --primary-4: #f8d9b7;
-      --primary-5: #fcf0e3;
+      --primary-1: #c47e35;
+      --primary-2: #dca15d;
+      --primary-3: #dabb94;
+      --primary-4: #f3dabc;
+      --primary-5: #faf1e5;
 
-      /* Neutral colors */
       --neutral-1: #2c2c2c;
       --neutral-2: #434343;
       --neutral-3: #94868b;
       --neutral-4: #d9cfd3;
       --neutral-5: #f2ecee;
 
-      /* Accent-blue colors */
-      --accent-1: #2b8379;
-      --accent-2: #19a596;
-      --accent-3: #7fd1c7;
-      --accent-4: #7fd1c7;
-      --accent-5: #d0f3ef;
+      --accent-1: #458179;
+      --accent-2: #4da296;
+      --accent-3: #8dd8cf;
+      --accent-4: #92cfc7;
+      --accent-5: #d7f2ef;
     }
 
     body {
-      background-color: var(--neutral-5);
       margin: 0;
     }
 
     h1 {
-      font-size: 36px;
-      font-weight: 600;
-    }
-
-    h2 {
-      font-size: 28px;
-      font-weight: 500;
-    }
-
-    h3 {
-      font-size: 24px;
-      font-weight: normal;
+      margin: 50px 0 30px 0;
+      font-weight: 400;
     }
 
     p {
-      line-height: 30px;
-      font-size: 18px;
+      font-weight: 300;
     }
 
     a {
       color: var(--primary-2);
-      font-weight: bold;
-      text-decoration: none;
-    }
-    a:hover {
       text-decoration: underline;
+      line-height: 1.4;
+      padding: 0.25em;
     }
 
-    .rounded {
-      border-radius: 30px;
-    }
-
-    .container {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 0 20px;
-    }
-
-    /* BUTTONS */
     .btn {
       border-radius: 3px;
-      display: inline-block;
       cursor: pointer;
       font-size: 14px;
       font-weight: 600;
-      padding: 13px 40px;
-      border: 0;
-      transition: background-color 200ms, color 200ms;
+      margin: 10px;
+      padding: 10px 30px;
+      text-decoration: none;
+      max-width: 120px;
+      text-align: center;
+      display: inline-block;
+      transition: background-color 220ms, transform 220ms;
+      border: none;
+    }
+
+    .btn:active {
+      transform: translate(0.8px, 0.8px);
+    }
+
+    button.btn {
+      border: 1px solid var(--primary-3);
     }
 
     .btn-default {
@@ -184,58 +79,77 @@
       background-color: var(--primary-1);
     }
 
-    .btn-default:hover,
-    .btn-outline:hover {
-      color: var(--white);
-      background-color: var(--primary-2);
-      text-decoration: none;
-    }
-
-    .btn-default:active,
-    .btn-outline:active {
-      color: var(--primary-1);
-      background-color: var(--primary-4);
-    }
-
-    .btn-default[disabled],
-    .btn-outline[disabled] {
-      color: var(--primary-4);
-      background-color: var(--primary-5);
-      cursor: default;
-    }
-
-    .btn-accent {
-      color: var(--white);
-      background-color: var(--accent-1);
-    }
-
-    .btn-accent:hover {
-      color: var(--white);
-      background-color: var(--accent-2);
-      text-decoration: none;
-    }
-
-    .btn-accent:active {
-      color: var(--accent-1);
-      background-color: var(--accent-4);
-    }
-
-    .btn-accent[disabled] {
-      color: var(--accent-4);
-      background-color: var(--accent-5);
-      cursor: default;
-    }
-
     .btn-outline {
       color: var(--primary-1);
       background-color: var(--primary-4);
       border: var(--primary-1) 2px solid;
       box-shadow: 1px 1px 7px #c4c4c4;
-      padding: 8px 25px;
-      border-radius: 10px;
     }
 
-    /* FORMS */
+    .btn-active {
+      color: var(--primary-1);
+      background-color: var(--primary-4);
+    }
+
+    .btn-default:hover:not(:disabled) {
+      background-color: var(--primary-2);
+      color: white;
+    }
+
+    .btn-outline:hover:not(:disabled) {
+      background-color: var(--primary-3);
+    }
+
+    .btn-default:active {
+      color: var(--primary-1);
+      background-color: var(--primary-3);
+    }
+
+    .btn:disabled {
+      cursor: initial;
+      opacity: 0.5;
+    }
+
+    #navbar {
+      width: 100%;
+      padding: 10px 0;
+      box-shadow: 0px 3px 7px 1px rgba(0, 0, 0, 0.07),
+        0px -3px 7px 1px rgba(0, 0, 0, 0.07);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-brand {
+      font-size: 40px;
+      text-decoration: none;
+      padding-left: 20px;
+    }
+
+    #navbar ul {
+      list-style-type: none;
+      overflow: hidden;
+      padding-right: 20px;
+    }
+
+    #navbar li {
+      display: inline-block;
+    }
+
+    .nav-item a {
+      text-decoration: none;
+      font-weight: bold;
+      color: var(--primary-1);
+      display: block;
+      text-align: center;
+      padding: 13px 20px;
+    }
+
+    .nav-item:hover a {
+      text-decoration: none;
+      color: var(--primary-2);
+    }
+
     .form h2 {
       font-size: 24px;
       font-weight: 400;
@@ -247,37 +161,37 @@
       margin-bottom: 15px;
     }
 
-    .form-section {
+    .border-form {
       border-bottom: var(--neutral-4) solid 1px;
       margin-bottom: 20px;
     }
 
-    .input-required {
+    .required {
       color: var(--primary-2);
       text-decoration: none;
       font-weight: bold;
       padding: 0 1px;
     }
 
-    .label {
+    label {
       display: block;
+      margin-bottom: 0.5em;
       font-weight: 500;
     }
 
-    .input {
+    input:not(.btn) {
       font-size: 16px;
-      margin-top: 1em;
-      margin-bottom: 1.5em;
+      margin-bottom: 1.7em;
       padding: 0.75em 0.5em;
-      min-width: 200px;
+      background-color: var(--neutral-5);
+      width: 100%;
+      max-width: 250px;
       border: none;
       border-left: 7px solid var(--neutral-4);
-      transition: border-left-color 160ms;
-      background-color: white;
     }
 
     ::placeholder {
-      color: var(--neutral-3);
+      color: var(--neutral-4);
     }
 
     input:not(.btn):focus {
@@ -285,118 +199,115 @@
       border-left: 7px solid var(--accent-1);
     }
 
-    /* NAVBAR */
-    .navbar {
-      background-color: white;
-      padding: 10px;
-      box-shadow: 0px 3px 7px 1px rgba(0, 0, 0, 0.07),
-        0px -3px 7px 1px rgba(0, 0, 0, 0.07);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 20px;
+    .nav-tabs {
+      position: relative;
+      margin: 0 0 40px 0;
     }
 
-    .nav-brand {
-      font-weight: 450;
+    .nav-tabs ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      padding-left: 0;
+    }
+
+    .nav-tabs li {
+      display: inline-block;
+    }
+
+    .nav-tabs a {
       text-decoration: none;
-      padding-left: 20px;
-      margin-top: 15px;
-      margin-bottom: 15px;
-      color: initial;
+      color: var(--black);
+      margin-right: 20px;
+    }
+    .nav-tabs a#onlink {
+      border-bottom: 7px solid var(--accent-1);
     }
 
-    .table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-bottom: 20px;
+    .border-tabs {
+      position: absolute;
+      z-index: -1;
+      bottom: -3px;
+      border-bottom: var(--neutral-4) solid 1px;
+      min-width: 400px;
     }
 
-    .table thead {
-      background-color: var(--primary-1);
-      color: white;
-      border: 1px solid white;
+    .tabs p {
+      max-width: 450px;
     }
 
-    .table th {
-      padding: 15px;
-    }
-    .table td {
-      padding: 10px;
-    }
-
-    .table tbody {
-      font-size: 18px;
-      border: 1px solid white;
-    }
-    .table tbody tr:nth-child(2n) {
-      background-color: white;
+    .container {
+      max-width: 800px;
+      margin: 0px auto;
+      padding: 0 20px;
     }
 
-    .table tbody tr:nth-child(2n + 1) {
+    #footer-wrapper {
       background-color: var(--neutral-5);
+      padding: 40px 20px;
+      margin-top: 50px;
     }
 
-    .card {
-      background-color: white;
-      padding: 15px 20px;
-      border-radius: 6px;
+    #footer-wrapper a {
+      text-decoration: none;
     }
 
-    #icon {
-      border-radius: 50%;
-    }
-
-    .icon-temp {
-      display: flex;
-      align-items: center;
-      gap: 15px;
+    select {
+      padding: 10px 15px;
+      margin-left: 10px;
+      border-radius: 8px;
     }
   </style>
 
   <body>
-    <nav class="navbar">
-      <h1 class="nav-brand">Weather in <span id="country"></span></h1>
+    <nav id="navbar">
+      <a href="#" class="nav-brand">Weather App</a>
+      <ul>
+        <li class="nav-item"><a href="about.html">About us</a></li>
+        <li><a href="" class="nav-item btn btn-default">Register</a></li>
+      </ul>
     </nav>
 
-    <main class="container">
-      <div class="card">
-        <h2 id="city-country"></h2>
-        <div class="icon-temp">
-          <img src="" alt="weather icon" id="icon" />
-          <h3><span id="temperature"></span>&deg;C</h3>
-        </div>
-      </div>
-    </main>
+    <div class="container" id="main">
+      <h1>Weather in <span id="city">...</span></h1>
+      <select id="cities-dropdown">
+        <option value="">City</option>
+        <option value="amsterdam">Amsterdam</option>
+        <option value="berlin">Berlin</option>
+      </select>
+      <p id="result">&nbsp;</p>
+    </div>
+
+    <footer id="footer-wrapper">
+      <a href="about.html" target="_blank">About us</a>
+      <a href="contact.html" target="_blank">Contact us</a>
+    </footer>
 
     <script>
-      const icon = document.querySelector("#icon");
-      const temperature = document.querySelector("#temperature");
-      const country = document.querySelector("#country");
+      const citiesDropdown = document.querySelector("#cities-dropdown");
 
-      fetch(
-        `https://learn-javascript-demo-default-rtdb.firebaseio.com/weather/amsterdam.json`
-      )
-        .then((response) => response.json())
-        .then((data) => {
-          icon.src = getIcon(data);
-          temperature.textContent = getTemperature(data);
-          country.textContent = getCountry(data);
-        })
-        .catch((error) => console.error(error));
+      citiesDropdown.addEventListener("change", () => {
+        if (citiesDropdown.value) {
+          getWeather(citiesDropdown.value);
+        }
+      });
 
-      function getCountry(data) {
-        return data.location.country;
-      }
+      const getWeather = (city) => {
+        fetch(
+          `https://jsdemo-3f387-default-rtdb.europe-west1.firebasedatabase.app/weatherstack/${city}.json`
+        )
+          .then((response) => response.json())
+          .then((data) => {
+            console.log(data.current.temperature);
+            showTemperature(data.current.temperature);
+          });
+      };
 
-      function getIcon(data) {
-        return data.current.weather_icons[0];
-      }
-
-      function getTemperature(data) {
-        console.log(data.current.temperature);
-        return data.current.temperature;
-      }
+      // Do NOT modify the code below
+      const result = document.querySelector("#result");
+      const showTemperature = (temperature) => {
+        result.textContent = `It's ${temperature} degrees celsius.`;
+      };
     </script>
   </body>
 </html>
