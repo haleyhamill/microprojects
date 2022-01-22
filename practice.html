@@ -285,7 +285,13 @@
     </footer>
   </body>
   <script>
-    import { getFullName } from "./form.js";
+    const getFullName = () => {
+      return (
+        document.querySelector("#first-name").value +
+        " " +
+        document.querySelector("#last-name").value
+      );
+    };
 
     const fullName = document.querySelector("#full-name");
     const firstName = document.querySelector("#first-name");
