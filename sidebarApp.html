@@ -328,4 +328,21 @@
       <a href="contact.html" target="_blank">Contact us</a>
     </footer>
   </body>
+  <script>
+    const openSidebar = () => {
+      const element = document.querySelector("#app-sidebar");
+
+      if (!element.classList[0]) {
+        return element.classList.add("show");
+      } else if (element.classList[0] === "show") {
+        return element.classList.remove("show");
+      }
+    };
+
+    const menuSidebar = document.querySelector("#menu-sidebar");
+
+    menuSidebar.addEventListener("click", () => {
+      openSidebar();
+    });
+  </script>
 </html>
