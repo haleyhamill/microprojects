@@ -279,4 +279,16 @@
       <a href="contact.html" target="_blank">Contact us</a>
     </footer>
   </body>
+  <script>
+    const deactivateAllTabs = () => {
+      document.querySelectorAll(".tab").forEach((tab) => {
+        tab.classList.remove("active");
+      });
+    };
+
+    const activateClickedTab = (tab) => {
+      console.log(tab.classList);
+      tab.classList.add("active");
+    };
+  </script>
 </html>
