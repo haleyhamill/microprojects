@@ -285,23 +285,14 @@
     </footer>
   </body>
   <script>
-    const getFullName = () => {
-      return (
-        document.querySelector("#first-name").value +
-        " " +
-        document.querySelector("#last-name").value
-      );
-    };
-
-    const fullName = document.querySelector("#full-name");
-    const firstName = document.querySelector("#first-name");
-    const lastName = document.querySelector("#last-name");
-
-    const updateFullName = () => {
-      fullName.textContent = getFullName();
-    };
-
-    firstName.addEventListener("keyup", () => updateFullName());
-    lastName.addEventListener("keyup", () => updateFullName());
+    const positions = document.querySelector("#job-positions");
+    positions.insertAdjacentHTML(
+      "beforeend",
+      `<div class="position">2015-2020</div>`
+    );
+    positions.insertAdjacentHTML(
+      "afterbegin",
+      `<div class="position">2007-2009</div>`
+    );
   </script>
 </html>
