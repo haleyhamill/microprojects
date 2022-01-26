@@ -276,5 +276,15 @@
       <a href="about.html" target="_blank">About us</a>
       <a href="contact.html" target="_blank">Contact us</a>
     </footer>
+
+    <script>
+      const themeButton = document.querySelector("#theme-btn");
+      const htmlDoc = document.querySelector("html");
+
+      themeButton.addEventListener("click", () => {
+        console.log("here");
+        htmlDoc.classList.toggle("dark");
+      });
+    </script>
   </body>
 </html>
