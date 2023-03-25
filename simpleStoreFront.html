@@ -1,433 +1,477 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
     <script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-    <script src='https://unpkg.com/react-router-dom@5.0.0/umd/react-router-dom.js'></script>
+    <script src="https://unpkg.com/react-router-dom@5.0.0/umd/react-router-dom.js"></script>
     <title>React Simple Store Front</title>
     <style>
+      :root {
+        --primary: #4caf50;
+        --secondary: #ffc107;
+        --light-gray: #dadce0;
+        --dark: #222;
+      }
 
-        :root {
-            --primary: #4CAF50;
-            --secondary: #FFC107;
-            --light-gray: #DADCE0;
-            --dark: #222;
+      body {
+        margin: 30px;
+      }
+
+      .btn {
+        padding: 10px 20px;
+        cursor: pointer;
+        min-width: 100px;
+        border: 0;
+        border-radius: 3px;
+        font-size: 16px;
+        color: white;
+        transition: opacity 180ms ease-out, transform 180ms ease-out;
+      }
+
+      .btn:hover {
+        opacity: 0.8;
+      }
+
+      .btn:active {
+        transform: translate(1px, 1px);
+      }
+
+      .btn-primary {
+        background-color: var(--primary);
+      }
+
+      .btn-outline {
+        border: 1px solid var(--dark);
+        color: var(--dark);
+      }
+
+      .store-front {
+        display: grid;
+        grid-gap: 30px;
+        grid-template-columns: 1fr 1fr;
+        margin-bottom: 20px;
+      }
+
+      .product {
+        background-color: #ececec;
+        border-radius: 4px;
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        align-items: center;
+        height: 100px;
+      }
+
+      .product img {
+        padding: 10px 20px 10px 10px;
+      }
+
+      .product-info h2 {
+        margin-top: 10px;
+        margin-bottom: 0;
+        font-size: 20px;
+        font-weight: normal;
+      }
+
+      .product-count {
+        margin: 0;
+        font-weight: normal;
+        font-size: 16px;
+      }
+
+      .product-info p {
+        font-size: 14px;
+        margin-top: 10px;
+      }
+
+      .product-buttons {
+        align-self: stretch;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        text-align: center;
+      }
+
+      .product-sub,
+      .product-add {
+        box-shadow: none;
+        border: 0;
+        transition: opacity 180ms ease-out;
+        padding: 5px;
+        font-size: 16px;
+        width: 28px;
+        height: 28px;
+        cursor: pointer;
+      }
+
+      .product-sub {
+        border-radius: 0 3px 0 0;
+        background-color: var(--secondary);
+      }
+
+      .product-add {
+        background-color: var(--primary);
+        color: white;
+        border-radius: 0 0 3px 0;
+      }
+
+      .product-buttons button:disabled {
+        opacity: 0.5;
+        cursor: default;
+      }
+
+      .dark {
+        background-color: #222;
+        color: white;
+      }
+
+      .dark .product {
+        background-color: #333;
+      }
+
+      .spinner {
+        animation: rotator 1.4s linear infinite;
+      }
+
+      @keyframes rotator {
+        0% {
+          transform: rotate(0deg);
         }
 
-        body {
-            margin: 30px;
+        100% {
+          transform: rotate(270deg);
+        }
+      }
+
+      .path {
+        stroke-dasharray: 187;
+        stroke-dashoffset: 0;
+        transform-origin: center;
+        animation: dash 1.4s ease-in-out infinite,
+          colors 5.6s ease-in-out infinite;
+      }
+
+      @keyframes colors {
+        0% {
+          stroke: #4285f4;
         }
 
-        .btn {
-            padding: 10px 20px;
-            cursor: pointer;
-            min-width: 100px;
-            border: 0;
-            border-radius: 3px;
-            font-size: 16px;
-            color: white;
-            transition: opacity 180ms ease-out, transform 180ms ease-out;
+        25% {
+          stroke: #de3e35;
         }
 
-        .btn:hover {
-            opacity: 0.8;
+        50% {
+          stroke: #f7c223;
         }
 
-        .btn:active {
-            transform: translate(1px, 1px);
+        75% {
+          stroke: #1b9a59;
         }
 
-        .btn-primary {
-            background-color: var(--primary);
+        100% {
+          stroke: #4285f4;
+        }
+      }
+
+      @keyframes dash {
+        0% {
+          stroke-dashoffset: 187;
         }
 
-        .btn-outline {
-            border: 1px solid var(--dark);
-            color: var(--dark);
+        50% {
+          stroke-dashoffset: 46.75;
+          transform: rotate(135deg);
         }
 
-        .store-front {
-            display: grid;
-            grid-gap: 30px;
-            grid-template-columns: 1fr 1fr;
-            margin-bottom: 20px;
+        100% {
+          stroke-dashoffset: 187;
+          transform: rotate(450deg);
         }
-
-        .product {
-            background-color: #ececec;
-            border-radius: 4px;
-            display: grid;
-            grid-template-columns: auto 1fr auto;
-            align-items: center;
-            height: 100px;
-        }
-
-        .product img {
-            padding: 10px 20px 10px 10px;
-        }
-
-        .product-info h2 {
-            margin-top: 10px;
-            margin-bottom: 0;
-            font-size: 20px;
-            font-weight: normal;
-        }
-
-        .product-count {
-            margin: 0;
-            font-weight: normal;
-            font-size: 16px;
-        }
-
-        .product-info p {
-            font-size: 14px;
-            margin-top: 10px;
-        }
-
-        .product-buttons {
-            align-self: stretch;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            text-align: center;
-        }
-
-        .product-sub,
-        .product-add {
-            box-shadow: none;
-            border: 0;
-            transition: opacity 180ms ease-out;
-            padding: 5px;
-            font-size: 16px;
-            width: 28px;
-            height: 28px;
-            cursor: pointer;
-        }
-
-        .product-sub {
-            border-radius: 0 3px 0 0;
-            background-color: var(--secondary);
-        }
-
-        .product-add {
-            background-color: var(--primary);
-            color: white;
-            border-radius: 0 0 3px 0;
-        }
-
-        .product-buttons button:disabled {
-            opacity: 0.5;
-            cursor: default;
-        }
-
-        .dark {
-            background-color: #222;
-            color: white;
-        }
-
-        .dark .product {
-            background-color: #333;
-        }
-
-        .spinner {
-            animation: rotator 1.4s linear infinite;
-        }
-
-        @keyframes rotator {
-            0% {
-                transform: rotate(0deg);
-            }
-
-            100% {
-                transform: rotate(270deg);
-            }
-        }
-
-        .path {
-            stroke-dasharray: 187;
-            stroke-dashoffset: 0;
-            transform-origin: center;
-            animation: dash 1.4s ease-in-out infinite, colors 5.6s ease-in-out infinite;
-        }
-
-        @keyframes colors {
-            0% {
-                stroke: #4285F4;
-            }
-
-            25% {
-                stroke: #DE3E35;
-            }
-
-            50% {
-                stroke: #F7C223;
-            }
-
-            75% {
-                stroke: #1B9A59;
-            }
-
-            100% {
-                stroke: #4285F4;
-            }
-        }
-
-        @keyframes dash {
-            0% {
-                stroke-dashoffset: 187;
-            }
-
-            50% {
-                stroke-dashoffset: 46.75;
-                transform: rotate(135deg);
-            }
-
-            100% {
-                stroke-dashoffset: 187;
-                transform: rotate(450deg);
-            }
-        }
+      }
     </style>
-</head>
+  </head>
 
-<body>
+  <body>
     <div id="react-root"></div>
     <script type="text/babel">
-        const { useState, useEffect, useContext, createContext } = React;
-        const { render } = ReactDOM;
-        const AppContext = createContext();
-        const { BrowserRouter, Route, Link, Switch } = ReactRouterDOM;
+      const { useState, useEffect, useContext, createContext } = React;
+      const { render } = ReactDOM;
+      const AppContext = createContext();
+      const { BrowserRouter, Route, Link, Switch } = ReactRouterDOM;
 
+      function AppProvider(props) {
+        const [theme, setTheme] = useState("light");
+        const [currency, setCurrency] = useState("USD");
 
-        function AppProvider(props) {
-            const [theme, setTheme] = useState("light");
-            const [currency, setCurrency] = useState("USD")
-
-            function toggleTheme() {
-                if (theme === "dark") {
-                    setTheme("light")
-                } else {
-                    setTheme("dark")
-                }
-            }
-
-            function toggleCurrency() {
-                event.preventDefault();
-                setCurrency(event.target.value)
-            }
-
-            const value = {
-                theme: theme,
-                toggleTheme: toggleTheme,
-                currency: currency,
-                toggleCurrency: toggleCurrency
-            }
-
-            return(
-                <AppContext.Provider value={value}>
-                    {props.children} 
-                </AppContext.Provider>
-            )
+        function toggleTheme() {
+          if (theme === "dark") {
+            setTheme("light");
+          } else {
+            setTheme("dark");
+          }
         }
 
-        function useFetch(baseUrl) {
-            const [loading, setLoading] = useState(true);
+        function toggleCurrency() {
+          event.preventDefault();
+          setCurrency(event.target.value);
+        }
 
-            function get(url) {
-                return new Promise((resolve, reject) => {
-                    fetch(baseUrl + url)
-                        .then(response => response.json())
-                        .then(data => {
-                            if (!data) {
-                                setLoading(false);
-                                return reject(data);
-                            }
-                            setLoading(false);
-                            resolve(data);
-                        })
-                        .catch(error => {
-                            setLoading(false);
-                            reject(error);
-                        });
-                });
-            }
-
-            function post(url, body) {
-                return new Promise((resolve, reject) => {
-                    fetch(baseUrl + url, {
-                        method: "post",
-                        headers: {
-                            "Content-Type": "application/json",
-                        },
-                        body: JSON.stringify(body)
-                    })
-                        .then(response => response.json())
-                        .then(data => {
-                            if (!data) {
-                                setLoading(false);
-                                return reject(data);
-                            }
-                            setLoading(false);
-                            resolve(data);
-                        })
-                        .catch(error => {
-                            setLoading(false);
-                            reject(error);
-                        });
-                });
-            }
-
-            return { get, post, loading };
+        const value = {
+          theme: theme,
+          toggleTheme: toggleTheme,
+          currency: currency,
+          toggleCurrency: toggleCurrency,
         };
 
-        function Product({ details, ...rest }) {
-            const [count, setCount] = useState(0);
+        return (
+          <AppContext.Provider value={value}>
+            {props.children}
+          </AppContext.Provider>
+        );
+      }
 
-            function handleProductCount() {
-                if (count >= 1) {
-                    setCount(count - 1)
+      function useFetch(baseUrl) {
+        const [loading, setLoading] = useState(true);
+
+        function get(url) {
+          return new Promise((resolve, reject) => {
+            fetch(baseUrl + url)
+              .then((response) => response.json())
+              .then((data) => {
+                if (!data) {
+                  setLoading(false);
+                  return reject(data);
                 }
-            }
-
-            return(
-                <Link to={"/simpleStoreFront.html/product/" + details.id}>
-                    <div className="product">
-                        <img width="50" alt={details.name} src={details.image} />
-                        <div className="product-info">
-                            <h2>{details.name}</h2>
-                            <p>{details.description}</p>
-                        </div>
-                        <div className="product-buttons">
-                            <button className="product-sub" disabled={count === 0} onClick={handleProductCount}>-</button>
-                            <h3 className="product-count" hidden={count === 0}>{count}</h3>
-                            <button className="product-add" onClick={() => setCount(count + 1)}>+</button>
-                        </div>
-                    </div>
-                </Link>
-            );
+                setLoading(false);
+                resolve(data);
+              })
+              .catch((error) => {
+                setLoading(false);
+                reject(error);
+              });
+          });
         }
 
-        function ProductDetails() { 
-            console.log('inside product details')
-            const href = window.location.href.toString()
-            const params = { id: href[href.length-1] }
-            const [product, setProduct] = useState({});
-            const {get} = useFetch("https://react-tutorial-demo.firebaseio.com/");
-
-            useEffect(() => {
-                get(`productdetails/id${params.id}.json`)
-                .then(data => {
-                setProduct(data);
-                })
-                .catch(error => console.log(error))
-            }, []);
-
-            return(
-                <div>
-                    <Link to="/simpleStoreFront.html">Back home</Link>
-                    {product && <div>
-                    <h2>{product.name}</h2>
-                    <p>{product.description}</p>
-                    <h3>${product.price}</h3>
-                    <img src={product.image} width="100" />
-                    </div>}
-                </div>
-            );
+        function post(url, body) {
+          return new Promise((resolve, reject) => {
+            fetch(baseUrl + url, {
+              method: "post",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(body),
+            })
+              .then((response) => response.json())
+              .then((data) => {
+                if (!data) {
+                  setLoading(false);
+                  return reject(data);
+                }
+                setLoading(false);
+                resolve(data);
+              })
+              .catch((error) => {
+                setLoading(false);
+                reject(error);
+              });
+          });
         }
 
-        function Loader() {
-            return (
-                <svg className="spinner" width="65px" height="65px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
-                    <circle className="path" fill="none" strokeWidth="6" strokeLinecap="round" cx="33" cy="33" r="30"></circle>
-                </svg>);
+        return { get, post, loading };
+      }
+
+      function Product({ details, ...rest }) {
+        const [count, setCount] = useState(0);
+
+        function handleProductCount() {
+          if (count >= 1) {
+            setCount(count - 1);
+          }
         }
 
-        function StoreFront() {
-            const context = useContext(AppContext);
-            const [products, setProducts] = useState();
-            const [isLoading, setIsLoading] = useState(true);
-            const { get } = useFetch("https://react-tutorial-demo.firebaseio.com/")
+        return (
+          <Link to={"/simpleStoreFront.html/product/" + details.id}>
+            <div className="product">
+              <img width="50" alt={details.name} src={details.image} />
+              <div className="product-info">
+                <h2>{details.name}</h2>
+                <p>{details.description}</p>
+              </div>
+              <div className="product-buttons">
+                <button
+                  className="product-sub"
+                  disabled={count === 0}
+                  onClick={handleProductCount}
+                >
+                  -
+                </button>
+                <h3 className="product-count" hidden={count === 0}>
+                  {count}
+                </h3>
+                <button
+                  className="product-add"
+                  onClick={() => setCount(count + 1)}
+                >
+                  +
+                </button>
+              </div>
+            </div>
+          </Link>
+        );
+      }
 
-            useEffect(() => {
-                get("products.json").then(data => {
-                    console.log(data);
-                    setProducts(data);
-                })
-                .catch(error => console.log(error))
-                .finally(() => setIsLoading(false))
-            }, []);
+      function ProductDetails() {
+        console.log("inside product details");
+        const href = window.location.href.toString();
+        const params = { id: href[href.length - 1] };
+        const [product, setProduct] = useState({});
+        const { get } = useFetch("https://react-tutorial-demo.firebaseio.com/");
 
-            return (
-                <div>
-                    <p>Shopping in {context.currency}</p>
-                <div className="store-front">
-                    {isLoading && <Loader />}
-                    {products && products.map(product => <Product key={product.id} details={product} />)}
-                </div>
-                </div>
-            );
+        useEffect(() => {
+          get(`productdetails/id${params.id}.json`)
+            .then((data) => {
+              setProduct(data);
+            })
+            .catch((error) => console.log(error));
+        }, []);
+
+        return (
+          <div>
+            <Link to="/simpleStoreFront.html">Back home</Link>
+            {product && (
+              <div>
+                <h2>{product.name}</h2>
+                <p>{product.description}</p>
+                <h3>${product.price}</h3>
+                <img src={product.image} width="100" />
+              </div>
+            )}
+          </div>
+        );
+      }
+
+      function Loader() {
+        return (
+          <svg
+            className="spinner"
+            width="65px"
+            height="65px"
+            viewBox="0 0 66 66"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <circle
+              className="path"
+              fill="none"
+              strokeWidth="6"
+              strokeLinecap="round"
+              cx="33"
+              cy="33"
+              r="30"
+            ></circle>
+          </svg>
+        );
+      }
+
+      function StoreFront() {
+        const context = useContext(AppContext);
+        const [products, setProducts] = useState();
+        const [isLoading, setIsLoading] = useState(true);
+        const { get } = useFetch("https://react-tutorial-demo.firebaseio.com/");
+
+        useEffect(() => {
+          get("products.json")
+            .then((data) => {
+              console.log(data);
+              setProducts(data);
+            })
+            .catch((error) => console.log(error))
+            .finally(() => setIsLoading(false));
+        }, []);
+
+        return (
+          <div>
+            <p>Shopping in {context.currency}</p>
+            <div className="store-front">
+              {isLoading && <Loader />}
+              {products &&
+                products.map((product) => (
+                  <Product key={product.id} details={product} />
+                ))}
+            </div>
+          </div>
+        );
+      }
+
+      function Navbar() {
+        const context = useContext(AppContext);
+
+        return (
+          <div>
+            Shopping in {context.currency}
+            <select onChange={context.toggleCurrency}>
+              <option value="USD">USD</option>
+              <option value="EUR">EUR</option>
+            </select>
+            - Using {context.theme} theme{" "}
+            <button onClick={() => context.toggleTheme()}>Toggle theme</button>
+            <hr />
+          </div>
+        );
+      }
+
+      function App() {
+        const context = useContext(AppContext);
+        const [LoggedIn, setLoggedIn] = useState(false);
+        if (LoggedIn) {
+          return (
+            <BrowserRouter>
+              <Switch>
+                <Route exact path="/simpleStoreFront.html">
+                  <div className={context.theme}>
+                    <Navbar />
+                    <StoreFront />
+                    <button
+                      className="btn btn-outline"
+                      onClick={() => setLoggedIn(false)}
+                    >
+                      Logout
+                    </button>
+                  </div>
+                </Route>
+                <Route exact path="/simpleStoreFront.html/product/:id">
+                  <ProductDetails />
+                </Route>
+              </Switch>
+            </BrowserRouter>
+          );
         }
 
-        function Navbar() {
-            const context = useContext(AppContext)
+        return (
+          <div>
+            <h2>Please login</h2>
+            <button
+              className="btn btn-primary"
+              onClick={() => setLoggedIn(true)}
+            >
+              Login
+            </button>
+          </div>
+        );
+      }
 
-            return(
-                <div>
-                    Shopping in {context.currency}<select onChange={context.toggleCurrency}>
-                        <option value="USD">USD</option>
-                        <option value="EUR">EUR</option>
-                    </select>
-                    - Using {context.theme} theme <button onClick={() => context.toggleTheme()}>Toggle theme</button>
-                    <hr />
-                </div>
-            );
-        }
+      function AppWrapper(props) {
+        return (
+          <AppProvider>
+            <App />
+          </AppProvider>
+        );
+      }
 
-        function App() {
-            const context = useContext(AppContext);
-            const [LoggedIn, setLoggedIn] = useState(false);
-            if (LoggedIn) {
-                return (
-                    <BrowserRouter>
-                        <Switch>
-                            <Route exact path="/simpleStoreFront.html">
-                                <div className={context.theme}>
-                                    <Navbar />
-                                    <StoreFront />
-                                    <button className="btn btn-outline" onClick={() => setLoggedIn(false)}>Logout</button>
-                                </div>
-                            </Route>
-                            <Route exact path="/simpleStoreFront.html/product/:id">
-                                <ProductDetails/>
-                            </Route>
-                        </Switch>
-                    </BrowserRouter>
-                );
-            }
-
-            return (
-                <div>
-                    <h2>Please login</h2>
-                    <button className="btn btn-primary" onClick={() => setLoggedIn(true)}>Login</button>
-                </div>);
-        }
-
-        function AppWrapper(props) {
-            return <AppProvider><App /></AppProvider>
-        }
-
-        render(<AppWrapper />, document.querySelector("#react-root"));
-
-
-
-
+      render(<AppWrapper />, document.querySelector("#react-root"));
     </script>
-</body>
-
+  </body>
 </html>
