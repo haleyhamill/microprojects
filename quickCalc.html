@@ -285,7 +285,35 @@ a:hover {
 </main>
   
 <script> 
+let input = document.querySelector("#input")
+let output = document.querySelector("#output")
+let operationDouble = document.querySelector("#operation-double")
+let operationTriple = document.querySelector("#operation-triple")
 
+operationDouble.addEventListener("click", () => {
+    output.value = run("double", input.value)
+})
+operationTriple.addEventListener("click", () => {
+    output.value = run("triple", input.value)
+})
+
+function double(x) {
+    return x * 2
+}
+
+function triple(x) {
+    return x * 3
+}
+
+function run(operation, x) {
+    if (operation === "double") {
+        return double(x)
+    }
+
+    if (operation === "triple") {
+        return triple(x)
+    }
+}
 </script>  
   
 </body>
