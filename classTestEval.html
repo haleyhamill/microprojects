@@ -1,32 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
-    <script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
-    <script src="https://kit.fontawesome.com/143890e1e3.js" crossorigin="anonymous"></script>
-    <title>Class Grade Evaluator</title>
-</head>
-
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
-    html, body, div, span, applet, object, iframe,
-    h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-    a, abbr, acronym, address, big, cite, code,
-    del, dfn, em, img, ins, kbd, q, s, samp,
-    small, strike, strong, sub, sup, tt, var,
-    b, u, i, center,
-    dl, dt, dd, ol, ul, li,
-    fieldset, form, label, legend,
-    table, caption, tbody, tfoot, thead, tr, th, td,
-    article, aside, canvas, details, embed, 
-    figure, figcaption, footer, header, hgroup, 
-    menu, nav, output, ruby, section, summary,
-    time, mark, audio, video { margin: 0; padding: 0; border: 0; font-size: 100%; font: inherit; vertical-align: baseline; }
-    
-    :root {
+:root {
   --white: #fff;
   --black: #000;
 
@@ -91,7 +70,7 @@ a:hover {
 }
 
 .container {
-  max-width: 65%;
+  max-width: 900px;
   margin: 0 auto;
   padding: 0 20px;
 }
@@ -201,14 +180,13 @@ a:hover {
   border-left: 7px solid var(--neutral-4);
   transition: border-left-color 160ms;
   background-color: white;
-  margin-bottom: 10px;
 }
 
 ::placeholder {
   color: var(--neutral-3);
 }
 
-.input:not(.btn):focus {
+.input:focus {
   outline: none;
   border-left: 7px solid var(--primary-1);
 }
@@ -223,9 +201,6 @@ a:hover {
   align-items: center;
   justify-content: space-between;
   margin-bottom: 20px;
-  width: 65%;
-  margin-right: auto;
-  margin-left: auto;
 }
 
 .nav-brand {
@@ -282,120 +257,133 @@ a:hover {
 #stats-table2 {
   margin-top: 20px;
 }
-
-#stats-table2 {
-  margin-top: 20px;
-}
-
 </style>
+</head>
 
 <body>
     <nav class="navbar">
-        <h1 class="nav-brand">Class Grade Evaluator</h1>
+        <h1 class="nav-brand">Classroom</h1>
     </nav>
     
     <main class="container">
         <form id="grades-form">
-            <label class="label" for="component-name">Enter grade</label>
-            <input type="number" min="0" max="100" class="input" required placeholder="Grade (0 and 100)" id="your-grade">
+            <label class="label" for="your-grade">Enter grade</label>
+            <input type="number" min="0" max="20" class="input" required placeholder="Grade (0 and 20)" id="your-grade">
             <input type="submit" class="btn btn-accent" value="Add" />
         </form>
-    
-        <table border="1" id="stats-table" class="table table-center">
+        <table border="1" class="table table-center" id="stats-table">
             <thead>
                 <tr>
-                    <th width="33%">Number of Tests Taken</th>
-                    <th width="33%">Sum of Grades</th>
-                    <th>Average Grade</th>
+                    <th width="33%">Number of tests taken</th>
+                    <th width="33%">First submitted grade</th>
+                    <th>Last submitted grade</th>
                 </tr>
             </thead>
             <tbody></tbody>
         </table>
-        <table border="1" id="stats-table2" class="table table-center">
+        <table border="1" class="table table-center" id="stats-table2">
             <thead>
                 <tr>
-                    <th width="33%">Passing Grades</th>
-                    <th width="33%">Failing Grades</th>
-                    <th>Raised Grades</th>
+                    <th width="33%">Test was too easy?</th>
+                    <th width="33%">Grade exists?
+                        <select id="grade-to-check">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                            <option value="13">13</option>
+                            <option value="14">14</option>
+                            <option value="15">15</option>
+                            <option value="16">16</option>
+                            <option value="17">17</option>
+                            <option value="18">18</option>
+                            <option value="19">19</option>
+                            <option value="20">20</option>
+                        </select>
+                    </th>
+                    <th>CSV export</th>
                 </tr>
             </thead>
             <tbody></tbody>
         </table>
     </main>
-
-<script type="text/babel">
-
-const getNumberOfGrades = (grades) => grades.length;
-
-const getSumGrades = grades => {
-    let sum = 0;
-    grades.forEach(grade => {sum = sum + grade})
-    return sum;
+</body>
+  
+<script> 
+function addGrade(grades, grade) {
+    grades.push(grade)
+    return grades
 }
 
-const getAverageValue = grades => {
-    if (grades.length > 0) {
-        return getSumGrades(grades)/grades.length;
-    }
-    return null;
+function getNumberOfGrades(grades) {
+    return grades.length
 }
 
-const getPassingGrades = grades => {
-    return grades.filter(grade => grade >= 10).join(", ")
+function getFirstGrade(grades) {
+    return grades[0]
 }
 
-const getFailingGrades = grades => {
-    return grades.filter(grade => grade <= 9)
+function getLastGrade(grades) {
+    return grades[grades.length-1]
 }
 
-const getRaisedGrades = grades => {
-    return grades.map(grade => {
-        if (grade <= 99) {
-            return grade + 1
-        }
-        return grade;
-    }).join(", ")
+function isTestTooEasy(grades) {
+    return grades.includes(20)
 }
 
-const gradesForm = document.querySelector("#grades-form");
-const yourGrade = document.querySelector("#your-grade");
+function gradeExists(grades, grade) {
+    return grades.includes(grade)
+}
 
-const grades = [];
+function exportCSV(grades) {
+    return grades.join(", ")
+}
 
-const renderStats2Table = grades => {
-    const tbody = document.querySelector("#stats-table2 tbody");
+let gradesForm = document.querySelector("#grades-form")
+let yourGrade = document.querySelector("#your-grade")
+const gradeToCheck = document.querySelector("#grade-to-check")
+
+let grades = [14, 9, 13, 15, 18]
+
+function render(grades) {
+    console.log("Grades: " + grades.join(', '))
+    let tbody = document.querySelector("#stats-table tbody")
     tbody.innerHTML = `<tr>
-        <td>${getPassingGrades(grades)}</td>
-        <td>${getFailingGrades(grades)}</td>
-        <td>${getRaisedGrades(grades)}</td>
-    </tr>;
-}
+    <td>${getNumberOfGrades(grades)}</td>
+    <td>${getFirstGrade(grades)}</td>
+    <td>${getLastGrade(grades)}</td>
+    </tr>`
 
-const renderStatsTable = grades => {
-    const tbody = document.querySelector("#stats-table tbody");
-    tbody.innerHTML = `<tr>
-        <td>${getNumberOfGrades(grades)}</td>
-        <td>${getSumGrades(grades)}</td>
-        <td>${getAverageValue(grades)}</td>
+    let tbody2 = document.querySelector("#stats-table2 tbody")
+    tbody2.innerHTML = `<tr>
+    <td>${isTestTooEasy(grades)}</td>
+    <td>${gradeExists(grades, Number.parseInt(gradeToCheck.value, 10))}</td>
+    <td>${exportCSV(grades)}</td>
     </tr>`
 }
 
-const render = grades => {
-    console.log("Grades: " + grades.join(' , '));
-    renderStatsTable(grades);
-    renderStats2Table(grades);
-}
+gradeToCheck.addEventListener("change", () => {
+    render(grades)
+})
 
 gradesForm.addEventListener("submit", event => {
-    event.preventDefault();
-    const newGrade = Number.parseInt(yourGrade.value, 10);
-    grades.push(newGrade);
-    yourGrade.value = "";
-    render(grades);
-});
+    event.preventDefault()
+    let newGrade = Number.parseInt(yourGrade.value, 10)
+    grades = addGrade(grades, newGrade)
+    yourGrade.value = ""
+    render(grades)
+})
 
-render(grades);
-
-</script>
+render(grades)
+</script>  
+  
 </body>
 </html>
