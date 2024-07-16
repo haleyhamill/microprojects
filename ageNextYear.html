@@ -260,14 +260,15 @@ input:not(.btn):focus {
     
   </body>
   <script>
-    const positions = document.querySelector("#job-positions");
-    positions.insertAdjacentHTML(
-      "beforeend",
-      `<div class="position">2015-2020</div>`
-    );
-    positions.insertAdjacentHTML(
-      "afterbegin",
-      `<div class="position">2007-2009</div>`
-    );
+function getNextAge(age) {
+    return Number.parseInt(age, 10) + 1
+}
+
+const age = document.querySelector("#your-age");
+const nextAge = document.querySelector("#next-age");
+
+age.addEventListener("keyup", () => {
+    nextAge.textContent = getNextAge(age.value);
+});
   </script>
 </html>
