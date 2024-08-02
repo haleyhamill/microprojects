@@ -285,9 +285,10 @@
     </footer>
   </body>
   <script>
-function getDescription(text) {
-  console.log(text)
-  return text.substring(0,10)
+function getStringSizes(strings) {
+    return strings.map(function(string) {
+        return string.length
+    })
 }
   </script>
 </html>
