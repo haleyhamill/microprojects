@@ -58,19 +58,19 @@
             },
             addItem: function (e) {
                 var itemArray = this.state.items;
+                if (this._inputElement.value.trim()){
+                    itemArray.push(
+                        {
+                            text: this._inputElement.value,
+                            key: Date.now()
+                        }
+                    );
+                    this._inputElement.value = ""
 
-                itemArray.push(
-                    {
-                        text: this._inputElement.value,
-                        key: Date.now()
-                    }
-                );
-                this._inputElement.value = ""
-
-                this.setState({
-                    items: itemArray
-                });
-
+                    this.setState({
+                        items: itemArray
+                    });
+                }
                 e.preventDefault();
 
             },
