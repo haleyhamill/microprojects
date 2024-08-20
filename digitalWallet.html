@@ -35,7 +35,7 @@ body { color: white; font-family: "Verdana", sans-serif; text-align: center; hei
 
 
 
-header { display: flex; flex-direction: row; justify-content: space-between; height: 66px; background-color:rgba(0, 0, 0, 0.2); }
+header { display: flex; flex-direction: row; justify-content: space-between; height: 66px; background-color:rgba(0, 0, 0, 0.7); }
 
 span { align-self: center; padding-left: 1em; padding-right: 1em; font-size: 18px; }
 
@@ -43,7 +43,7 @@ span { align-self: center; padding-left: 1em; padding-right: 1em; font-size: 18p
     /*box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; width: 15em;*/}
 
 #balanceContainer { display: flex; flex-direction: column; justify-content: center; align-items: center; height: 256px; 
-    background-color: rgba(126, 246, 255, 0.26);}
+    background-color: rgba(120, 150, 255, 0.9);}
 
 #balance { color: white; font-size: 76px;  padding: 1rem; margin-top: auto; margin-bottom: auto;}
 
@@ -134,6 +134,14 @@ function Wallet() {
             total += array[i]
         }
         return total
+    }
+
+    const wait = milliseconds => {
+        return new Promise(resolve => {
+            setTimeout(() => {
+                resolve();
+            }, milliseconds)
+        });
     }
 
     function displayMoney(amount){
