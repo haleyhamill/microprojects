@@ -136,7 +136,12 @@ function Wallet() {
         return total
     }
 
-
+const result = wait(1000);
+console.log(result)
+result.then(() => {
+    console.log(result) //Promise
+});
+console.log(result) //Promise
 
     function displayMoney(amount){
         return amount>=0?`$${amount}` :`-$${Math.abs(amount)}`
