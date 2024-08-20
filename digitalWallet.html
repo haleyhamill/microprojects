@@ -136,13 +136,7 @@ function Wallet() {
         return total
     }
 
-    const wait = milliseconds => {
-        return new Promise(resolve => {
-            setTimeout(() => {
-                resolve();
-            }, milliseconds)
-        });
-    }
+
 
     function displayMoney(amount){
         return amount>=0?`$${amount}` :`-$${Math.abs(amount)}`
