@@ -136,7 +136,6 @@ function Wallet() {
         return total
     }
 
-
     function displayMoney(amount){
         return amount>=0?`$${amount}` :`-$${Math.abs(amount)}`
     }
@@ -151,6 +150,14 @@ function Wallet() {
         return todaysDate;
     }
     const now = getToday();
+
+    const waitOneSecond = () => {
+        return new Promise(resolve => {
+            setTimeout(() => {
+                resolve()
+            }, 1_000)
+        });
+    }
 
     return(
     <div id="contentContainer">
