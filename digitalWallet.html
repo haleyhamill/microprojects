@@ -151,12 +151,13 @@ function Wallet() {
     }
     const now = getToday();
 
-    const waitOneSecond = () => {
+    const wait = milliseconds => {
         return new Promise(resolve => {
             setTimeout(() => {
-                resolve()
-            }, 1_000)
-        });
+                const seconds = milliseconds / 1_000;
+                resolve(seconds)
+            }, milliseconds)
+        })
     }
 
     return(
