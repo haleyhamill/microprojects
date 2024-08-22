@@ -111,6 +111,11 @@ const {render} = ReactDOM;
 function Wallet() {
     const [transactions, setTransactions] = useState([]);
 
+    fetch("URL"
+        .then(response => response.json())
+        .then(data => console.log(data))
+    )
+
     function handleDepositClick() {
         const transCopy = transactions.map(transaction => transaction);
         transCopy.push(600);
@@ -150,15 +155,6 @@ function Wallet() {
         return todaysDate;
     }
     const now = getToday();
-
-    const wait = milliseconds => {
-        return new Promise(resolve => {
-            setTimeout(() => {
-                const seconds = milliseconds / 1_000;
-                resolve(seconds)
-            }, milliseconds)
-        })
-    }
 
     return(
     <div id="contentContainer">
