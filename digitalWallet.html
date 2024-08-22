@@ -111,10 +111,9 @@ const {render} = ReactDOM;
 function Wallet() {
     const [transactions, setTransactions] = useState([]);
 
-    fetch("URL"
+    fetch("URL")
         .then(response => response.json())
         .then(data => console.log(data))
-    )
 
     function handleDepositClick() {
         const transCopy = transactions.map(transaction => transaction);
