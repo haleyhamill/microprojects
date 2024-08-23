@@ -31,6 +31,17 @@ html {
 <script type="text/babel">
     const { useState, useEffect } = React;
 
+    fetch("", {
+        method: "POST",
+        body: JSON.stringify({
+            tweet: "Your tweet here..."
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log(data)
+    });
+
     function BackgroundWrap() {
         const [background, setBackground] = useState({
             number: 20
