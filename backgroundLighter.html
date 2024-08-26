@@ -29,18 +29,29 @@ html {
 </html>
 
 <script type="text/babel">
+class FetchWrapper {
+    constructor(baseURL) {
+        this.baseURL = baseURL
+    }
+
+    put(endpoint, body) {
+        return fetch(this.baseURL + endpoint, {
+            method: "put",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(body)
+        }).then(response => response.json())
+    }
+}
+
+
     const { useState, useEffect } = React;
 
     function BackgroundWrap() {
         const [background, setBackground] = useState({
             number: 20
         });
-
-        export const votingAge = 18;
-        export const settings = {
-            theme: "light",
-            admin: false
-        }
 
         function ageBackground() {
             const newObj = { ...background, number: background.number + 100 }
