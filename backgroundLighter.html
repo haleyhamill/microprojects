@@ -29,22 +29,10 @@ html {
 </html>
 
 <script type="text/babel">
-class FetchWrapper {
-    constructor(baseURL) {
-        this.baseURL = baseURL
-    }
 
-    put(endpoint, body) {
-        return fetch(this.baseURL + endpoint, {
-            method: "put",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(body)
-        }).then(response => response.json())
-    }
-}
-
+    fetch(URL)
+    .then(response => response.json())
+    .then(data => console.log(data))
 
     const { useState, useEffect } = React;
 
