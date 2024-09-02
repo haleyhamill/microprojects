@@ -1,87 +1,134 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
     <script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
     <script></script>
     <title>Neon Lights</title>
-</head>
-<style>
-*{ margin:0; padding: 0; }
-
-h1 { padding-top: 17.5%; }
-
-div { color: black; font-size: 30px; display: block;
-font-family: Arial, Helvetica, sans-serif, sans-serif;
-text-align: center; margin-left: auto; margin-right: auto; height: 100vh; }
-
-.light { background-color: white; }
-
-.lightButton { background-color: rgb(224, 237, 241); margin-top: 70px; text-align: center; border: 0; padding: 15px 20px; min-width: 150px;
-    font-size: 16px; border-radius: 3px; cursor: pointer; transition: opacity 200ms ease-out; color: black; 
-    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #fff,;
-}
-
-button:hover { opacity: 0.8; }
-
-.darkButton { background-color: black; margin-top: 70px; text-align: center; border: 0; padding: 15px 20px; min-width: 150px;
-    font-size: 16px; border-radius: 3px; cursor: pointer; transition: opacity 200ms ease-out; color: black;
-    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #fff,;
-}
-
-.dark { animation: dark 1s linear infinite; -moz-animation: dark 1s linear infinite;
-  -webkit-animation: dark 1s linear infinite; -o-animation: dark 1s linear infinite;
-}
-
-@keyframes dark { 0%, 100% { color: #fff; text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #fff, 0 0 40px #0ff,
-    0 0 80px #0ff, 0 0 90px #0ff, 0 0 90px #0ff, 0 0 150px #0ff; background: black; 
-    background-repeat: no-repeat; background-position-x: 50%; background-size: cover; }
-  50% { color: #fff; text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #fff, 0 0 40px rgb(0, 167, 167),
-    0 0 80px rgb(0, 138, 138), 0 0 90px rgb(1, 77, 77), 0 0 90px rgb(0, 134, 134), 0 0 150px rgb(0, 160, 160); }
-  }
-
-</style>
-
-<body>
-<div id="root"></div>
-<script type="text/babel">
-const {useState} = React;
-
-function Navbar() {
-    const [className, newClassName] = useState("light");
-
-    const [buttonStyle, newButtonStyle] = useState('lightButton');
-
-    const handleClick = (e) => {
-        e.preventDefault();
-        if (className === "light") {
-            newClassName("dark");
-            newButtonStyle('darkButton');
-        }
-        else if (className === "dark") {
-            newClassName("light")
-            newButtonStyle('lightButton')
-        }
+  </head>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
     }
 
-    return (
-        <div className={className}>
+    h1 {
+      padding-top: 17.5%;
+    }
+
+    div {
+      color: black;
+      font-size: 30px;
+      display: block;
+      font-family: Arial, Helvetica, sans-serif, sans-serif;
+      text-align: center;
+      margin-left: auto;
+      margin-right: auto;
+      height: 100vh;
+    }
+
+    .light {
+      background-color: white;
+    }
+
+    .lightButton {
+      background-color: rgb(224, 237, 241);
+      margin-top: 70px;
+      text-align: center;
+      border: 0;
+      padding: 15px 20px;
+      min-width: 150px;
+      font-size: 16px;
+      border-radius: 3px;
+      cursor: pointer;
+      transition: opacity 200ms ease-out;
+      color: black;
+      text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #fff;
+    }
+
+    button:hover {
+      opacity: 0.8;
+    }
+
+    .darkButton {
+      background-color: black;
+      margin-top: 70px;
+      text-align: center;
+      border: 0;
+      padding: 15px 20px;
+      min-width: 150px;
+      font-size: 16px;
+      border-radius: 3px;
+      cursor: pointer;
+      transition: opacity 200ms ease-out;
+      color: black;
+      text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #fff;
+    }
+
+    .dark {
+      animation: dark 1s linear infinite;
+      -moz-animation: dark 1s linear infinite;
+      -webkit-animation: dark 1s linear infinite;
+      -o-animation: dark 1s linear infinite;
+    }
+
+    @keyframes dark {
+      0%,
+      100% {
+        color: #fff;
+        text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #fff, 0 0 40px #0ff,
+          0 0 80px #0ff, 0 0 90px #0ff, 0 0 90px #0ff, 0 0 150px #0ff;
+        background: black;
+        background-repeat: no-repeat;
+        background-position-x: 50%;
+        background-size: cover;
+      }
+      50% {
+        color: #fff;
+        text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #fff,
+          0 0 40px rgb(0, 167, 167), 0 0 80px rgb(0, 138, 138),
+          0 0 90px rgb(1, 77, 77), 0 0 90px rgb(0, 134, 134),
+          0 0 150px rgb(0, 160, 160);
+      }
+    }
+  </style>
+
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      const { useState } = React;
+
+      function Navbar() {
+        const [className, newClassName] = useState("light");
+
+        const [buttonStyle, newButtonStyle] = useState("lightButton");
+
+        const handleClick = (e) => {
+          e.preventDefault();
+          if (className === "light") {
+            newClassName("dark");
+            newButtonStyle("darkButton");
+          } else if (className === "dark") {
+            newClassName("light");
+            newButtonStyle("lightButton");
+          }
+        };
+
+        return (
+          <div className={className}>
             <h1>WHAT ARE WE WAITING FOR?</h1>
-            <button className={buttonStyle} onClick={handleClick}>CHANGE MODE</button>
-        </div>
-    )
-}
+            <button className={buttonStyle} onClick={handleClick}>
+              CHANGE MODE
+            </button>
+          </div>
+        );
+      }
 
-ReactDOM.render(
-    <Navbar />,
-    document.getElementById('root')
-)
-
-</script>
-
-</body>
+      ReactDOM.render(<Navbar />, document.getElementById("root"));
+    </script>
+  </body>
 </html>
