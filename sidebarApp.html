@@ -2,6 +2,7 @@
 <html>
   <head>
     <meta charset="UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js"></script>
     <title>App with Opening Sidebar</title>
     <style>
       :root {
@@ -305,9 +306,12 @@
 
     <div id="app-sidebar">
       <ul>
-        <li>Home</li>
-        <li>About us</li>
-        <li>Contact us</li>
+        <li>
+          <button id="celebrate-button" class="button btn">
+            <span>🎉</span>
+            <span>Celebrate</span>
+          </button>
+        </li>
       </ul>
       <div class="end">
         <hr />
@@ -335,6 +339,14 @@
 
     menuSidebar.addEventListener("click", () => {
       openCloseSidebar();
+    });
+
+    const celebrateButton = document.querySelector("#celebrate-button");
+    celebrateButton.addEventListener("click", () => {
+      confetti({
+        particleCount: 80,
+        spread: 100,
+      });
     });
   </script>
 </html>
