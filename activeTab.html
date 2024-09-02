@@ -264,13 +264,15 @@
       <div class="tabs">
         <div class="nav-tabs">
           <ul>
-            <li><a class="tab active" href="#">About us</a></li>
-            <li><a class="tab" href="#">The team</a></li>
-            <li><a class="tab" href="#">What others say</a></li>
+            <li><a id="about_us" class="tab active" href="#">About us</a></li>
+            <li><a id="the_team" class="tab" href="#">The team</a></li>
+            <li>
+              <a id="what_others_say" class="tab" href="#">What others say</a>
+            </li>
           </ul>
           <div class="border-tabs"></div>
         </div>
-        <p>Tab content here</p>
+        <p id="content-area">We are an awesome company</p>
       </div>
     </div>
 
@@ -299,6 +301,12 @@
         const clickedTab = event.currentTarget;
         deactivateAllTabs();
         activateClickedTab(clickedTab);
+        const contentArea = document.querySelector("#content-area");
+        contentArea.textContent = {
+          about_us: "We are an awesome company",
+          the_team: "We are awesome people",
+          what_others_say: "They think we're awesome",
+        }[clickedTab.id];
       });
     });
   </script>
