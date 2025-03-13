@@ -32,6 +32,12 @@ html {
 
     const { useState, useEffect } = React;
 
+    function sayLouder(text) {
+        return text.toUpperCase()
+    }
+
+    sayLouder("bot")
+
     function BackgroundWrap() {
         const [background, setBackground] = useState({
             number: 20
