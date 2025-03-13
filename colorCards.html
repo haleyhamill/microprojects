@@ -1,101 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://unpkg.com/react@15.3.2/dist/react.js"></script>
     <script src="https://unpkg.com/react-dom@15.3.2/dist/react-dom.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
     <title>React Color Cards</title>
-</head>
-<style>
-    * { margin:0; padding: 0; }
-</style>
+  </head>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      font-family: "Calibri", sans-serif;
+    }
+  </style>
 
-<body>
+  <body>
     <div id="container"></div>
     <script type="text/babel">
+      const getRandomRGB = () => {
+        var red = Math.floor(Math.random() * 255);
+        var green = Math.floor(Math.random() * 255);
+        var blue = Math.floor(Math.random() * 255);
+        return [red, green, blue];
+      };
 
-        const getRandomRGB = () => {
-            var red = Math.floor(Math.random()*255);
-            var green = Math.floor(Math.random()*255);
-            var blue = Math.floor(Math.random()*255);
-            return [red, green, blue];
+      const App = () => {
+        const appStyle = {
+          width: "100%",
+          margin: "auto",
+          textAlign: "center",
+        };
+        var cards = [<h1>Random Color Cards</h1>, <h2>(Refresh Page)</h2>];
+        var numOfCards = 60;
+        for (var i = 0; i < numOfCards; i++) {
+          cards.push(<CardContainer />);
         }
+        return <div style={appStyle}>{cards}</div>;
+      };
 
-        const App = () => {
-            const appStyle={
-                width: "100%",
-                margin: "auto",
-                textAlign: "center"
-            }
-            var cards = [];
-            var numOfCards = 60;
-            for (var i=0; i<numOfCards; i++) {
-                cards.push(<CardContainer/>)
-            };
-            return(
-                <div style={appStyle}>
-                    {cards}
-                </div>
-            )
+      const CardContainer = () => {
+        const containerStyle = {
+          width: "250px",
+          height: "350px",
+          filter: "drop-shadow(0px 0px 5px #666)",
+          margin: "30px",
+          display: "inline-block",
         };
 
+        const [r, g, b] = getRandomRGB();
 
-        const CardContainer = () => {
-            const containerStyle = {
-                width: "250px",
-                height: "350px",
-                filter: "drop-shadow(0px 0px 5px #666)",
-                margin: "30px",
-                display: "inline-block",
-            }
+        return (
+          <div style={containerStyle}>
+            <CardColor red={r} green={g} blue={b} />
+            <CardInfo red={r} green={g} blue={b} />
+          </div>
+        );
+      };
 
-            const [r, g, b] = getRandomRGB();
+      const CardColor = ({ red, green, blue }) => {
+        const cardStyle = {
+          width: "250px",
+          height: "250px",
+          backgroundColor: `rgb(${red}, ${green}, ${blue})`,
+        };
 
-            return (
-                <div style={containerStyle}>
-                    <CardColor red={r} green={g} blue={b}/>
-                    <CardInfo red={r} green={g} blue={b}/>
-                </div>
-            )
-        }
+        return <div style={cardStyle}></div>;
+      };
 
-        const CardColor = ({red, green, blue}) => {
+      const CardInfo = ({ red, green, blue }) => {
+        const infoStyle = {
+          width: "250px",
+          height: "100px",
+          fontFamily: "sans-serif",
+          textAlign: "center",
+          backgroundColor: "#FFF",
+        };
+        const innerStyle = {
+          paddingTop: "40px",
+        };
 
-            const cardStyle = {
-            width: "250px",
-            height: "250px",
-            backgroundColor: `rgb(${red}, ${green}, ${blue})`
-            }
+        const label = `rgb(${red}, ${green}, ${blue})`;
 
-            return( <div style={cardStyle}></div> )
-        }
+        return (
+          <div style={infoStyle}>
+            <div style={innerStyle}>{label}</div>
+          </div>
+        );
+      };
 
-        const CardInfo = ({red, green, blue}) => {
-            const infoStyle = {
-                width: "250px",
-                height: "100px",
-                fontFamily: "sans-serif",
-                textAlign: "center",
-                backgroundColor: "#FFF"
-            }
-            const innerStyle = {
-                paddingTop: "40px",
-            }
-
-            const label = `rgb(${red}, ${green}, ${blue})`;
-
-            return ( 
-                <div style={infoStyle}>
-                    <div style={innerStyle}>{label}</div>
-                </div> )
-        }
-
-
-        ReactDOM.render( <App/>, document.getElementById("container"));
+      ReactDOM.render(<App />, document.getElementById("container"));
     </script>
-
-</body>
+  </body>
 </html>

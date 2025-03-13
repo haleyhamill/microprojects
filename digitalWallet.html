@@ -1,193 +1,408 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
     <script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
-    <script src="https://kit.fontawesome.com/143890e1e3.js" crossorigin="anonymous"></script>
+    <script
+      src="https://kit.fontawesome.com/143890e1e3.js"
+      crossorigin="anonymous"
+    ></script>
     <title>Digital Wallet</title>
-</head>
+  </head>
 
-<style>
+  <style>
+    html,
+    body,
+    div,
+    span,
+    applet,
+    object,
+    iframe,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    p,
+    blockquote,
+    pre,
+    a,
+    abbr,
+    acronym,
+    address,
+    big,
+    cite,
+    code,
+    del,
+    dfn,
+    em,
+    img,
+    ins,
+    kbd,
+    q,
+    s,
+    samp,
+    small,
+    strike,
+    strong,
+    sub,
+    sup,
+    tt,
+    var,
+    b,
+    u,
+    i,
+    center,
+    dl,
+    dt,
+    dd,
+    ol,
+    ul,
+    li,
+    fieldset,
+    form,
+    label,
+    legend,
+    table,
+    caption,
+    tbody,
+    tfoot,
+    thead,
+    tr,
+    th,
+    td,
+    article,
+    aside,
+    canvas,
+    details,
+    embed,
+    figure,
+    figcaption,
+    footer,
+    header,
+    hgroup,
+    menu,
+    nav,
+    output,
+    ruby,
+    section,
+    summary,
+    time,
+    mark,
+    audio,
+    video {
+      margin: 0;
+      padding: 0;
+      border: 0;
+      font-size: 100%;
+      font: inherit;
+      vertical-align: baseline;
+    }
 
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed, 
-figure, figcaption, footer, header, hgroup, 
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video { margin: 0; padding: 0; border: 0; font-size: 100%; font: inherit; vertical-align: baseline; }
+    html {
+      background-image: url("https://data.whicdn.com/images/333965298/original.jpg");
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
 
-html { background-image:url("https://data.whicdn.com/images/333965298/original.jpg"); background-repeat: no-repeat; 
-    background-size: cover; }
+    body {
+      color: white;
+      font-family: "Verdana", sans-serif;
+      text-align: center;
+      height: 100vh;
+      margin-left: auto;
+      margin-right: auto;
+      width: 100vw;
+    }
 
-body { color: white; font-family: "Verdana", sans-serif; text-align: center; height: 100vh; margin-left: auto; 
-    margin-right: auto; width: 100vw; }
+    header {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      height: 66px;
+      background-color: rgba(0, 0, 0, 0.7);
+    }
 
+    span {
+      align-self: center;
+      padding-left: 1em;
+      padding-right: 1em;
+      font-size: 18px;
+    }
 
+    #container {
+      margin-left: auto;
+      margin-right: auto;
+      /*box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; width: 15em;*/
+    }
 
-header { display: flex; flex-direction: row; justify-content: space-between; height: 66px; background-color:rgba(0, 0, 0, 0.7); }
+    #balanceContainer {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 256px;
+      background-color: rgba(120, 150, 255, 0.9);
+    }
 
-span { align-self: center; padding-left: 1em; padding-right: 1em; font-size: 18px; }
+    #balance {
+      color: white;
+      font-size: 76px;
+      padding: 1rem;
+      margin-top: auto;
+      margin-bottom: auto;
+    }
 
-#container { margin-left: auto; margin-right: auto; 
-    /*box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; width: 15em;*/}
+    #balanceTitle {
+      font-size: 14px;
+      padding-bottom: 1rem;
+    }
 
-#balanceContainer { display: flex; flex-direction: column; justify-content: center; align-items: center; height: 256px; 
-    background-color: rgba(120, 150, 255, 0.9);}
+    #transactions {
+      padding-left: 5px;
+      background-color: rgba(0, 0, 0, 0.2);
+      display: flex;
+      justify-content: center;
+      padding-top: 1em;
+      padding-bottom: 1em;
+    }
 
-#balance { color: white; font-size: 76px;  padding: 1rem; margin-top: auto; margin-bottom: auto;}
+    button {
+      background-color: rgba(126, 44, 122, 0);
+      text-align: center;
+      font-weight: bold;
+      color: white;
+      cursor: pointer;
+      transition: opacity 200ms ease-out;
+      border-style: none;
+      font-size: 18px;
+    }
 
-#balanceTitle { font-size: 14px; padding-bottom: 1rem; }
+    button:hover {
+      font-size: 17px;
+      transition: 200ms ease-in-out;
+    }
 
-#transactions { padding-left: 5px; background-color: rgba(0, 0, 0, 0.2);  display: flex; justify-content: center;
-    padding-top: 1em; padding-bottom: 1em; }
+    nav {
+      display: flex;
+      justify-content: space-between;
+      background-color: rgba(236, 39, 236, 0.315);
+      padding: 1em;
+      height: 4em;
+      margin: auto;
+    }
 
-button {  background-color: rgba(126, 44, 122, 0); text-align: center; font-weight: bold; color: white; 
-    cursor: pointer; transition: opacity 200ms ease-out; border-style: none; font-size: 18px; display:}
+    table,
+    th,
+    td {
+      border-spacing: 0;
+    }
 
-button:hover { font-size: 17px; transition: 200ms ease-in-out; }
+    table {
+      width: 100%;
+      table-layout: fixed;
+    }
 
+    td {
+      padding: 0.5em;
+      background-color: rgba(100, 100, 100);
+    }
 
-nav { display: flex; justify-content: space-between; background-color: rgba(255, 206, 255, 0.315); padding: 1em; 
-    height: 4em; margin: auto; }
+    th {
+      padding: 0.5em;
+      background-color: rgba(100, 100, 100);
+    }
 
-table, th, td { border-spacing: 0; }
+    @media only screen and (min-width: 601px) {
+      header {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        height: 4.5em;
+      }
 
-table { width: 100%;table-layout: fixed }
+      span {
+        padding: 2em;
+      }
 
-th, td { padding: 0.5em; background-color: rgba(0, 0, 0, 0.2);}
+      body {
+        color: white;
+        font-family: "Verdana", sans-serif;
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+      }
 
+      nav {
+        display: flex;
+        justify-content: space-between;
+        background-color: rgba(236, 39, 236, 0.958);
+        padding: 1em;
+        height: 4.5em;
+      }
 
-@media only screen and (min-width: 601px) {
-    header { display: flex; flex-direction: row; justify-content: space-between; height: 4.5em; }
+      #transactions {
+        padding-left: 5px;
+        background-color: rgba(100, 100, 100);
+        display: flex;
+        justify-content: center;
+        padding-top: 1em;
+        font-size: 18px;
+      }
 
-    span { padding: 2em; }
+      button {
+        background-color: rgba(126, 44, 122, 0);
+        text-align: center;
+        font-weight: bold;
+        color: white;
+        cursor: pointer;
+        transition: opacity 200ms ease-out;
+        font-size: 18px;
+        padding-left: 2em;
+        padding-right: 2em;
+      }
+    }
 
-    body { color: white; font-family: "Verdana", sans-serif; text-align: center; margin-left: auto; 
-    margin-right: auto; }
+    @media only screen and (min-width: 801px) {
+      #btn-break {
+        display: none;
+      }
 
-    nav { display: flex; justify-content: space-between; background-color: rgba(255, 206, 255, 0.315); padding: 1em; 
-    height: 4.5em; }
+      nav {
+        height: 43px;
+        font-size: 20px;
+      }
 
-    #transactions { padding-left: 5px; background-color: rgba(0, 0, 0, 0.2);  display: flex; justify-content: center;
-    padding-top: 1em; font-size: 18px; }
+      header {
+        height: 85px;
+      }
 
-    button {  background-color: rgba(126, 44, 122, 0); text-align: center; font-weight: bold; color: white; 
-    cursor: pointer; transition: opacity 200ms ease-out; font-size: 18px; padding-left: 2em; 
-    padding-right: 2em; }
-}
+      span {
+        font-size: 25px;
+      }
+    }
+  </style>
 
-@media only screen and (min-width: 801px) {
-    #btn-break { display: none; }
-
-    nav { height: 43px; font-size: 20px; }
-
-    header { height: 85px; }
-
-    span { font-size: 25px; }
-
-}
-
-</style>
-
-<html>
+  <html>
     <div id="root"></div>
-</html>
+  </html>
 
-<script type="text/babel">
-const {useState} = React;
-const {render} = ReactDOM;
+  <script type="text/babel">
+    const { useState } = React;
+    const { render } = ReactDOM;
 
-function Wallet() {
-    const [transactions, setTransactions] = useState([]);
+    function Wallet() {
+      const [transactions, setTransactions] = useState([]);
 
-    function handleDepositClick() {
-        const transCopy = transactions.map(transaction => transaction);
-        transCopy.push(600);
+      const getRandomValue = () => Math.round(100 * Math.random());
+
+      function handleDepositClick() {
+        const transCopy = transactions.map((transaction) => transaction);
+        transCopy.push(10 * getRandomValue());
         setTransactions(transCopy);
-    }
+      }
 
-    function handleWithdrawClick() {
-        const transCopy = transactions.map(transaction => transaction);
-        transCopy.push(-100);
+      function handleWithdrawClick() {
+        const transCopy = transactions.map((transaction) => transaction);
+        transCopy.push(-1 * getRandomValue());
         setTransactions(transCopy);
-    }
+      }
 
-    function handleClearClick() {
+      function handleClearClick() {
         setTransactions([]);
-    }
+      }
 
-    function sum(array, index = -1) {
+      function sum(array, index = -1) {
         var total = 0;
         const end = index === -1 ? array.length : index + 1;
         for (var i = 0; i < end; i++) {
-            total += array[i]
+          total += array[i];
         }
-        return total
-    }
+        return total;
+      }
 
-    function displayMoney(amount){
-        return amount>=0?`$${amount}` :`-$${Math.abs(amount)}`
-    }
+      function displayMoney(amount) {
+        return amount >= 0 ? `$${amount}` : `-$${Math.abs(amount)}`;
+      }
 
-    function getToday() {
+      function getToday() {
         var today = new Date();
-        var dd = String(today.getDate()).padStart(2, '0');
-        var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+        var dd = String(today.getDate()).padStart(2, "0");
+        var mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
         var yyyy = today.getFullYear();
 
-        const todaysDate = mm + '/' + dd + '/' + yyyy;
+        const todaysDate = mm + "/" + dd + "/" + yyyy;
         return todaysDate;
-    }
-    const now = getToday();
+      }
+      const now = getToday();
 
-    return(
-    <div id="contentContainer">
-        <header>
-                <span id="logo">Femme<br/>Bank</span>
-                <span id="user">Hello<br/>Haley</span>
-        </header>
-        <div id="balanceContainer">
-            <p id="balance">${sum(transactions)}
-                <p id="balanceTitle">AVAILABLE BALANCE<br/>Checking ...4211</p>
+      return (
+        <div id="contentContainer">
+          <header>
+            <span id="logo">
+              FEMME BANK<i class="fas fa-home"></i>
+            </span>
+
+            <span id="user">
+              Hello, Haley <i class="fas fa-user"></i>
+            </span>
+          </header>
+          <div id="balanceContainer">
+            <p id="balance">
+              ${sum(transactions)}
+              <p id="balanceTitle">
+                AVAILABLE BALANCE
+                <br />
+                Checking ...4211
+              </p>
             </p>
-        </div>
-        <nav>
-            <button onClick={handleDepositClick}><i className="fas fa-money-check-alt"></i><br id="btn-break"/>Deposit</button>
-            <button onClick={handleWithdrawClick}><i className="fas fa-money-bill"></i><br id="btn-break"/>Withdraw</button>
-            <button onClick={handleClearClick}><i className="fas fa-sync"></i><br id="btn-break"/>Reset</button>
-        </nav>
-        <div id="container">
-            <p id="transactions"> Recent Transactions &nbsp;<i class="fas fa-info-circle"></i></p>
+          </div>
+          <nav>
+            <button onClick={handleDepositClick}>
+              <i className="fas fa-money-check-alt"></i>
+              <br id="btn-break" />
+              Deposit
+            </button>
+            <button onClick={handleWithdrawClick}>
+              <i className="fas fa-money-bill"></i>
+              <br id="btn-break" />
+              Withdraw
+            </button>
+            <button onClick={handleClearClick}>
+              <i className="fas fa-sync"></i>
+              <br id="btn-break" />
+              Reset
+            </button>
+          </nav>
+          <div id="container">
+            <p id="transactions">
+              {" "}
+              Recent Transactions &nbsp;<i class="fas fa-info-circle"></i>
+            </p>
             <table>
+              <tr>
+                <th>Description</th>
+                <th>Amount</th>
+                <th>Balance</th>
+              </tr>
+              {transactions.map((transaction, index) => (
                 <tr>
-                    <th>Description</th>
-                    <th>Amount</th>
-                    <th>Balance</th>
+                  <td>{transaction > 0 ? "Deposit" : "Withdraw"}</td>
+                  <td>{displayMoney(transaction)}</td>
+                  <td>{displayMoney(sum(transactions, index))}</td>
                 </tr>
-                {transactions.map((transaction, index) => ( 
-                    <tr>
-                        <td>{transaction > 0 ? "Deposit" : "Withdraw"}</td>
-                        <td>{displayMoney(transaction)}</td>
-                        <td>{displayMoney(sum(transactions, index))}</td>
-                    </tr> ))}
+              ))}
             </table>
+          </div>
         </div>
-    </div> )
-}
+      );
+    }
 
-render(<Wallet />, document.querySelector("#root"));
-
-
-</script>
-
+    render(<Wallet />, document.querySelector("#root"));
+  </script>
+</html>

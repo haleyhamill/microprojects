@@ -394,11 +394,13 @@
 
       form.addEventListener("submit", (event) => {
         event.preventDefault();
-        try {
-          todos.add(title.value, category.value);
-          render(todos.getAll(), todos.getCount());
-        } catch (error) {
-          console.error(error);
+        if (title.value && title.value.trim()) {
+          try {
+            todos.add(title.value, category.value);
+            render(todos.getAll(), todos.getCount());
+          } catch (error) {
+            console.error(error);
+          }
         }
         title.value = "";
       });

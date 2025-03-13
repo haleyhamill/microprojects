@@ -1,135 +1,328 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
     <script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
-    <script src="https://kit.fontawesome.com/143890e1e3.js" crossorigin="anonymous"></script>
+    <script
+      src="https://kit.fontawesome.com/143890e1e3.js"
+      crossorigin="anonymous"
+    ></script>
     <title>Hotwire + Priceline</title>
-</head>
+  </head>
 
-<style>
-html, body, div, span, applet, object, iframe, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed, 
-figure, figcaption, footer, header, hgroup, 
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video { margin: 0; padding: 0; border: 0; font-size: 100%; font: inherit; vertical-align: baseline; }
+  <style>
+    html,
+    body,
+    div,
+    span,
+    applet,
+    object,
+    iframe,
+    h3,
+    h4,
+    h5,
+    h6,
+    p,
+    blockquote,
+    pre,
+    a,
+    abbr,
+    acronym,
+    address,
+    big,
+    cite,
+    code,
+    del,
+    dfn,
+    em,
+    img,
+    ins,
+    kbd,
+    q,
+    s,
+    samp,
+    small,
+    strike,
+    strong,
+    sub,
+    sup,
+    tt,
+    var,
+    b,
+    u,
+    i,
+    center,
+    dl,
+    dt,
+    dd,
+    ol,
+    ul,
+    li,
+    fieldset,
+    form,
+    label,
+    legend,
+    table,
+    caption,
+    tbody,
+    tfoot,
+    thead,
+    tr,
+    th,
+    td,
+    article,
+    aside,
+    canvas,
+    details,
+    embed,
+    figure,
+    figcaption,
+    footer,
+    header,
+    hgroup,
+    menu,
+    nav,
+    output,
+    ruby,
+    section,
+    summary,
+    time,
+    mark,
+    audio,
+    video {
+      margin: 0;
+      padding: 0;
+      border: 0;
+      font-size: 100%;
+      font: inherit;
+      vertical-align: baseline;
+    }
 
-html { background-image:url("https://data.whicdn.com/images/359124349/original.png"); background-repeat: no-repeat; 
-    background-size: cover; }
+    html {
+      background-image: url("https://data.whicdn.com/images/359124349/original.png");
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
 
-body { color: white; font-family: "Verdana", sans-serif; text-align: center; height: 100vh; margin-left: auto; 
-    margin-right: auto; width: 100vw; }
+    body {
+      color: white;
+      font-family: "Verdana", sans-serif;
+      text-align: center;
+      margin-left: auto;
+      margin-right: auto;
+      width: "100%";
+      background-color: rgba(100, 100, 100);
+    }
 
-header { display: flex; flex-direction: row; justify-content: space-between; height: 66px; background-color:rgba(0, 0, 0, 0.2); }
+    span {
+      align-self: center;
+      padding-left: 1em;
+      padding-right: 1em;
+      font-size: 18px;
+    }
 
-span { align-self: center; padding-left: 1em; padding-right: 1em; font-size: 18px; }
+    button {
+      background-color: rgba(126, 44, 122, 0);
+      text-align: center;
+      font-weight: bold;
+      color: white;
+      cursor: pointer;
+      transition: opacity 200ms ease-out;
+      border-style: none;
+      font-size: 18px;
+    }
 
-button {  background-color: rgba(126, 44, 122, 0); text-align: center; font-weight: bold; color: white; 
-    cursor: pointer; transition: opacity 200ms ease-out; border-style: none; font-size: 18px; display:}
+    button:hover {
+      font-size: 17px;
+      transition: 200ms ease-in-out;
+    }
 
-button:hover { font-size: 17px; transition: 200ms ease-in-out; }
+    nav {
+      display: flex;
+      justify-content: space-between;
+      background-color: rgba(255, 206, 255, 0.315);
+      padding: 1em;
+      height: 4em;
+      margin: auto;
+    }
 
-nav { display: flex; justify-content: space-between; background-color: rgba(255, 206, 255, 0.315); padding: 1em; 
-    height: 4em; margin: auto; }
+    table,
+    th,
+    td {
+      border-spacing: 0;
+    }
 
-table, th, td { border-spacing: 0; }
+    table {
+      width: 100%;
+      table-layout: fixed;
+    }
 
-table { width: 100%;table-layout: fixed }
+    th,
+    td {
+      padding: 0.5em;
+      background-color: rgba(0, 0, 0, 0.2);
+    }
 
-th, td { padding: 0.5em; background-color: rgba(0, 0, 0, 0.2);}
+    input {
+      font-size: 1.5rem;
+      background: transparent;
+      border-style: none;
+      border-bottom-style: solid;
+      padding: 5px 5px 1px 10px;
+      color: white;
+      border-color: white;
+    }
 
-input {font-size: 1.5rem; background: transparent; border-style: none; border-bottom-style:solid; 
-    padding: 5px 5px 1px 10px; color: white; border-color: white}
+    @media only screen and (min-width: 601px) {
+      header {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        height: 4.5em;
+      }
 
+      span {
+        padding: 2em;
+      }
 
-@media only screen and (min-width: 601px) {
-    header { display: flex; flex-direction: row; justify-content: space-between; height: 4.5em; }
+      body {
+        color: white;
+        font-family: "Verdana", sans-serif;
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+      }
 
-    span { padding: 2em; }
+      nav {
+        display: flex;
+        justify-content: space-between;
+        background-color: rgba(255, 206, 255, 0.315);
+        padding: 1em;
+        height: 4.5em;
+      }
 
-    body { color: white; font-family: "Verdana", sans-serif; text-align: center; margin-left: auto; 
-    margin-right: auto; }
+      #transactions {
+        padding-left: 5px;
+        background-color: rgba(0, 0, 0, 0.2);
+        display: flex;
+        justify-content: center;
+        padding-top: 1em;
+        font-size: 18px;
+      }
 
-    nav { display: flex; justify-content: space-between; background-color: rgba(255, 206, 255, 0.315); padding: 1em; 
-    height: 4.5em; }
+      button {
+        background-color: rgba(126, 44, 122, 0);
+        text-align: center;
+        font-weight: bold;
+        color: white;
+        cursor: pointer;
+        transition: opacity 200ms ease-out;
+        font-size: 18px;
+        padding-left: 2em;
+        padding-right: 2em;
+      }
+    }
 
-    #transactions { padding-left: 5px; background-color: rgba(0, 0, 0, 0.2);  display: flex; justify-content: center;
-    padding-top: 1em; font-size: 18px; }
+    @media only screen and (min-width: 801px) {
+      #btn-break {
+        display: none;
+      }
 
-    button {  background-color: rgba(126, 44, 122, 0); text-align: center; font-weight: bold; color: white; 
-    cursor: pointer; transition: opacity 200ms ease-out; font-size: 18px; padding-left: 2em; 
-    padding-right: 2em; }
-}
+      nav {
+        height: 43px;
+        font-size: 20px;
+      }
 
-@media only screen and (min-width: 801px) {
-    #btn-break { display: none; }
+      header {
+        height: 85px;
+      }
 
-    nav { height: 43px; font-size: 20px; }
+      span {
+        font-size: 25px;
+      }
+    }
+  </style>
 
-    header { height: 85px; }
-
-    span { font-size: 25px; }
-}
-
-</style>
-
-<html>
+  <html>
     <div id="root"></div>
-</html>
+  </html>
 
-<script type="text/babel">
-const {useState} = React;
-const {render} = ReactDOM;
+  <script type="text/babel">
+    const { useState } = React;
+    const { render } = ReactDOM;
 
-function App(event) {
-    const [name, setName] = useState("London");
-    const [fromDate, setFromDate] = useState("20211223");
-    const [toDate, setToDate] = useState("20211224");
-    const iframeStyle = {
-        width: "500px",
+    function App(event) {
+      const [name, setName] = useState("London");
+      const [fromDate, setFromDate] = useState("20211223");
+      const [toDate, setToDate] = useState("20211224");
+      const iframeStyle = {
+        width: "45%",
         height: "500px",
         marginLeft: "auto",
         marginRight: "auto",
         marginTop: "1rem",
-        paddingLeft: "1rem"
+        paddingLeft: "1rem",
+      };
+      const divStyle = {
+        // marginTop: "2rem",
+        marginTop: "0rem",
+        paddingTop: 10,
+      };
+
+      return (
+        <div style={divStyle}>
+          <h1>Hotwire + Priceline Hotel Search</h1>
+          <p>
+            In order to make this search work, keep in mind the special date
+            formatting.
+          </p>
+          <p>For example, December 15, 2021 = 20211521 (YYYYMMDD)</p>
+          <br />
+          <h2>
+            Search For Hotels In{" "}
+            <input
+              type="text"
+              value={name}
+              name="name"
+              placeholder="Searching In..."
+              onChange={(event) => setName(event.target.value)}
+            />
+          </h2>
+          <h2>
+            From{" "}
+            <input
+              type="text"
+              value={fromDate}
+              name="fromDate"
+              onChange={(event) => setFromDate(event.target.value)}
+            />
+          </h2>
+          <h2>
+            To{" "}
+            <input
+              type="text"
+              value={toDate}
+              name="toDate"
+              onChange={(event) => setToDate(event.target.value)}
+            />
+          </h2>
+
+          <iframe
+            style={iframeStyle}
+            src={`https://www.priceline.com/relax/in/${name}/from/${fromDate}/to/${toDate}/rooms/1/adults/2`}
+          ></iframe>
+          <iframe
+            style={iframeStyle}
+            src={`https://www.hotwire.com/hotels/search?destination=${name}&startDate=${fromDate}&endDate=${toDate}&rooms=1&adults=2&children=0`}
+          ></iframe>
+        </div>
+      );
     }
-    const divStyle = {
-        marginTop: "2rem",
-    }
 
-    return( <div style={divStyle}>
-        <h1>Hotwire + Priceline Hotel Search</h1>
-        <p>In order to make this search work, keep in mind the special date formatting.</p>
-        <p>For example, December 15, 2021 = 20211521 (YYYYMMDD)</p>
-        <br/>
-        <h2>Search For Hotels In {" "}
-        <input type="text" value={name} name="name" placeholder="Searching In..."
-        onChange={event => setName(event.target.value)} />
-        </h2>
-        <h2>From <input type="text" value={fromDate} name="fromDate"
-        onChange={event => setFromDate(event.target.value)} />
-        </h2>
-        <h2>To <input type="text" value={toDate} name="toDate"
-        onChange={event => setToDate(event.target.value)} />
-        </h2>
-        
-        <iframe style={iframeStyle} src={`https://www.priceline.com/relax/in/${name}/from/${fromDate}/to/${toDate}/rooms/1/adults/2`}></iframe>
-        <iframe style={iframeStyle} src={`https://www.hotwire.com/hotels/search?destination=${name}&startDate=${fromDate}&endDate=${toDate}&rooms=1&adults=2&children=0`}></iframe>
-    </div>);
-}
-
-render(<App />, document.querySelector("#root"));
-
-
-</script>
+    render(<App />, document.querySelector("#root"));
+  </script>
+</html>
