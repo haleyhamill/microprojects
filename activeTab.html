@@ -282,6 +282,10 @@
     </footer>
   </body>
   <script>
+    function Welcome() {
+      return <button onClick={() => console.log("clicked")}></button>
+    }
+
     const deactivateAllTabs = () => {
       document.querySelectorAll(".tab").forEach((tab) => {
         tab.classList.remove("active");
