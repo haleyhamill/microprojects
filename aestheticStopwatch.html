@@ -80,13 +80,6 @@ function Stopwatch() {
         setRunning(false);
     }
 
-    function getUser(first_name, last_name) {
-
-        function getFullName() {
-            return `${first_name} ${last_name}`
-        }
-    }
-
     return(<div>
         <h1>{counter}</h1>
         <button onClick={handleButtonClick}>Start / Pause</button>
