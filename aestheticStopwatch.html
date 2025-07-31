@@ -80,6 +80,22 @@ function Stopwatch() {
         setRunning(false);
     }
 
+    function curriedSum(a) {
+    return function(b) {
+        return a + b;
+    }
+}
+
+// First usage
+const sumFive = curriedSum(5);
+sumFive(2); // 5 + 2 = 7
+sumFive(10); // 5 + 10 = 15
+
+// Second usage
+const sumTen = curriedSum(10);
+sumTen(3); // 10 + 3 = 13
+sumTen(10); // 10 + 10 = 20
+
     return(<div>
         <h1>{counter}</h1>
         <button onClick={handleButtonClick}>Start / Pause</button>
