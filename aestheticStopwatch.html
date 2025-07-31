@@ -80,11 +80,12 @@ function Stopwatch() {
         setRunning(false);
     }
 
-    function curriedSum(a) {
-    return function(b) {
-        return a + b;
+    function getUser(first_name, last_name) {
+
+        function getFullName() {
+            return `${first_name} ${last_name}`
+        }
     }
-}
 
     return(<div>
         <h1>{counter}</h1>
